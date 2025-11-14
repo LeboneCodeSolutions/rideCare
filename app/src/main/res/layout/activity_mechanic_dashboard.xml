@@ -7,95 +7,94 @@
     android:layout_height="match_parent"
     android:padding="20dp">
 
-    <!-- Profile Image in top-right corner -->
+    <!-- Profile button (top-right) -->
     <ImageView
         android:id="@+id/editProfile"
-        android:layout_width="37dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:src="@drawable/profile_candidate"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="20dp"/>
 
-    <!-- Welcome Text -->
-
-    <!-- Inspirational Quote -->
-
-    <!-- Buttons -->
-
+    <!-- Welcome title -->
     <TextView
         android:id="@+id/tvWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
-        android:text="Welcome"
+        android:text="Welcome, Mechanic!"
         android:textColor="#000000"
-        android:textSize="48sp"
+        android:textSize="36sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@id/editProfile"
-        app:layout_constraintHorizontal_bias="0.597"
+        app:layout_constraintTop_toBottomOf="@id/editProfile"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"/>
 
+    <!-- Quote -->
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="250dp"
+        android:id="@+id/textViewQuote"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="8dp"
         android:text="Progress, not perfection—every small step counts."
         android:textColor="#000000"
-        android:textSize="12sp"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/tvWelcome"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvWelcome" />
-
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="52dp"
-        android:backgroundTint="#FF0000"
-        android:text="Log-out"
-        android:textAllCaps="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnCreateInvoice" />
+        android:layout_marginTop="10dp"/>
 
-    <Button
-        android:id="@+id/btnViewCurrentJobs"
-        android:layout_width="213dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="#00BCD4"
-        android:text="Current Jobs"
-        android:textAllCaps="false"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnViewJobsBoard" />
-
+    <!-- Job Board button -->
     <Button
         android:id="@+id/btnViewJobsBoard"
-        android:layout_width="213dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="#00BCD4"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
         android:text="Job Board"
+        android:backgroundTint="#00BCD4"
         android:textAllCaps="false"
+        app:layout_constraintTop_toBottomOf="@id/textViewQuote"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView2" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"/>
 
+    <!-- Current Jobs button -->
+    <Button
+        android:id="@+id/btnViewCurrentJobs"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="Current Jobs"
+        android:backgroundTint="#00BCD4"
+        android:textAllCaps="false"
+        app:layout_constraintTop_toBottomOf="@id/btnViewJobsBoard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"/>
+
+    <!-- Create Invoice button -->
     <Button
         android:id="@+id/btnCreateInvoice"
-        android:layout_width="213dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="4dp"
-        android:backgroundTint="#00BCD4"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
         android:text="Create Invoice"
+        android:backgroundTint="#00BCD4"
         android:textAllCaps="false"
+        app:layout_constraintTop_toBottomOf="@id/btnViewCurrentJobs"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnViewCurrentJobs" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"/>
+
+    <!-- Logout button -->
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:text="LOG-OUT"
+        android:backgroundTint="#FF0000"
+        android:textAllCaps="true"
+        android:textColor="#FFFFFF"
+        app:layout_constraintTop_toBottomOf="@id/btnCreateInvoice"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

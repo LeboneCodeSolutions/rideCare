@@ -22,7 +22,6 @@
             android:textStyle="bold" />
 
         <!-- User Type Selection -->
-
         <RadioGroup
             android:id="@+id/rgUserType"
             android:layout_width="match_parent"
@@ -119,8 +118,18 @@
                 android:src="@android:drawable/ic_menu_view"/>
         </LinearLayout>
 
-        <!-- Password strength -->
+        <!-- Password strength label -->
+        <TextView
+            android:id="@+id/tvPasswordStrength"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password Strength"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp"/>
 
+        <!-- Strength bar -->
         <View
             android:id="@+id/strengthBar"
             android:layout_width="match_parent"
@@ -128,7 +137,7 @@
             android:layout_marginBottom="16dp"
             android:background="#CCCCCC"/>
 
-        <!-- Rules box -->
+        <!-- Confirm Password -->
         <EditText
             android:id="@+id/etConfirmPassword"
             android:layout_width="276dp"
@@ -140,6 +149,7 @@
             android:padding="12dp"
             android:textSize="14sp" />
 
+        <!-- Password Rules -->
         <LinearLayout
             android:id="@+id/passwordRulesBox"
             android:layout_width="350dp"

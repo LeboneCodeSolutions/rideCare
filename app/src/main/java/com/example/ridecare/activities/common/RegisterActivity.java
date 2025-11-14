@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.ridecare.R;
 import com.example.ridecare.activities.client.DashboardActivity;
+import com.example.ridecare.activities.mechanic.MechanicDashboardActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -31,8 +32,8 @@ public class RegisterActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseFirestore db;
     TextView ruleLength, ruleUpper, ruleLower, ruleNumber, ruleSpecial, tvPasswordStrength;
-    RadioGroup rgVerificationMethod;
-    RadioButton rbEmailOTP, rbPhoneOTP;
+    RadioGroup rgVerificationMethod, rgUserRole;
+    RadioButton rbEmailOTP, rbPhoneOTP, rbClient, rbMechanic;
     View strengthBar;
 
     boolean passwordVisible = false;
@@ -47,12 +48,15 @@ public class RegisterActivity extends AppCompatActivity {
 
         etFirstName = findViewById(R.id.etFirstName);
         etLastName = findViewById(R.id.etLastName);
+        rbClient = findViewById(R.id.rbClient);
+        rbMechanic = findViewById(R.id.rbMechanic);
         etEmail = findViewById(R.id.etEmail);
         etPhone = findViewById(R.id.etPhone);
         etPassword = findViewById(R.id.etPassword);
         btnTogglePassword = findViewById(R.id.btnTogglePassword);
         btnRegister = findViewById(R.id.btnRegister);
         etConfirmPassword = findViewById(R.id.etConfirmPassword);
+        tvPasswordStrength = findViewById(R.id.tvPasswordStrength);
 
         // Password rule labels
         ruleLength = findViewById(R.id.ruleLength);
@@ -153,7 +157,6 @@ public class RegisterActivity extends AppCompatActivity {
         String password = etPassword.getText().toString().trim();
         String confirmPass = etConfirmPassword.getText().toString().trim();
 
-
         // Validation
         if (!isValidName(first)) { etFirstName.setError("Invalid name"); return; }
         if (!isValidName(last)) { etLastName.setError("Invalid surname"); return; }
@@ -162,13 +165,26 @@ public class RegisterActivity extends AppCompatActivity {
 
         if (!password.equals(confirmPass)) {
             etConfirmPassword.setError("Passwords do not match");
-            return; }
+            return;
+        }
         if (!isPasswordValid(password)) {
             Toast.makeText(this, "Password must meet requirements", Toast.LENGTH_SHORT).show();
-            return; }
+            return;
+        }
 
-        if (rgVerificationMethod.getCheckedRadioButtonId() == -1) { Toast.makeText(this, "Select verification method", Toast.LENGTH_SHORT).show(); return; }
+        // Check if user role is selected
+        if (!rbClient.isChecked() && !rbMechanic.isChecked()) {
+            Toast.makeText(this, "Please select a role (Client or Mechanic)", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
+        if (rgVerificationMethod.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "Select verification method", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Determine role based on radio button selection
+        String userRole = rbClient.isChecked() ? "client" : "mechanic";
 
         // Determine OTP method
         boolean emailMethod = rbEmailOTP.isChecked();
@@ -183,7 +199,7 @@ public class RegisterActivity extends AppCompatActivity {
                     user.put("lastname", last);
                     user.put("email", email);
                     user.put("phone", phone);
-                    user.put("role", "client");
+                    user.put("role", userRole);
 
                     db.collection("users").document(uid)
                             .set(user)
@@ -195,8 +211,13 @@ public class RegisterActivity extends AppCompatActivity {
                                 } else {
                                     Toast.makeText(this, "Phone OTP (future upgrade — Firebase paid tier)", Toast.LENGTH_LONG).show();
                                 }
+                                    if(userRole.equals("mechanic")){
+                                        startActivity(new Intent(this, MechanicDashboardActivity.class));
+                                    }
+                                    else{
+                                        startActivity(new Intent(this, DashboardActivity.class));
+                                    }
 
-                                startActivity(new Intent(this, DashboardActivity.class));
                                 finish();
                             });
                 })

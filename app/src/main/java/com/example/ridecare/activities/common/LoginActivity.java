@@ -13,6 +13,7 @@ import android.widget.*;
 
 import com.example.ridecare.R;
 import com.example.ridecare.activities.client.DashboardActivity;
+import com.example.ridecare.activities.mechanic.MechanicDashboardActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -121,14 +122,39 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnSuccessListener(authResult -> {
                     prefs.edit().putInt("failedAttempts", 0).apply();
 
+                    String uid = authResult.getUser().getUid();
+
+                    // Get FCM token and check user type
                     FirebaseMessaging.getInstance().getToken().addOnSuccessListener(token -> {
-                        String uid = authResult.getUser().getUid();
                         db.collection("users").document(uid).update("fcmToken", token);
                     });
 
-                    Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
-                    finish();
+                    // Check user type from Firestore
+                    db.collection("users").document(uid).get()
+                            .addOnSuccessListener(documentSnapshot -> {
+                                if (documentSnapshot.exists()) {
+                                    String userType = documentSnapshot.getString("role");
+
+                                    Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();
+
+                                    // Redirect based on user type
+                                    if ("mechanic".equalsIgnoreCase(userType)) {
+                                        startActivity(new Intent(LoginActivity.this, MechanicDashboardActivity.class));
+                                    } else if ("client".equalsIgnoreCase(userType)) {
+                                        startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+                                    } else {
+                                        // Default to client dashboard if userType is not set
+                                        startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+                                    }
+                                    finish();
+                                } else {
+                                    Toast.makeText(this, "User data not found", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .addOnFailureListener(e -> {
+                                Toast.makeText(this, "Error fetching user data: " + e.getMessage(),
+                                        Toast.LENGTH_SHORT).show();
+                            });
                 })
                 .addOnFailureListener(e -> {
                     failedAttempts++;
