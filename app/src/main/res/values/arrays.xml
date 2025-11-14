@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="service_types">
+        <item>Oil Change</item>
+        <item>Tire Replacement</item>
+        <item>Brake Service</item>
+        <item>Battery Replacement</item>
+        <item>Engine Diagnostics</item>
+    </string-array>
+</resources>

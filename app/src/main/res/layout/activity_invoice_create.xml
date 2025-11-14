@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:background="#FFFFFF"
+   >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Header -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create Invoice"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp" />
+
+        <!-- Client Email -->
+        <EditText
+            android:id="@+id/etClientEmailAddress"
+            android:layout_width="211dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="16dp"
+            android:hint="Client Email Address"
+            android:inputType="textEmailAddress"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+        <!-- Vehicle Registration -->
+        <EditText
+            android:id="@+id/etClientVehicleRegistrationNumber"
+            android:layout_width="209dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:hint="Vehicle Registration Number"
+            android:inputType="text"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etClientEmailAddress" />
+
+        <!-- VIN Number -->
+        <EditText
+            android:id="@+id/etClientVehicleVinNumber"
+            android:layout_width="209dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="16dp"
+            android:hint="VIN Number"
+            android:inputType="text"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etClientVehicleRegistrationNumber" />
+
+        <!-- Section Label -->
+        <TextView
+            android:id="@+id/tvServiceDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Service Description"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/etClientVehicleVinNumber"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="24dp" />
+
+        <!-- Work Done 1 -->
+        <EditText
+            android:id="@+id/etWorkDone1"
+            android:layout_width="287dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="8dp"
+            android:gravity="top|start"
+            android:hint="Task 1"
+            android:inputType="textMultiLine"
+            android:minLines="2"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvServiceDescription" />
+
+        <!-- Work Done 2 -->
+        <EditText
+            android:id="@+id/etWorkDone2"
+            android:layout_width="288dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="8dp"
+            android:gravity="top|start"
+            android:hint="Task 2"
+            android:inputType="textMultiLine"
+            android:minLines="2"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etWorkDone1" />
+
+        <!-- Work Done 3 -->
+        <EditText
+            android:id="@+id/etWorkDone3"
+            android:layout_width="289dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="8dp"
+            android:gravity="top|start"
+            android:hint="Task 3"
+            android:inputType="textMultiLine"
+            android:minLines="2"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etWorkDone2" />
+
+        <!-- Parts Used -->
+        <EditText
+            android:id="@+id/etPartsUsed"
+            android:layout_width="297dp"
+            android:layout_height="131dp"
+            android:layout_marginTop="16dp"
+            android:gravity="top|start"
+            android:hint="Parts Used"
+            android:inputType="textMultiLine"
+            android:minLines="3"
+            android:textAlignment="viewStart"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etWorkDone3" />
+
+        <!-- Total Cost -->
+        <EditText
+            android:id="@+id/etCost"
+            android:layout_width="321dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="16dp"
+            android:hint="Total Cost (ZAR)"
+            android:inputType="numberDecimal"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etPartsUsed" />
+
+        <!-- Submit Button -->
+        <Button
+            android:id="@+id/btnSubmitInvoice"
+            android:layout_width="141dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="4dp"
+            android:backgroundTint="#007AFF"
+            android:elevation="3dp"
+            android:padding="12dp"
+            android:text="Submit"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.513"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etCost" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
