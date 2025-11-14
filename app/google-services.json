@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "343982340859",
+    "firebase_url": "https://carserviveclient-default-rtdb.firebaseio.com",
+    "project_id": "carserviveclient",
+    "storage_bucket": "carserviveclient.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:343982340859:android:0c118ffb8c547923968e5e",
+        "android_client_info": {
+          "package_name": "com.carservice.carservicemechanic"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJnEVjm2VbfbWzAUoxYuKJynzq4bSErdk"
+        },
+        {
+          "current_key": "AIzaSyBkvjtX3KgW1Q2JncavEkTSbKwmOMd-UIc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:343982340859:android:cc0361f9d60005d1968e5e",
+        "android_client_info": {
+          "package_name": "com.carservice.client"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJnEVjm2VbfbWzAUoxYuKJynzq4bSErdk"
+        },
+        {
+          "current_key": "AIzaSyBkvjtX3KgW1Q2JncavEkTSbKwmOMd-UIc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:343982340859:android:aca1524853bb80ec968e5e",
+        "android_client_info": {
+          "package_name": "com.example.ridecare"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJnEVjm2VbfbWzAUoxYuKJynzq4bSErdk"
+        },
+        {
+          "current_key": "AIzaSyBkvjtX3KgW1Q2JncavEkTSbKwmOMd-UIc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

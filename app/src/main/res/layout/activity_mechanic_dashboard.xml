@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <!-- Profile Image -->
+    <ImageView
+        android:id="@+id/editProfile"
+        android:layout_width="91dp"
+        android:layout_height="126dp"
+        android:src="@drawable/profile_candidate" />
+
+    <!-- Welcome Text -->
+    <TextView
+        android:id="@+id/tvWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Welcome"
+        android:textColor="#000000"
+        android:textSize="32sp"
+        android:textStyle="bold" />
+
+    <!-- Inspirational Quote -->
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp"
+        android:text="Progress, not perfection—every small step counts."
+        android:textColor="#000000"
+        android:textSize="15sp" />
+
+    <!-- Buttons -->
+    <Button
+        android:id="@+id/btnViewJobsBoard"
+        android:layout_width="250dp"
+        android:layout_height="62dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="#008CFB"
+        android:text="Job Board"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btnViewCurrentJobs"
+        android:layout_width="250dp"
+        android:layout_height="62dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="#008CFB"
+        android:text="Current Jobs"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btnCreateInvoice"
+        android:layout_width="250dp"
+        android:layout_height="62dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="#008CFB"
+        android:text="Create Invoice"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="#FF0000"
+        android:text="Log-out"
+        android:textAllCaps="true" />
+
+</LinearLayout>
