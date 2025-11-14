@@ -30,7 +30,6 @@ public class RegisterActivity extends AppCompatActivity {
     Button btnRegister;
     FirebaseAuth auth;
     FirebaseFirestore db;
-
     TextView ruleLength, ruleUpper, ruleLower, ruleNumber, ruleSpecial, tvPasswordStrength;
     RadioGroup rgVerificationMethod;
     RadioButton rbEmailOTP, rbPhoneOTP;
@@ -63,7 +62,6 @@ public class RegisterActivity extends AppCompatActivity {
         ruleSpecial = findViewById(R.id.ruleSpecial);
 
         // password strength meter
-        tvPasswordStrength = findViewById(R.id.tvPasswordStrength);
         strengthBar = findViewById(R.id.strengthBar);
 
         // Verification method radio

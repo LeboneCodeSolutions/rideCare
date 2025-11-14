@@ -13,8 +13,7 @@ public class ServiceRequest implements Serializable {
 
 
 
-    public ServiceRequest(String id, String serviceType, String vehicleId, String status, String description, String mechanicId, String userId) {
-        this.id = id;
+    public ServiceRequest( String serviceType, String vehicleId, String status, String description, String mechanicId, String userId) {
         this.serviceType = serviceType;
         this.vehicleId = vehicleId;
         this.status = status;
