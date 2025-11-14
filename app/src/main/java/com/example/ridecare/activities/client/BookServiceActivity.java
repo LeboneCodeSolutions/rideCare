@@ -19,6 +19,9 @@ public class BookServiceActivity extends AppCompatActivity {
     FirebaseFirestore db;
     FirebaseAuth auth;
     String vehicleId;
+    String status ="pending";
+
+    String mechanicID = "0002";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +51,14 @@ public class BookServiceActivity extends AppCompatActivity {
         }
 
         // Build request model
-        ServiceRequest request = new ServiceRequest();
+        ServiceRequest request = new ServiceRequest(uid,vehicleId,serviceType,status,desc, mechanicID);
         request.setUserId(uid);
         request.setVehicleId(vehicleId);
         request.setServiceType(serviceType);
         request.setDescription(desc);
-        request.setStatus("pending");
-        request.setCreatedAt(new Date());
+        request.setStatus(status);
+        request.setMechanicId(mechanicID);
+
 
 
 

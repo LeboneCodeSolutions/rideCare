@@ -1,76 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
     android:padding="20dp">
 
-    <!-- Profile Image -->
+    <!-- Profile Image in top-right corner -->
     <ImageView
         android:id="@+id/editProfile"
-        android:layout_width="91dp"
-        android:layout_height="126dp"
-        android:src="@drawable/profile_candidate" />
+        android:layout_width="37dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/profile_candidate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Welcome Text -->
+
+    <!-- Inspirational Quote -->
+
+    <!-- Buttons -->
+
     <TextView
         android:id="@+id/tvWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="140dp"
         android:text="Welcome"
         android:textColor="#000000"
-        android:textSize="32sp"
-        android:textStyle="bold" />
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/editProfile"
+        app:layout_constraintHorizontal_bias="0.597"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Inspirational Quote -->
     <TextView
         android:id="@+id/textView2"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="8dp"
         android:text="Progress, not perfection—every small step counts."
         android:textColor="#000000"
-        android:textSize="15sp" />
-
-    <!-- Buttons -->
-    <Button
-        android:id="@+id/btnViewJobsBoard"
-        android:layout_width="250dp"
-        android:layout_height="62dp"
-        android:layout_marginBottom="10dp"
-        android:backgroundTint="#008CFB"
-        android:text="Job Board"
-        android:textAllCaps="false" />
-
-    <Button
-        android:id="@+id/btnViewCurrentJobs"
-        android:layout_width="250dp"
-        android:layout_height="62dp"
-        android:layout_marginBottom="10dp"
-        android:backgroundTint="#008CFB"
-        android:text="Current Jobs"
-        android:textAllCaps="false" />
-
-    <Button
-        android:id="@+id/btnCreateInvoice"
-        android:layout_width="250dp"
-        android:layout_height="62dp"
-        android:layout_marginBottom="10dp"
-        android:backgroundTint="#008CFB"
-        android:text="Create Invoice"
-        android:textAllCaps="false" />
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvWelcome" />
 
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="52dp"
         android:backgroundTint="#FF0000"
         android:text="Log-out"
-        android:textAllCaps="true" />
+        android:textAllCaps="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnCreateInvoice" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/btnViewCurrentJobs"
+        android:layout_width="213dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#008CFB"
+        android:text="Current Jobs"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnViewJobsBoard" />
+
+    <Button
+        android:id="@+id/btnViewJobsBoard"
+        android:layout_width="213dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="#008CFB"
+        android:text="Job Board"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView2" />
+
+    <Button
+        android:id="@+id/btnCreateInvoice"
+        android:layout_width="213dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="#008CFB"
+        android:text="Create Invoice"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnViewCurrentJobs" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
