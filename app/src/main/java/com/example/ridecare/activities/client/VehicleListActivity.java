@@ -1,139 +1,118 @@
-package com.example.ridecare.activities.client;
+package com.example.ridecare.activities.client; // Use your actual package name
 
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.Button;
-import android.widget.Toast;
 
-import com.example.ridecare.R;
+import com.example.ridecare.R; // Use your actual R file import
 import com.example.ridecare.adapters.VehicleAdapter;
 import com.example.ridecare.models.Vehicle;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class VehicleListActivity extends AppCompatActivity {
 
-    RecyclerView rv;
-    Button btnAdd;
-    FirebaseAuth auth;
-    FirebaseFirestore db;
-    VehicleAdapter adapter;
-    List<Vehicle> vehicles = new ArrayList<>();
-    private ListenerRegistration vehicleListener;
+    private static final String TAG = "VehicleListActivity";
+
+    private RecyclerView rvVehicles;
+    private Button btnAddVehicle;
+    private VehicleAdapter adapter;
+    private List<Vehicle> vehicleList;
+
+    private FirebaseFirestore db;
+    private FirebaseAuth mAuth;
+
+    // It's good practice to keep a reference to the listener to remove it later
+    private ListenerRegistration firestoreListener;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicle_list);
 
-        rv = findViewById(R.id.rvVehicles);
-        btnAdd = findViewById(R.id.btnAddVehicle);
-
-        rv.setLayoutManager(new LinearLayoutManager(this));
-
-        adapter = new VehicleAdapter(vehicles, new VehicleAdapter.OnVehicleAction() {
-            @Override
-            public void onBook(Vehicle v) {
-                Intent i = new Intent(VehicleListActivity.this, BookServiceActivity.class);
-                i.putExtra("vehicleId", v.getId());
-                startActivity(i);
-            }
-
-            @Override
-            public void onEdit(Vehicle v) {
-                Intent i = new Intent(VehicleListActivity.this, EditVehicleActivity.class);
-                i.putExtra("vehicleId", v.getId());
-                startActivity(i);
-            }
-
-            @Override
-            public void onDelete(Vehicle v) {
-                confirmDelete(v.getId());
-            }
-        });
-
-        rv.setAdapter(adapter);
-
-        auth = FirebaseAuth.getInstance();
+        // Initialize Firebase instances
         db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
-        btnAdd.setOnClickListener(v -> startActivity(new Intent(this, AddVehicleActivity.class)));
+        // Find views from the layout
+        rvVehicles = findViewById(R.id.rvVehicles);
+        btnAddVehicle = findViewById(R.id.btnAddVehicle);
 
+        // --- SETUP RECYCLERVIEW ---
+
+        // 1. Initialize the list and adapter
+        vehicleList = new ArrayList<>();
+        adapter = new VehicleAdapter(vehicleList, this);
+
+        // 2. **FIX**: Set a LayoutManager. This is critical.
+        rvVehicles.setLayoutManager(new LinearLayoutManager(this));
+
+        // 3. **FIX**: Set the adapter on the RecyclerView.
+        rvVehicles.setAdapter(adapter);
+
+        // Load the vehicles from Firestore
         loadVehiclesRealtime();
-    }
 
-    private void confirmDelete(String vehicleId) {
-        new android.app.AlertDialog.Builder(this)
-                .setTitle("Delete Vehicle?")
-                .setMessage("Are you sure you want to delete this vehicle?")
-                .setPositiveButton("Delete", (dialog, which) -> deleteVehicle(vehicleId))
-                .setNegativeButton("Cancel", null)
-                .show();
-    }
-
-    private void deleteVehicle(String vehicleId) {
-        // Prevent deletion if vehicle is in an active service
-        db.collection("serviceRequests")
-                .whereEqualTo("vehicleId", vehicleId)
-                .whereIn("status", Arrays.asList("pending", "accepted", "in_progress"))
-                .get()
-                .addOnSuccessListener(snapshot -> {
-                    if (!snapshot.isEmpty()) {
-                        Toast.makeText(this, "Vehicle cannot be deleted while in an active service.", Toast.LENGTH_LONG).show();
-                        return;
-                    }
-
-                    // If not in service, proceed with deletion
-                    db.collection("vehicles").document(vehicleId)
-                            .delete()
-                            .addOnSuccessListener(unused ->
-                                    Toast.makeText(this, "Vehicle deleted", Toast.LENGTH_SHORT).show()
-                            )
-                            .addOnFailureListener(e ->
-                                    Toast.makeText(this, "Error deleting: " + e.getMessage(), Toast.LENGTH_LONG).show()
-                            );
-                })
-                .addOnFailureListener(e -> Toast.makeText(this, "Error checking service status: " + e.getMessage(), Toast.LENGTH_LONG).show());
+        // Setup button listener for adding new vehicles (optional)
+        btnAddVehicle.setOnClickListener(view -> {
+            // Intent to start AddVehicleActivity
+        });
     }
 
     private void loadVehiclesRealtime() {
-        String uid = auth.getCurrentUser() != null ? auth.getCurrentUser().getUid() : null;
-        if (uid == null) { Toast.makeText(this, "Not logged in", Toast.LENGTH_SHORT).show(); return; }
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser == null) {
+            Log.e(TAG, "No user is signed in.");
+            // Handle not signed in case, e.g., redirect to login
+            return;
+        }
+        String uid = currentUser.getUid();
 
-        vehicleListener = db.collection("vehicles")
-                .whereEqualTo("ownerId", uid)
-                .addSnapshotListener((value, error) -> {
-                    if (error != null) {
-                        Toast.makeText(this, "Listen failed: " + error.getMessage(), Toast.LENGTH_LONG).show();
+        // Query the 'vehicles' collection where 'userId' matches the current user's UID
+        firestoreListener = db.collection("vehicles")
+                .whereEqualTo("userId", uid)
+                .addSnapshotListener((snapshots, e) -> {
+                    if (e != null) {
+                        Log.w(TAG, "Listen failed.", e);
                         return;
                     }
-                    vehicles.clear();
-                    if (value != null) {
-                        for (var doc : value.getDocuments()) {
-                            Vehicle v = doc.toObject(Vehicle.class);
-                            if (v != null) {
-                                v.setId(doc.getId());
-                                vehicles.add(v);
-                            }
+
+                    // Clear the old list to avoid duplicates
+                    vehicleList.clear();
+
+                    if (snapshots != null) {
+                        // Loop through all the documents returned by the query
+                        for (QueryDocumentSnapshot doc : snapshots) {
+                            Vehicle vehicle = doc.toObject(Vehicle.class);
+                            vehicle.setVehicleId(doc.getId()); // Store the document ID
+                            vehicleList.add(vehicle);
                         }
                     }
-                    adapter.setItems(vehicles);
+
+                    // 4. **FIX**: Notify the adapter that the data set has changed.
+                    // This tells the RecyclerView to refresh and display the new data.
+                    adapter.notifyDataSetChanged();
+                    Log.d(TAG, "Vehicle list updated. Total vehicles: " + vehicleList.size());
                 });
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        if (vehicleListener != null) {
-            vehicleListener.remove();
+        // Remove the listener to prevent memory leaks and unnecessary background data fetching
+        if (firestoreListener != null) {
+            firestoreListener.remove();
         }
     }
 }

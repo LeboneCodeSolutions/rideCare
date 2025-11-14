@@ -1,80 +1,85 @@
-package com.example.ridecare.adapters;
+package com.example.ridecare.adapters; // Use your actual package name
 
-import android.annotation.SuppressLint;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Button;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ridecare.R;
-import com.example.ridecare.models.Vehicle;
+import com.example.ridecare.R; // Use your actual R file import
+import com.example.ridecare.models.Vehicle; // Use your actual model import
 
 import java.util.List;
 
 public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VH> {
-
     public interface OnVehicleAction {
-        void onBook(Vehicle v);
-        void onEdit(Vehicle v);
-        void onDelete(Vehicle v);
+        void onBook(Vehicle vehicle);
+        void onEdit(Vehicle vehicle);
+        void onDelete(Vehicle vehicle);
     }
 
-    private List<Vehicle> items;
-    private final OnVehicleAction listener;
+    private List<Vehicle> vehicleList;
+    private Context context;
 
-    public VehicleAdapter(List<Vehicle> items, OnVehicleAction listener) {
-        this.items = items;
+    // Constructor to initialize the list
+    private OnVehicleAction listener;
+
+    public VehicleAdapter(List<Vehicle> vehicleList, Context context) {
+        this.vehicleList = vehicleList;
+        this.context = context;
         this.listener = listener;
     }
+
 
     @NonNull
     @Override
     public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext())
+        // Correctly inflates the item layout
+        View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_vehicle, parent, false);
-        return new VH(v);
+        return new VH(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
-        Vehicle v = items.get(position);
+        // Gets the current vehicle object
+        Vehicle vehicle = vehicleList.get(position);
 
-        holder.tvTitle.setText(v.getMake() + " " + v.getModel() + " (" + v.getYear() + ")");
-        holder.tvSubtitle.setText("Reg: " + v.getRegistrationNumber() + " • VIN: " + v.getVin());
+        // Binds the data to the TextViews in the item layout
+        String title = vehicle.getMake() + " " + vehicle.getModel();
+        String subtitle = "Year: " + vehicle.getYear() + " • Reg: " + vehicle.getRegistrationNumber();
 
-        holder.btnBook.setOnClickListener(view -> listener.onBook(v));
-        holder.btnEdit.setOnClickListener(view -> listener.onEdit(v));
-        holder.btnDelete.setOnClickListener(view -> listener.onDelete(v));
+        holder.tvVehicleTitle.setText(title);
+        holder.tvVehicleSubtitle.setText(subtitle);
+
+        holder.btnBookService.setOnClickListener(v -> listener.onBook(vehicle));
+        holder.btnEdit.setOnClickListener(v -> listener.onEdit(vehicle));
+        holder.btnDelete.setOnClickListener(v -> listener.onDelete(vehicle));
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
+        // Returns the total number of items in the list
+        return vehicleList.size();
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    public void setItems(List<Vehicle> newList) {
-        this.items.clear();
-        this.items.addAll(newList);
-        notifyDataSetChanged();
-    }
-
+    // ViewHolder class to hold the views for each item
     static class VH extends RecyclerView.ViewHolder {
-        TextView tvTitle, tvSubtitle;
-        Button btnBook, btnEdit, btnDelete;
+        TextView tvVehicleTitle, tvVehicleSubtitle;
+        View btnBookService, btnEdit, btnDelete;
 
-        VH(@NonNull View itemView) {
+        public VH(@NonNull View itemView) {
             super(itemView);
+            // Finds the views from the inflated layout (item_vehicle.xml)
+            tvVehicleTitle = itemView.findViewById(R.id.tvVehicleTitle); // Make sure these IDs exist in item_vehicle.xml
+            tvVehicleSubtitle = itemView.findViewById(R.id.tvVehicleSubtitle);
 
-            tvTitle = itemView.findViewById(R.id.tvVehicleTitle);
-            tvSubtitle = itemView.findViewById(R.id.tvVehicleSubtitle);
-            btnBook = itemView.findViewById(R.id.btnBook);
+            btnBookService = itemView.findViewById(R.id.btnBookService);
             btnEdit = itemView.findViewById(R.id.btnEdit);
             btnDelete = itemView.findViewById(R.id.btnDelete);
+            // Make sure these IDs exist in item_vehicle.xml
         }
     }
 }

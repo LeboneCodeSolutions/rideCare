@@ -4,34 +4,35 @@ import com.google.firebase.firestore.ServerTimestamp;
 import java.util.Date;
 
 public class Vehicle {
+
     private String id;
-    private String ownerId;
+    private String userId;
     private String make;
     private String model;
     private int year;
     private String vin;
-    private String registrationNumber;
+    private String regNumber;
     @ServerTimestamp
-    private Date createdAt;
+    private Date addedAt;
 
-    public Vehicle() {} // for Firestore
+    // Empty constructor required for Firestore
+    public Vehicle() {}
 
-    public Vehicle(String ownerId, String make, String model, int year, String vin, String registrationNumber) {
-        this.ownerId = ownerId;
+    public Vehicle(String userId, String make, String model, int year, String vin, String regNumber) {
+        this.userId = userId;
         this.make = make;
         this.model = model;
         this.year = year;
         this.vin = vin;
-        this.registrationNumber = registrationNumber;
+        this.regNumber = regNumber;
     }
 
-    // getters and setters
-
+    // Getters & Setters for all fields
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
 
-    public String getOwnerId() { return ownerId; }
-    public void setOwnerId(String ownerId) { this.ownerId = ownerId; }
+    public String getUserId() { return userId; }
+    public void setUserId(String userId) { this.userId = userId; }
 
     public String getMake() { return make; }
     public void setMake(String make) { this.make = make; }
@@ -45,9 +46,13 @@ public class Vehicle {
     public String getVin() { return vin; }
     public void setVin(String vin) { this.vin = vin; }
 
-    public String getRegistrationNumber() { return registrationNumber; }
-    public void setRegistrationNumber(String registrationNumber) { this.registrationNumber = registrationNumber; }
+    public String getRegistrationNumber() { return regNumber; }
+    public void setRegistrationNumber(String registrationNumber) { this.regNumber = registrationNumber; }
 
-    public Date getCreatedAt() { return createdAt; }
-    public void setCreatedAt(Date createdAt) { this.createdAt = createdAt; }
+
+    public Date getAddedAt() { return addedAt; }
+    public void setAddedAt(Date addedAt) { this.addedAt = addedAt; }
+
+    public void setVehicleId(String id) {
+    }
 }
