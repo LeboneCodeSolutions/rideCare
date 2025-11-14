@@ -28,7 +28,7 @@
         <activity android:name=".activities.mechanic.MechanicJobDetailsActivity" android:exported="false" />
         <activity android:name=".activities.mechanic.ActiveJobsActivity" android:exported="false" />
         <activity android:name=".activities.mechanic.JobBoardActivity" android:exported="false" />
-        <activity android:name=".activities.mechanic.InvoiceCreateActivity" android:exported="false" />
+        <activity android:name=".activities.mechanic.InvoiceCreateActivity" android:exported="true" />
 
         <!-- Client Activities -->
         <activity android:name=".activities.client.ServiceListActivity" android:exported="false" />
@@ -37,7 +37,7 @@
         <activity android:name=".activities.client.DashboardActivity" android:exported="true" />
         <activity android:name=".activities.client.BookServiceActivity" android:exported="false" />
         <activity android:name=".activities.client.InvoiceListActivity" android:exported="true" android:label="Invoices" />
-        <activity android:name=".activities.client.InvoiceDetailsActivity" android:exported="false" />
+        <activity android:name=".activities.client.InvoiceDetailsActivity" android:exported="true" />
         <activity android:name=".activities.client.PaymentResultActivity" android:exported="true">
             <!-- Payment Success -->
             <intent-filter>
