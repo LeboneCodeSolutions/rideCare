@@ -1,5 +1,6 @@
 package com.example.ridecare.activities.client; // Use your actual package name
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ridecare.R; // Use your actual R file import
+import com.example.ridecare.activities.common.ForgotPasswordActivity;
+import com.example.ridecare.activities.common.LoginActivity;
 import com.example.ridecare.adapters.VehicleAdapter;
 import com.example.ridecare.models.Vehicle;
 import com.google.firebase.auth.FirebaseAuth;
@@ -49,32 +52,35 @@ public class VehicleListActivity extends AppCompatActivity {
         rvVehicles = findViewById(R.id.rvVehicles);
         btnAddVehicle = findViewById(R.id.btnAddVehicle);
 
-        // --- SETUP RECYCLERVIEW ---
 
-        // 1. Initialize the list and adapter
+
+
         vehicleList = new ArrayList<>();
         adapter = new VehicleAdapter(vehicleList, this);
 
-        // 2. **FIX**: Set a LayoutManager. This is critical.
+
         rvVehicles.setLayoutManager(new LinearLayoutManager(this));
 
-        // 3. **FIX**: Set the adapter on the RecyclerView.
+
         rvVehicles.setAdapter(adapter);
 
-        // Load the vehicles from Firestore
+
         loadVehiclesRealtime();
 
-        // Setup button listener for adding new vehicles (optional)
-        btnAddVehicle.setOnClickListener(view -> {
-            // Intent to start AddVehicleActivity
+
+        btnAddVehicle.setOnClickListener(v -> {
+           startActivity(new Intent(VehicleListActivity.this, AddVehicleActivity.class)                                                                                                                                                                                          );
         });
     }
+
+
+
 
     private void loadVehiclesRealtime() {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null) {
             Log.e(TAG, "No user is signed in.");
-            // Handle not signed in case, e.g., redirect to login
+
             return;
         }
         String uid = currentUser.getUid();
