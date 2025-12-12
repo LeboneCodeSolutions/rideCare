@@ -57,7 +57,10 @@
 
         <!-- Common Activities -->
         <activity android:name=".activities.common.RegisterActivity" android:exported="true" />
-        <activity android:name=".activities.common.LoginActivity" android:exported="true">
+        <activity android:name=".activities.common.getStartedActivity" android:exported="true" />
+        <activity android:name=".activities.common.LoginActivity" android:exported="true"/>
+        <activity android:name=".activities.common.SettingsActivity" android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -9,7 +9,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ImageView;
 
-import com.example.ridecare.R;  // ✅ CORRECT IMPORT
+import com.example.ridecare.R;
+import com.example.ridecare.activities.common.LoginActivity;
+import com.example.ridecare.activities.common.SettingsActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -31,7 +33,7 @@ public class MechanicDashboardActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        // ✅ Match all IDs to XML
+        // Match all IDs to XML
         btnViewJobsBoard = findViewById(R.id.btnViewJobsBoard);
         btnViewCurrentJobs = findViewById(R.id.btnViewCurrentJobs);
         btnLogout = findViewById(R.id.btnLogout);
@@ -39,7 +41,7 @@ public class MechanicDashboardActivity extends AppCompatActivity {
         tvWelcome = findViewById(R.id.tvWelcome);
         editProfile = findViewById(R.id.editProfile);
 
-        // ✅ Button listeners
+        // Button listeners
         btnViewJobsBoard.setOnClickListener(v ->
                 startActivity(new Intent(this, JobBoardActivity.class)));
 
@@ -49,16 +51,16 @@ public class MechanicDashboardActivity extends AppCompatActivity {
         btnCreateInvoice.setOnClickListener(v ->
                 startActivity(new Intent(this, InvoiceCreateActivity.class)));
 
-        //editProfile.setOnClickListener(v ->
-              //  startActivity(new Intent(this, editProfileActivity.class)));
+        editProfile.setOnClickListener(v ->
+                startActivity(new Intent(this, SettingsActivity.class)));
 
-      //  btnLogout.setOnClickListener(v -> {
-          //  auth.signOut();
-        //    startActivity(new Intent(this, LoginActivity.class));
-     //       finish();
-       // });
+        btnLogout.setOnClickListener(v -> {
+            auth.signOut();
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+        });
 
-        // ✅ Load name after view initialization
+        // Load name after view initialization
         loadMechanicName();
     }
 
@@ -74,15 +76,24 @@ public class MechanicDashboardActivity extends AppCompatActivity {
                 .get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
-                        String firstName = documentSnapshot.getString("firstName");
-                        String lastName = documentSnapshot.getString("lastName");
+                        // NOTE: match the keys you store during registration ("firstname", "lastname")
+                        String firstName = documentSnapshot.getString("firstname");
+                        String lastName = documentSnapshot.getString("lastname");
 
-                        if (firstName != null && lastName != null) {
+                        if (firstName != null && !firstName.isEmpty() &&
+                                lastName != null && !lastName.isEmpty()) {
+
                             tvWelcome.setText("Welcome, " + firstName + " " + lastName + "!");
                             SharedPreferences prefs = getSharedPreferences("UserData", MODE_PRIVATE);
                             prefs.edit()
-                                    .putString("firstName", firstName)
-                                    .putString("lastName", lastName)
+                                    .putString("firstname", firstName)
+                                    .putString("lastname", lastName)
+                                    .apply();
+                        } else if (firstName != null && !firstName.isEmpty()) {
+                            tvWelcome.setText("Welcome, " + firstName + "!");
+                            SharedPreferences prefs = getSharedPreferences("UserData", MODE_PRIVATE);
+                            prefs.edit()
+                                    .putString("firstname", firstName)
                                     .apply();
                         } else {
                             tvWelcome.setText("Welcome, Mechanic!");

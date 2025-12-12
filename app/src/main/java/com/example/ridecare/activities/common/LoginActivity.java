@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class)));
 
         //btnTogglePass.setOnClickListener(v ->
-                //startActivity(new  Intent(LoginActivity.this, ForgotPasswordActivity.class)));
+        //startActivity(new  Intent(LoginActivity.this, ForgotPasswordActivity.class)));
     }
 
     private void checkLockStatus() {
@@ -169,20 +169,5 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(this, "Login failed (" + failedAttempts + "/5)", Toast.LENGTH_SHORT).show();
                     }
                 });
-    }
-
-    private void sendPasswordReset() {
-        String email = etEmail.getText().toString();
-
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            etEmail.setError("Enter email to reset");
-            return;
-        }
-
-        auth.sendPasswordResetEmail(email)
-                .addOnSuccessListener(a ->
-                        Toast.makeText(this, "Reset link sent", Toast.LENGTH_SHORT).show())
-                .addOnFailureListener(e ->
-                        Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show());
     }
 }

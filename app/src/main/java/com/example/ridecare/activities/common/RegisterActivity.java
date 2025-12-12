@@ -211,12 +211,12 @@ public class RegisterActivity extends AppCompatActivity {
                                 } else {
                                     Toast.makeText(this, "Phone OTP (future upgrade — Firebase paid tier)", Toast.LENGTH_LONG).show();
                                 }
-                                    if(userRole.equals("mechanic")){
-                                        startActivity(new Intent(this, MechanicDashboardActivity.class));
-                                    }
-                                    else{
-                                        startActivity(new Intent(this, DashboardActivity.class));
-                                    }
+                                if(userRole.equals("mechanic")){
+                                    startActivity(new Intent(this, MechanicDashboardActivity.class));
+                                }
+                                else{
+                                    startActivity(new Intent(this, DashboardActivity.class));
+                                }
 
                                 finish();
                             });
