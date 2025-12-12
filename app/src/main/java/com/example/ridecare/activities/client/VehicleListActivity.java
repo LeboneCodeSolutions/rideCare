@@ -33,7 +33,7 @@ public class VehicleListActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
 
-    // It's good practice to keep a reference to the listener to remove it later
+
     private ListenerRegistration firestoreListener;
 
     @Override

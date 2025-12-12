@@ -18,7 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class DashboardActivity extends AppCompatActivity {
 
     Button btnMyVehicles, btnLogout, btnMyServices, btnMyInvoices;
-
+    ImageView btnSettings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +61,9 @@ public class DashboardActivity extends AppCompatActivity {
                 startActivity(new Intent(DashboardActivity.this, ServiceListActivity.class))
         );
 
+        // View profile button
+        btnSettings.setOnClickListener(v ->
+                startActivity(new Intent(DashboardActivity.this, SettingsActivity.class)));
         // invoice list button
         btnMyInvoices.setOnClickListener(v ->
                 startActivity(new Intent(DashboardActivity.this, InvoiceListActivity.class))
