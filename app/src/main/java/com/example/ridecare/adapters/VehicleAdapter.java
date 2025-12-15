@@ -26,7 +26,7 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VH> {
     // Constructor to initialize the list
     private OnVehicleAction listener;
 
-    public VehicleAdapter(List<Vehicle> vehicleList, Context context) {
+    public VehicleAdapter(List<Vehicle> vehicleList, Context context, OnVehicleAction listener) {
         this.vehicleList = vehicleList;
         this.context = context;
         this.listener = listener;
@@ -49,7 +49,7 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VH> {
 
         // Binds the data to the TextViews in the item layout
         String title = vehicle.getMake() + " " + vehicle.getModel();
-        String subtitle = "Year: " + vehicle.getYear() + " • Reg: " + vehicle.getRegistrationNumber();
+        String subtitle = "Year: " + vehicle.getYear() + " • Vehicle Reg: " + vehicle.getRegistrationNumber();
 
         holder.tvVehicleTitle.setText(title);
         holder.tvVehicleSubtitle.setText(subtitle);

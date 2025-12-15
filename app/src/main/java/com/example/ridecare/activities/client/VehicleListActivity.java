@@ -10,9 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ridecare.R; // Use your actual R file import
-import com.example.ridecare.activities.common.ForgotPasswordActivity;
-import com.example.ridecare.activities.common.LoginActivity;
+import com.example.ridecare.R;
 import com.example.ridecare.adapters.VehicleAdapter;
 import com.example.ridecare.models.Vehicle;
 import com.google.firebase.auth.FirebaseAuth;
@@ -51,23 +49,31 @@ public class VehicleListActivity extends AppCompatActivity {
         // Find views from the layout
         rvVehicles = findViewById(R.id.rvVehicles);
         btnAddVehicle = findViewById(R.id.btnAddVehicle);
-
-
-
-
         vehicleList = new ArrayList<>();
-        adapter = new VehicleAdapter(vehicleList, this);
+        adapter = new VehicleAdapter(vehicleList, this, new VehicleAdapter.OnVehicleAction() {
+            @Override
+            public void onBook(Vehicle vehicle) {
+                // Example: Open a booking activity
+                Intent intent = new Intent(VehicleListActivity.this, BookServiceActivity.class);
+                intent.putExtra("vehicleMake", vehicle.getMake());
+                intent.putExtra("vehicleModel", vehicle.getModel());
+                startActivity(intent);
+            }
 
+            @Override
+            public void onEdit(Vehicle vehicle) {
+                Intent intent = new Intent(VehicleListActivity.this, EditVehicleActivity.class);
+                startActivity(intent);
+            }
 
+            @Override
+            public void onDelete(Vehicle vehicle) {
+                Log.d(TAG, "Delete clicked");
+            }
+        });
         rvVehicles.setLayoutManager(new LinearLayoutManager(this));
-
-
         rvVehicles.setAdapter(adapter);
-
-
         loadVehiclesRealtime();
-
-
         btnAddVehicle.setOnClickListener(v -> {
            startActivity(new Intent(VehicleListActivity.this, AddVehicleActivity.class)                                                                                                                                                                                          );
         });
@@ -80,7 +86,6 @@ public class VehicleListActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null) {
             Log.e(TAG, "No user is signed in.");
-
             return;
         }
         String uid = currentUser.getUid();
@@ -93,10 +98,8 @@ public class VehicleListActivity extends AppCompatActivity {
                         Log.w(TAG, "Listen failed.", e);
                         return;
                     }
-
                     // Clear the old list to avoid duplicates
                     vehicleList.clear();
-
                     if (snapshots != null) {
                         // Loop through all the documents returned by the query
                         for (QueryDocumentSnapshot doc : snapshots) {
@@ -105,9 +108,6 @@ public class VehicleListActivity extends AppCompatActivity {
                             vehicleList.add(vehicle);
                         }
                     }
-
-                    // 4. **FIX**: Notify the adapter that the data set has changed.
-                    // This tells the RecyclerView to refresh and display the new data.
                     adapter.notifyDataSetChanged();
                     Log.d(TAG, "Vehicle list updated. Total vehicles: " + vehicleList.size());
                 });

@@ -3,39 +3,81 @@ package com.example.ridecare.models;
 import java.io.Serializable;
 
 public class ServiceRequest implements Serializable {
-    private String id;
-    private String serviceType;
+
+    // 🔹 IDs
+    private String serviceRequestId;
+    private String userId;
+    private String mechanicId;
     private String vehicleId;
+
+    // 🔹 Client info
+    private String clientEmail;
+    private String fName;
+    private String lName;
+
+    // 🔹 Vehicle info
+    private String vehicleReg;
+    private String vinNumber;
+
+    // 🔹 Service info
+    private String serviceType;
     private String status;
     private String description;
-    private String mechanicId;
-    private String userId;
 
+    // 🔹 REQUIRED empty constructor (Firebase)
+    public ServiceRequest() {}
 
-
-    public ServiceRequest( String serviceType, String vehicleId, String status, String description, String mechanicId, String userId) {
-        this.serviceType = serviceType;
+    // 🔹 MAIN constructor (used when creating a request)
+    public ServiceRequest(
+            String userId,
+            String mechanicId,
+            String vehicleId,
+            String serviceType,
+            String status,
+            String description,
+            String fName,
+            String lName,
+            String clientEmail,
+            String vehicleReg,
+            String vinNumber
+    ) {
+        this.userId = userId;
+        this.mechanicId = mechanicId;
         this.vehicleId = vehicleId;
+        this.serviceType = serviceType;
         this.status = status;
         this.description = description;
-        this.mechanicId = mechanicId;
+        this.fName = fName;
+        this.lName = lName;
+        this.clientEmail = clientEmail;
+        this.vehicleReg = vehicleReg;
+        this.vinNumber = vinNumber;
+    }
+
+    // 🔹 Getters & Setters
+
+    public String getServiceRequestId() {
+        return serviceRequestId;
+    }
+
+    public void setServiceRequestId(String serviceRequestId) {
+        this.serviceRequestId = serviceRequestId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    public String getId() {
-        return id;
+    public String getMechanicId() {
+        return mechanicId;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getServiceType() {
-        return serviceType;
-    }
-
-    public void setServiceType(String serviceType) {
-        this.serviceType = serviceType;
+    public void setMechanicId(String mechanicId) {
+        this.mechanicId = mechanicId;
     }
 
     public String getVehicleId() {
@@ -44,6 +86,54 @@ public class ServiceRequest implements Serializable {
 
     public void setVehicleId(String vehicleId) {
         this.vehicleId = vehicleId;
+    }
+
+    public String getClientEmail() {
+        return clientEmail;
+    }
+
+    public void setClientEmail(String clientEmail) {
+        this.clientEmail = clientEmail;
+    }
+
+    public String getfName() {
+        return fName;
+    }
+
+    public void setfName(String fName) {
+        this.fName = fName;
+    }
+
+    public String getlName() {
+        return lName;
+    }
+
+    public void setlName(String lName) {
+        this.lName = lName;
+    }
+
+    public String getVehicleReg() {
+        return vehicleReg;
+    }
+
+    public void setVehicleReg(String vehicleReg) {
+        this.vehicleReg = vehicleReg;
+    }
+
+    public String getVinNumber() {
+        return vinNumber;
+    }
+
+    public void setVinNumber(String vinNumber) {
+        this.vinNumber = vinNumber;
+    }
+
+    public String getServiceType() {
+        return serviceType;
+    }
+
+    public void setServiceType(String serviceType) {
+        this.serviceType = serviceType;
     }
 
     public String getStatus() {
@@ -57,24 +147,7 @@ public class ServiceRequest implements Serializable {
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getMechanicId() {
-        return mechanicId;
-    }
-
-    public void setMechanicId(String mechanicId) {
-        this.mechanicId = mechanicId;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 }

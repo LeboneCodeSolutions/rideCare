@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,22 +16,13 @@ import com.example.ridecare.models.ServiceRequest;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.io.IOException;
 import java.util.ArrayList;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 public class MechanicJobAdapter extends RecyclerView.Adapter<MechanicJobAdapter.ViewHolder> {
 
-    ArrayList<ServiceRequest> list;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-    FirebaseAuth auth = FirebaseAuth.getInstance();
+    private final ArrayList<ServiceRequest> list;
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private final FirebaseAuth auth = FirebaseAuth.getInstance();
 
     public MechanicJobAdapter(ArrayList<ServiceRequest> list) {
         this.list = list;
@@ -42,48 +34,54 @@ public class MechanicJobAdapter extends RecyclerView.Adapter<MechanicJobAdapter.
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_mechanic_job, parent, false);
         return new ViewHolder(view);
-
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
         ServiceRequest s = list.get(position);
 
         holder.service.setText("Service: " + s.getServiceType());
         holder.vehicle.setText("Vehicle ID: " + s.getVehicleId());
         holder.status.setText("Status: " + s.getStatus());
 
+        // 🔹 Open job details
         holder.itemView.setOnClickListener(v -> {
             Intent i = new Intent(v.getContext(), MechanicJobDetailsActivity.class);
             i.putExtra("job_data", s);
             v.getContext().startActivity(i);
         });
 
+        // 🔹 Accept job logic
         if ("pending".equals(s.getStatus())) {
+
             holder.accept.setVisibility(View.VISIBLE);
+
             holder.accept.setOnClickListener(v -> {
+
+                if (auth.getCurrentUser() == null) return;
+
                 String mechanicId = auth.getCurrentUser().getUid();
-                db.collection("serviceRequests").document(s.getId())
-                        .update("status", "in-progress", "mechanicId", mechanicId)
+                String requestId = s.getServiceRequestId();
+
+                db.collection("service_requests")
+                        .document(requestId)
+                        .update(
+                                "status", "in-progress",
+                                "mechanicId", mechanicId
+                        )
                         .addOnSuccessListener(unused -> {
+                            s.setStatus("in-progress");
+                            s.setMechanicId(mechanicId);
+
                             holder.status.setText("Status: in-progress");
                             holder.accept.setVisibility(View.GONE);
-
-                            db.collection("users").document(s.getUserId()).get()
-                                    .addOnSuccessListener(userDoc -> {
-                                        String token = userDoc.getString("fcmToken");
-
-                                        sendNotificationToClient(token,
-                                                "Your vehicle service has started",
-                                                "Mechanic is now working on your car."
-                                        );
-                                    });
                         });
             });
+
         } else {
             holder.accept.setVisibility(View.GONE);
         }
-
     }
 
     @Override
@@ -91,35 +89,7 @@ public class MechanicJobAdapter extends RecyclerView.Adapter<MechanicJobAdapter.
         return list.size();
     }
 
-    private void sendNotificationToClient(String token, String title, String message) {
-        OkHttpClient client = new OkHttpClient();
-
-        String json = "{\"to\":\"" + token + "\",\"notification\":{\"title\":\"" + title + "\",\"body\":\"" + message + "\"}}";
-
-        RequestBody body = RequestBody.create(
-                json, MediaType.get("application/json; charset=utf-8")
-        );
-
-        Request request = new Request.Builder()
-                .url("https://fcm.googleapis.com/fcm/send")
-                .post(body)
-                .addHeader("Authorization", "key=YOUR_SERVER_KEY_HERE")
-                .addHeader("Content-Type", "application/json")
-                .build();
-
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                System.out.println(response.body().string());
-            }
-        });
-    }
-
+    // 🔹 ViewHolder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView service, vehicle, status;
         Button accept;

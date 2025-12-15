@@ -25,26 +25,30 @@ public class MechanicJobDetailsActivity extends AppCompatActivity {
     Button btnUploadImage, btnComplete;
     ImageView proofImage;
 
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-    FirebaseStorage storage = FirebaseStorage.getInstance();
+    FirebaseFirestore db;
+    FirebaseStorage storage;
+
     Uri imageUri = null;
     ServiceRequest request;
 
-    private final ActivityResultLauncher<Intent> imagePickerLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                    imageUri = result.getData().getData();
-                    proofImage.setImageURI(imageUri);
-                }
-            }
-    );
+    private final ActivityResultLauncher<Intent> imagePickerLauncher =
+            registerForActivityResult(
+                    new ActivityResultContracts.StartActivityForResult(),
+                    result -> {
+                        if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                            imageUri = result.getData().getData();
+                            proofImage.setImageURI(imageUri);
+                        }
+                    }
+            );
 
-    @SuppressWarnings("deprecation")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mechanic_job_details);
+
+        db = FirebaseFirestore.getInstance();
+        storage = FirebaseStorage.getInstance();
 
         tvService = findViewById(R.id.tvServiceType);
         tvVehicle = findViewById(R.id.tvVehicle);
@@ -54,20 +58,22 @@ public class MechanicJobDetailsActivity extends AppCompatActivity {
         btnUploadImage = findViewById(R.id.btnUploadImage);
         btnComplete = findViewById(R.id.btnMarkComplete);
 
+        // 🔹 Get ServiceRequest from intent
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             request = getIntent().getSerializableExtra("job_data", ServiceRequest.class);
         } else {
             request = (ServiceRequest) getIntent().getSerializableExtra("job_data");
         }
 
-        if (request == null) {
+        if (request == null || request.getServiceRequestId() == null) {
             Toast.makeText(this, "Job data not found.", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
 
+        // 🔹 Populate UI
         tvService.setText("Service: " + request.getServiceType());
-        tvVehicle.setText("Vehicle: " + request.getVehicleId());
+        tvVehicle.setText("Vehicle ID: " + request.getVehicleId());
         tvDescription.setText("Problem: " + request.getDescription());
         tvStatus.setText("Status: " + request.getStatus());
 
@@ -76,28 +82,56 @@ public class MechanicJobDetailsActivity extends AppCompatActivity {
     }
 
     private void pickImage() {
-        Intent i = new Intent(Intent.ACTION_GET_CONTENT);
-        i.setType("image/*");
-        imagePickerLauncher.launch(i);
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        imagePickerLauncher.launch(intent);
     }
 
     private void completeJob() {
+
         if (imageUri == null) {
-            Toast.makeText(this, "Upload photo first!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please upload proof image first.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        StorageReference ref = storage.getReference()
-                .child("jobProofs/" + request.getId() + ".jpg");
+        String requestId = request.getServiceRequestId();
 
-        ref.putFile(imageUri).addOnSuccessListener(task -> {
-            ref.getDownloadUrl().addOnSuccessListener(url -> {
-                db.collection("serviceRequests").document(request.getId())
-                        .update("status", "completed", "proofUrl", url.toString())
-                        .addOnSuccessListener(unused ->
-                                Toast.makeText(this, "Job Completed ✅", Toast.LENGTH_SHORT).show()
-                        );
-            });
-        });
+        StorageReference ref = storage.getReference()
+                .child("job_proofs/" + requestId + ".jpg");
+
+        ref.putFile(imageUri)
+                .addOnSuccessListener(task -> ref.getDownloadUrl()
+                        .addOnSuccessListener(uri -> {
+
+                            db.collection("service_requests")
+                                    .document(requestId)
+                                    .update(
+                                            "status", "completed",
+                                            "proofImageUrl", uri.toString()
+                                    )
+                                    .addOnSuccessListener(unused -> {
+                                        Toast.makeText(
+                                                this,
+                                                "Job marked as completed ✅",
+                                                Toast.LENGTH_SHORT
+                                        ).show();
+                                        finish();
+                                    })
+                                    .addOnFailureListener(e ->
+                                            Toast.makeText(
+                                                    this,
+                                                    "Firestore error: " + e.getMessage(),
+                                                    Toast.LENGTH_LONG
+                                            ).show()
+                                    );
+                        })
+                )
+                .addOnFailureListener(e ->
+                        Toast.makeText(
+                                this,
+                                "Upload failed: " + e.getMessage(),
+                                Toast.LENGTH_LONG
+                        ).show()
+                );
     }
 }
