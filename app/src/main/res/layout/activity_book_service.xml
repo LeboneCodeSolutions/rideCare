@@ -15,6 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:entries="@array/service_types"
+            android:layout_marginTop="70dp"
             android:layout_marginBottom="16dp"/>
 
         <EditText

@@ -53,6 +53,8 @@
             android:label="Invoices" />
         <activity android:name=".activities.client.InvoiceDetailsActivity"
             android:exported="true" />
+        <activity android:name=".activities.client.EditVehicleActivity"
+            android:exported="true" />
 
         <!-- Payment result activity with its intent-filters -->
         <activity

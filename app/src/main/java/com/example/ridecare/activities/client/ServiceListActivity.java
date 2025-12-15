@@ -61,9 +61,7 @@ public class ServiceListActivity extends AppCompatActivity {
                         Log.w(TAG, "Listen failed.", error);
                         return;
                     }
-
                     if (value == null) return;
-
 
                 });
     }
