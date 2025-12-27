@@ -55,6 +55,7 @@ public class VehicleListActivity extends AppCompatActivity {
             public void onBook(Vehicle vehicle) {
                 // Example: Open a booking activity
                 Intent intent = new Intent(VehicleListActivity.this, BookServiceActivity.class);
+                intent.putExtra("vehicleId", vehicle.getVehicleId());
                 intent.putExtra("vehicleMake", vehicle.getMake());
                 intent.putExtra("vehicleModel", vehicle.getModel());
                 startActivity(intent);

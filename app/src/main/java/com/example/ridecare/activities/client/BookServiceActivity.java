@@ -1,6 +1,8 @@
 package com.example.ridecare.activities.client;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.*;
 
@@ -19,7 +21,7 @@ public class BookServiceActivity extends AppCompatActivity {
     FirebaseFirestore db;
     FirebaseAuth auth;
 
-    String vehicleId;
+    String vehicleId ;
     String status = "pending";
 
     // Mechanic assigned later when job is accepted
@@ -30,7 +32,7 @@ public class BookServiceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_service);
 
-        vehicleId = getIntent().getStringExtra("vehicleId");
+
 
         spServiceType = findViewById(R.id.spServiceType);
         etDescription = findViewById(R.id.etDescription);
@@ -43,7 +45,10 @@ public class BookServiceActivity extends AppCompatActivity {
     }
 
     private void submitRequest() {
-
+        if (spServiceType.getSelectedItem() == null) {
+            Toast.makeText(this, "Select service type", Toast.LENGTH_SHORT).show();
+            return;
+        }
         String serviceType = spServiceType.getSelectedItem().toString();
         String desc = etDescription.getText().toString().trim();
 
@@ -51,23 +56,27 @@ public class BookServiceActivity extends AppCompatActivity {
             etDescription.setError("Description required");
             return;
         }
-
         if (auth.getCurrentUser() == null) {
             Toast.makeText(this, "Not logged in", Toast.LENGTH_SHORT).show();
             return;
         }
-
-        if (vehicleId == null || vehicleId.isEmpty()) {
-            Toast.makeText(this, "Vehicle not selected", Toast.LENGTH_LONG).show();
-            return;
-        }
-
         String uid = auth.getCurrentUser().getUid();
         String clientEmail = auth.getCurrentUser().getEmail();
 
+        // ✅ GET VEHICLE ID FIRST - BEFORE USING IT!
+        Intent intent = getIntent();
+        vehicleId = intent.getStringExtra("vehicleId");
+        if (vehicleId == null) {
+            vehicleId = intent.getStringExtra("id");
+        }
+
+        if (vehicleId == null || vehicleId.isEmpty()) {
+            Toast.makeText(this, "Vehicle ID not provided", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         // 🔹 Create Firestore document reference FIRST
-        DocumentReference docRef =
-                db.collection("service_requests").document();
+        DocumentReference docRef = db.collection("request_service_vehicle").document();
 
         // 🔹 Fetch user profile
         db.collection("users")
@@ -80,10 +89,7 @@ public class BookServiceActivity extends AppCompatActivity {
                         return;
                     }
 
-                    String fName = userDoc.getString("firstname");
-                    String lName = userDoc.getString("lastname");
-
-                    // 🔹 Fetch vehicle
+                    // 🔹 Fetch vehicle (NOW vehicleId has a value!)
                     db.collection("vehicles")
                             .document(vehicleId)
                             .get()
@@ -94,24 +100,25 @@ public class BookServiceActivity extends AppCompatActivity {
                                     return;
                                 }
 
-                                String vehicleReg = vehicleDoc.getString("vehicleReg");
-                                String vinNumber = vehicleDoc.getString("vinNumber");
+                                // ✅ REMOVED - Already got vehicleId above
+                                // Don't try to get it again here!
 
-                                // 🔹 Build ServiceRequest (MATCHES YOUR MODEL)
-                                ServiceRequest request = new ServiceRequest(
-                                        uid,
-                                        mechanicID,
-                                        vehicleId,
-                                        serviceType,
-                                        status,
-                                        desc,
-                                        fName,
-                                        lName,
-                                        clientEmail,
-                                        vehicleReg,
-                                        vinNumber
-                                );
+                                String vehicleReg = vehicleDoc.getString("registrationNumber");
+                                String vinNumber = vehicleDoc.getString("vin");
+                                String vehicleMake = vehicleDoc.getString("make");
+                                String vehicleModel  = vehicleDoc.getString("model");
 
+                                // 🔹 Build ServiceRequest
+                                ServiceRequest request = new ServiceRequest();
+                                request.setVehicleID(vehicleId);
+                                request.setUserId(uid);
+                                request.setVehicleReg(vehicleReg);
+                                request.setVinNumber(vinNumber);
+                                request.setVehicleMake(vehicleMake);
+                                request.setVehicleModel(vehicleModel);
+                                request.setServiceType(serviceType);
+                                request.setStatus(status);
+                                request.setClientDescription(desc);
                                 request.setServiceRequestId(docRef.getId());
 
                                 // 🔹 WRITE TO FIRESTORE

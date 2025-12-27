@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.ridecare.R;
 import com.example.ridecare.models.ServiceRequest;
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ import java.util.List;
 
 public class ServiceRequestAdapter extends RecyclerView.Adapter<ServiceRequestAdapter.ViewHolder> {
 
-    private List<ServiceRequest> list = new ArrayList<>();
+    private List<ServiceRequest> list ;
 
     public ServiceRequestAdapter(List<ServiceRequest> list) {
         this.list = list;
@@ -29,14 +28,20 @@ public class ServiceRequestAdapter extends RecyclerView.Adapter<ServiceRequestAd
     }
 
     @Override
+    // handles any null issues
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ServiceRequest s = list.get(position);
-        if (s == null) return; // Extra safety check
+        ServiceRequest serviceReq = list.get(position);
+        if (serviceReq == null){
+            return; /// return an error message
+        }
 
         // Null-safe text setting to prevent crashes from incomplete data
-        holder.title.setText(s.getServiceType() != null ? s.getServiceType() : "No Type");
-        holder.status.setText("Status: " + (s.getStatus() != null ? s.getStatus() : "N/A"));
-        holder.vehicle.setText("Vehicle ID: " + (s.getVehicleId() != null ? s.getVehicleId() : "Unknown"));
+        holder.title.setText(serviceReq.getServiceType() != null ? serviceReq.getServiceType() : "Service type not selected");
+        holder.status.setText("Status: " + (serviceReq.getStatus() != null ? serviceReq.getStatus() : "Status Pending"));
+
+
+        // create a temp-id which gets stored instead
+        holder.vehicle.setText("Vehicle ID: " + (serviceReq.getVehicleID() != null ? serviceReq.getVehicleID() : "Unknown"));
     }
 
     @Override

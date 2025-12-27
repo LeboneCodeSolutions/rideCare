@@ -1,77 +1,74 @@
 package com.example.ridecare.activities.mechanic;
 
-import java.util.Objects;
-
 public class CarJob {
-    private String clientName;
-    private String clientSurname;
-    private String clientEmail;
-    private String carRegistration;
-    private String vin;
 
-    public CarJob(String clientName, String clientSurname, String clientEmail,
-                  String carRegistration, String vin) {
-        this.clientName = clientName;
-        this.clientSurname = clientSurname;
-        this.clientEmail = clientEmail;
-        this.carRegistration = carRegistration;
-        this.vin = vin;
-    }
+    private String clientDescription;
+    private String serviceType;
+    private String status;
+    private String firstname;
+    private String vehicleReg;
+    private String vinNumber;
+    private String vehicleMake;
+    private String vehicleModel;
+
+    private String mechanicId;
+    private String serviceRequestId;
+    private String userId;
+    private String vehicleID;
+
+    // 🔴 REQUIRED empty constructor for Firestore
+    public CarJob() {}
 
     // Getters
-    public String getClientName() {
-        return clientName;
+
+
+    public String getFirstname(){
+        return firstname;
+    }
+    public String getClientDescription() {
+        return clientDescription;
     }
 
-    public String getClientSurname() {
-        return clientSurname;
+    public String getServiceType() {
+        return serviceType;
     }
 
-    public String getClientEmail() {
-        return clientEmail;
+
+
+
+    public String getStatus() {
+        return status;
     }
 
-    public String getCarRegistration() {
-        return carRegistration;
+    public String getVehicleReg() {
+        return vehicleReg;
     }
 
-    public String getVin() {
-        return vin;
+    public String getVinNumber() {
+        return vinNumber;
     }
 
-    // Setters
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
+    public String getVehicleMake() {
+        return vehicleMake;
     }
 
-    public void setClientSurname(String clientSurname) {
-        this.clientSurname = clientSurname;
+    public String getVehicleModel() {
+        return vehicleModel;
     }
 
-    public void setClientEmail(String clientEmail) {
-        this.clientEmail = clientEmail;
+    public String getMechanicId() {
+        return mechanicId;
     }
 
-    public void setCarRegistration(String carRegistration) {
-        this.carRegistration = carRegistration;
+    public String getServiceRequestId() {
+        return serviceRequestId;
     }
 
-    public void setVin(String vin) {
-        this.vin = vin;
+    public String getUserId() {
+        return userId;
     }
 
-    // Override equals and hashCode for proper list operations
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CarJob carJob = (CarJob) o;
-        return Objects.equals(vin, carJob.vin) &&
-                Objects.equals(carRegistration, carJob.carRegistration);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(vin, carRegistration);
+    public String getVehicleID() {
+        return vehicleID;
     }
 }
