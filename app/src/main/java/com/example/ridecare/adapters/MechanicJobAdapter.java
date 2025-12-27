@@ -39,30 +39,30 @@ public class MechanicJobAdapter extends RecyclerView.Adapter<MechanicJobAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        ServiceRequest s = list.get(position);
+        ServiceRequest serviceReq = list.get(position);
 
-        holder.service.setText("Service: " + s.getServiceType());
-        holder.vehicle.setText("Vehicle ID: " + s.getVehicleId());
-        holder.status.setText("Status: " + s.getStatus());
+        holder.service.setText("Service Type: " + serviceReq.getServiceType());
+        holder.vehicle.setText("Vehicle ID: " + serviceReq.getVehicleID());
+        holder.status.setText("Status: " + serviceReq.getStatus());
 
         // 🔹 Open job details
         holder.itemView.setOnClickListener(v -> {
             Intent i = new Intent(v.getContext(), MechanicJobDetailsActivity.class);
-            i.putExtra("job_data", s);
+            i.putExtra("job_data", serviceReq);
             v.getContext().startActivity(i);
         });
 
         // 🔹 Accept job logic
-        if ("pending".equals(s.getStatus())) {
+        if ("pending".equals(serviceReq.getStatus())) {
 
             holder.accept.setVisibility(View.VISIBLE);
 
             holder.accept.setOnClickListener(v -> {
 
-                if (auth.getCurrentUser() == null) return;
+                if (auth.getCurrentUser() == null) {return;}
 
                 String mechanicId = auth.getCurrentUser().getUid();
-                String requestId = s.getServiceRequestId();
+                String requestId = serviceReq.getServiceRequestId();
 
                 db.collection("service_requests")
                         .document(requestId)
@@ -71,9 +71,8 @@ public class MechanicJobAdapter extends RecyclerView.Adapter<MechanicJobAdapter.
                                 "mechanicId", mechanicId
                         )
                         .addOnSuccessListener(unused -> {
-                            s.setStatus("in-progress");
-                            s.setMechanicId(mechanicId);
-
+                            serviceReq.setStatus("in-progress");
+                          //  s.setMechanicId(mechanicId);
                             holder.status.setText("Status: in-progress");
                             holder.accept.setVisibility(View.GONE);
                         });

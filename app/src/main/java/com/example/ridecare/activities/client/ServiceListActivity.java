@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.example.ridecare.R;
 import com.example.ridecare.adapters.ServiceRequestAdapter;
-import com.example.ridecare.models.clientServiceRequest;
+import com.example.ridecare.models.ClientServiceRequest;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;

@@ -3,9 +3,7 @@ package com.example.ridecare.activities.mechanic;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Singleton class to manage active/accepted jobs across the app
- */
+
 public class ActiveJobsManager {
     private static ActiveJobsManager instance;
     private List<CarJob> activeJobs;

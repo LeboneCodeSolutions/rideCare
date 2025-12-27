@@ -38,6 +38,15 @@ public class AddVehicleActivity extends AppCompatActivity {
     }
 
     private void saveVehicle() {
+
+        // Check if the user is logged in or not
+        if (auth.getCurrentUser() == null) {
+            Toast.makeText(this, "Not logged in", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String userId = auth.getCurrentUser().getUid();
+
+// Filled from the form
         String make = etMake.getText().toString().trim();
         String model = etModel.getText().toString().trim();
         String yearStr = etYear.getText().toString().trim();
@@ -54,20 +63,22 @@ public class AddVehicleActivity extends AppCompatActivity {
         try { year = Integer.parseInt(yearStr); }
         catch (NumberFormatException e) { etYear.setError("Invalid year"); return; }
 
-        String uid = auth.getCurrentUser() != null ? auth.getCurrentUser().getUid() : null;
-        if (uid == null) {
+        String uEmail = auth.getCurrentUser() != null ? auth.getCurrentUser().getEmail() : null;
+        if (uEmail == null) {
             Toast.makeText(this, "Not logged in", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        Vehicle vehicle = new Vehicle(uid, make, model, year, vin, reg);
+
+        Vehicle vehicle = new Vehicle(userId,  make, model, year, vin, reg);
 
         DocumentReference docRef = db.collection("vehicles").document();
-        vehicle.setId(docRef.getId());
+        // setId is linked to the vehicleId
+        vehicle.setVehicleId(docRef.getId());
 
         docRef.set(vehicle)
                 .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(this, "Vehicle saved", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Vehicle Added", Toast.LENGTH_SHORT).show();
                     finish();
                 })
                 .addOnFailureListener(e -> Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show());

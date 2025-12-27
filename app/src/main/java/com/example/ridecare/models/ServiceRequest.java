@@ -4,58 +4,65 @@ import java.io.Serializable;
 
 public class ServiceRequest implements Serializable {
 
-    // 🔹 IDs
+
+    // IDs
     private String serviceRequestId;
+
+    // Client info
     private String userId;
+// Mechanic Info
     private String mechanicId;
-    private String vehicleId;
-
-    // 🔹 Client info
-    private String clientEmail;
-    private String fName;
-    private String lName;
-
-    // 🔹 Vehicle info
+    // Vehicle info
     private String vehicleReg;
     private String vinNumber;
-
-    // 🔹 Service info
+    private String vehicleMake;
+    private String vehicleModel;
+    private Integer vehicleYear;
+    private String vehicleID;
+    // Service info
     private String serviceType;
     private String status;
-    private String description;
+    private String clientDescription;
 
-    // 🔹 REQUIRED empty constructor (Firebase)
+    // REQUIRED empty constructor (Firebase)
     public ServiceRequest() {}
-
-    // 🔹 MAIN constructor (used when creating a request)
+// This will handle what the mechanic will see
+    // MAIN constructor
     public ServiceRequest(
-            String userId,
+            String serviceRequestId,
             String mechanicId,
             String vehicleId,
+            String userId,
+            String vehicleReg,
+            String vinNumber,
+            String vehicleMake,
+            String vehicleModel,
             String serviceType,
             String status,
-            String description,
-            String fName,
-            String lName,
-            String clientEmail,
-            String vehicleReg,
-            String vinNumber
+            String clientDescription
     ) {
+        this.serviceRequestId = serviceRequestId;
+        this.vehicleID = vehicleId;
         this.userId = userId;
-        this.mechanicId = mechanicId;
-        this.vehicleId = vehicleId;
-        this.serviceType = serviceType;
-        this.status = status;
-        this.description = description;
-        this.fName = fName;
-        this.lName = lName;
-        this.clientEmail = clientEmail;
         this.vehicleReg = vehicleReg;
         this.vinNumber = vinNumber;
+        this.vehicleMake = vehicleMake;
+        this.vehicleModel = vehicleModel;
+        this.mechanicId = mechanicId;
+        this.serviceType = serviceType;
+        this.status = status;
+        this.clientDescription = clientDescription;
     }
 
-    // 🔹 Getters & Setters
+    //  Getters & Setters
 
+
+    public String getMechanicId(){
+        return mechanicId;
+    }
+    public void setMechanicId(){
+        this.mechanicId = mechanicId;
+    }
     public String getServiceRequestId() {
         return serviceRequestId;
     }
@@ -64,52 +71,20 @@ public class ServiceRequest implements Serializable {
         this.serviceRequestId = serviceRequestId;
     }
 
+    public String getVehicleID(){
+        return vehicleID;
+    }
+
+    public void setVehicleID(String vehicleID) {
+        this.vehicleID = vehicleID;
+    }
+
     public String getUserId() {
         return userId;
     }
 
     public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    public String getMechanicId() {
-        return mechanicId;
-    }
-
-    public void setMechanicId(String mechanicId) {
-        this.mechanicId = mechanicId;
-    }
-
-    public String getVehicleId() {
-        return vehicleId;
-    }
-
-    public void setVehicleId(String vehicleId) {
-        this.vehicleId = vehicleId;
-    }
-
-    public String getClientEmail() {
-        return clientEmail;
-    }
-
-    public void setClientEmail(String clientEmail) {
-        this.clientEmail = clientEmail;
-    }
-
-    public String getfName() {
-        return fName;
-    }
-
-    public void setfName(String fName) {
-        this.fName = fName;
-    }
-
-    public String getlName() {
-        return lName;
-    }
-
-    public void setlName(String lName) {
-        this.lName = lName;
     }
 
     public String getVehicleReg() {
@@ -128,6 +103,23 @@ public class ServiceRequest implements Serializable {
         this.vinNumber = vinNumber;
     }
 
+    public String getVehicleMake() {
+        return vehicleMake;
+    }
+
+    public void setVehicleMake(String vehicleMake) {
+        this.vehicleMake = vehicleMake;
+    }
+
+    public String getVehicleModel() {
+        return vehicleModel;
+    }
+
+    public void setVehicleModel(String vehicleModel) {
+        this.vehicleModel = vehicleModel;
+    }
+
+
     public String getServiceType() {
         return serviceType;
     }
@@ -144,10 +136,11 @@ public class ServiceRequest implements Serializable {
         this.status = status;
     }
 
-    public String getDescription() {
-        return description;
+    public String getClientDescription() {
+        return clientDescription;
     }
-    public void setDescription(String description) {
-        this.description = description;
+
+    public void setClientDescription(String clientDescription) {
+        this.clientDescription = clientDescription;
     }
 }
