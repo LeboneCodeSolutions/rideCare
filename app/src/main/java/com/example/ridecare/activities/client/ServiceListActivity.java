@@ -62,6 +62,12 @@ public class ServiceListActivity extends AppCompatActivity {
                         return;
                     }
                     if (value == null) return;
+                    ArrayList<ClientServiceRequest> list = new ArrayList<>();
+                    for (QueryDocumentSnapshot doc : value) {
+                        ClientServiceRequest request = doc.toObject(ClientServiceRequest.class);
+                        list.add(request);
+                    }
+                    adapter.updateList(list);
 
                 });
     }

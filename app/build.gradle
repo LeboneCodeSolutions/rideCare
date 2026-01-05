@@ -68,6 +68,8 @@ dependencies {
     // RecyclerView + AppCompat
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.appcompat)
+    //CardView
+    implementation "androidx.cardview:cardview:1.0.0"
 
     // ConstraintLayout
     implementation("androidx.constraintlayout:constraintlayout:2.2.0")

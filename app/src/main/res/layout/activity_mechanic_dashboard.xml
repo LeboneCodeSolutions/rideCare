@@ -2,99 +2,286 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#F2F2F7"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="20dp">
+    android:layout_height="match_parent">
 
-    <!-- Profile button (top-right) -->
-    <ImageView
+    <!-- User Profile -->
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/editProfile"
+        android:layout_width="189dp"
+        android:layout_height="76dp"
+        android:layout_margin="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/bg_color_card"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivProfile"
+            android:layout_width="51dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/identity_platform_24px"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#2D3C59" />
+
+
+        <TextView
+            android:id="@+id/tvFullName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="John Doe"
+            android:textColor="#2D3C59"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/ivProfile"
+            app:layout_constraintTop_toTopOf="@id/ivProfile" />
+
+        <TextView
+            android:id="@+id/tvRole"
+            android:layout_width="46dp"
+            android:layout_height="14dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="12dp"
+            android:text="Mechanic"
+            android:textColor="#393E46"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/ivProfile"
+            app:layout_constraintStart_toEndOf="@id/ivProfile" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Settings Button -->
+    <ImageView
+        android:id="@+id/ivSettings"
         android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:src="@drawable/profile_candidate"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="33dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"/>
+        app:layout_constraintTop_toTopOf="@id/editProfile"
+        app:srcCompat="@drawable/menu_24px" />
 
-    <!-- Welcome title -->
-    <TextView
-        android:id="@+id/tvWelcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welcome, Mechanic!"
-        android:textColor="#000000"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/editProfile"
+    <!-- Revenue Stats -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/revenueBoard"
+        android:layout_width="364dp"
+        android:layout_height="120dp"
+        android:layout_margin="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_job_preview"
+        android:padding="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40dp"/>
+        app:layout_constraintTop_toBottomOf="@id/editProfile">
 
-    <!-- Quote -->
-    <TextView
-        android:id="@+id/textViewQuote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Progress, not perfection—every small step counts."
-        android:textColor="#000000"
-        android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/tvWelcome"
+        <TextView
+            android:id="@+id/tvRevenueStats"
+            android:layout_width="55dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="25dp"
+            android:text="R 20000"
+            android:textColor="#FFFF"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvRevenueLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Revenue"
+            android:textColor="#2D3C59"
+            android:textSize="9sp"
+            app:layout_constraintStart_toStartOf="@id/tvRevenueStats"
+            app:layout_constraintTop_toBottomOf="@id/tvRevenueStats" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Assigned Jobs  -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/CurrentjobPreview"
+        android:layout_width="365dp"
+        android:layout_height="257dp"
+        android:layout_margin="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_color_card"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.553"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp"/>
+        app:layout_constraintTop_toBottomOf="@id/revenueBoard">
 
-    <!-- Job Board button -->
-    <Button
-        android:id="@+id/btnViewJobsBoard"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:text="Job Board"
-        android:backgroundTint="#00BCD4"
-        android:textAllCaps="false"
-        app:layout_constraintTop_toBottomOf="@id/textViewQuote"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40dp"/>
+        <TextView
+            android:id="@+id/tvCurrentJobsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="Assigned Jobs"
+            android:textColor="#2D3C59"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Current Jobs button -->
-    <Button
-        android:id="@+id/btnViewCurrentJobs"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:text="Current Jobs"
-        android:backgroundTint="#00BCD4"
-        android:textAllCaps="false"
-        app:layout_constraintTop_toBottomOf="@id/btnViewJobsBoard"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"/>
-
-    <!-- Create Invoice button -->
-    <Button
-        android:id="@+id/btnCreateInvoice"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:text="Create Invoice"
-        android:backgroundTint="#00BCD4"
-        android:textAllCaps="false"
-        app:layout_constraintTop_toBottomOf="@id/btnViewCurrentJobs"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"/>
-
-    <!-- Logout button -->
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="0dp"
+    <!-- Job Board -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/jobBoard"
+        android:layout_width="362dp"
         android:layout_height="55dp"
-        android:text="LOG-OUT"
-        android:backgroundTint="#FF0000"
-        android:textAllCaps="true"
-        android:textColor="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@id/btnCreateInvoice"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="20dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/bg_color_card"
+        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40dp"/>
+        app:layout_constraintHorizontal_bias="0.553"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/CurrentjobPreview">
+
+        <ImageView
+            android:id="@+id/iconMechanic"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/person_apron_24px"
+            app:tint="#2D3C59" />
+
+        <TextView
+            android:id="@+id/tvJobBoardLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="View Job Board"
+            android:textColor="#2D3C59"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iconMechanic"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Update Job Card -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/jobCardUpdate"
+        android:layout_width="363dp"
+        android:layout_height="54dp"
+        android:layout_margin="20dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/bg_color_card"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.553"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/jobBoard">
+
+        <ImageView
+            android:id="@+id/jobCardIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/service_toolbox_24px"
+            app:tint="#2D3C59" />
+
+        <TextView
+            android:id="@+id/tvJobCardUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="Update Job Card"
+            android:textColor="#2D3C59"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/jobCardIcon"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Generate Invoice -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/invoiceGenerate"
+        android:layout_width="364dp"
+        android:layout_height="57dp"
+        android:layout_margin="20dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/bg_color_card"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.553"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/jobCardUpdate">
+
+        <ImageView
+            android:id="@+id/invoiceIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/receipt_24px"
+            app:tint="#2D3C59" />
+
+        <TextView
+            android:id="@+id/tvGenerateInvoice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="Generate Invoice"
+            android:textColor="#2D3C59"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/invoiceIcon"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Logout Button -->
+    <ImageView
+        android:id="@+id/logOutIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="36dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.961"
+        app:srcCompat="@drawable/logout_24px"
+        app:tint="#2D3C59" />
+
+    <!-- Home button -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="71dp"
+        android:layout_height="60dp"
+        android:background="@drawable/circle_box"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.98">
+
+        <ImageView
+            android:id="@+id/homeBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.483"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/home_24px"
+            app:tint="#2D3C59" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
