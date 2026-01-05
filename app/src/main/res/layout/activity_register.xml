@@ -11,17 +11,31 @@
         android:padding="24dp"
         android:gravity="center_horizontal">
 
+        <!-- User Type Selection -->
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="149dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
-            android:paddingBottom="20dp"
-            android:text="Create Account"
+            android:layout_marginRight="70dp"
+            android:fontFamily="monospace"
+            android:paddingBottom="9dp"
+            android:text="Register"
+            android:textAlignment="viewStart"
             android:textColor="#070707"
             android:textSize="26sp"
             android:textStyle="bold" />
 
-        <!-- User Type Selection -->
+        <TextView
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            android:fontFamily="monospace"
+            android:paddingBottom="25dp"
+            android:text="Let's get you started"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
         <RadioGroup
             android:id="@+id/rgUserType"
             android:layout_width="match_parent"
@@ -32,90 +46,100 @@
 
             <RadioButton
                 android:id="@+id/rbClient"
+                android:fontFamily="monospace"
                 android:layout_width="131dp"
                 android:layout_height="wrap_content"
+                android:textSize="12sp"
                 android:checked="true"
                 android:text="Client" />
 
             <RadioButton
                 android:id="@+id/rbMechanic"
                 android:layout_width="wrap_content"
+                android:textSize="12sp"
+                android:fontFamily="monospace"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="26dp"
                 android:text="Mechanic" />
         </RadioGroup>
 
         <!-- First Name -->
-        <EditText
-            android:id="@+id/etFirstName"
-            android:layout_width="276dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:background="@android:drawable/edit_text"
-            android:hint="First Name"
-            android:padding="12dp"
-            android:textSize="14sp" />
 
         <!-- Last Name -->
         <EditText
-            android:id="@+id/etLastName"
-            android:layout_width="276dp"
+            android:id="@+id/etFirstName"
+            android:layout_width="282dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:background="@android:drawable/edit_text"
+            android:background="@drawable/edittextroundable"
+            android:fontFamily="monospace"
+            android:hint="First Name"
+            android:padding="12dp"
+            android:textSize="10sp" />
+
+        <EditText
+            android:id="@+id/etLastName"
+            android:layout_width="282dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:fontFamily="monospace"
+            android:background="@drawable/edittextroundable"
             android:hint="Last Name"
             android:padding="12dp"
-            android:textSize="14sp" />
+            android:textSize="10sp" />
 
         <!-- Email -->
         <EditText
             android:id="@+id/etEmail"
-            android:layout_width="276dp"
-            android:layout_height="50dp"
+            android:layout_width="282dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:background="@android:drawable/edit_text"
-            android:hint="Email"
+            android:background="@drawable/edittextroundable"
+            android:fontFamily="monospace"
+            android:hint="Email Address"
             android:inputType="textEmailAddress"
             android:padding="12dp"
-            android:textSize="14sp" />
+            android:textSize="10sp" />
 
         <!-- Phone -->
         <EditText
             android:id="@+id/etPhone"
-            android:layout_width="276dp"
-            android:layout_height="50dp"
+            android:layout_width="282dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:background="@android:drawable/edit_text"
+            android:background="@drawable/edittextroundable"
+            android:fontFamily="monospace"
             android:hint="Phone (e.g. 0821234567)"
             android:inputType="phone"
             android:padding="12dp"
-            android:textSize="14sp" />
+            android:textSize="10sp" />
 
         <!-- Password -->
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="276dp"
-            android:layout_height="50dp"
-            android:background="@android:drawable/edit_text"
-            android:gravity="center_vertical">
+            android:layout_width="282dp"
+            android:layout_height="36dp"
+            android:background="@drawable/edittextroundable"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="27dp"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
+                android:fontFamily="monospace"
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:padding="12dp"
-                android:textSize="14sp" />
+                android:textSize="10sp" />
 
             <ImageView
                 android:id="@+id/btnTogglePassword"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:padding="8dp"
-                android:src="@android:drawable/ic_menu_view"/>
+                android:src="@android:drawable/ic_menu_view" />
         </LinearLayout>
 
         <!-- Password strength label -->
@@ -125,35 +149,38 @@
             android:layout_height="wrap_content"
             android:text="Password Strength"
             android:textColor="#000000"
-            android:textSize="14sp"
-            android:layout_marginTop="8dp"
+            android:fontFamily="monospace"
+            android:textSize="8sp"
+            android:layout_marginRight="90dp"
+            android:layout_marginTop="12dp"
             android:layout_marginBottom="4dp"/>
 
         <!-- Strength bar -->
         <View
             android:id="@+id/strengthBar"
-            android:layout_width="match_parent"
+            android:layout_width="262dp"
             android:layout_height="6dp"
             android:layout_marginBottom="16dp"
-            android:background="#CCCCCC"/>
+            android:background="#CCCCCC" />
 
         <!-- Confirm Password -->
         <EditText
             android:id="@+id/etConfirmPassword"
-            android:layout_width="276dp"
-            android:layout_height="50dp"
+            android:layout_width="282dp"
+            android:layout_height="37dp"
             android:layout_marginBottom="15dp"
-            android:background="@android:drawable/edit_text"
+            android:background="@drawable/edittextroundable"
+            android:fontFamily="monospace"
             android:hint="Confirm Password"
             android:inputType="textPassword"
             android:padding="12dp"
-            android:textSize="14sp" />
+            android:textSize="10sp" />
 
         <!-- Password Rules -->
         <LinearLayout
             android:id="@+id/passwordRulesBox"
-            android:layout_width="350dp"
-            android:layout_height="118dp"
+            android:layout_width="281dp"
+            android:layout_height="102dp"
             android:layout_marginBottom="12dp"
             android:background="#F5F5F5"
             android:orientation="vertical"
@@ -163,79 +190,57 @@
                 android:id="@+id/ruleLength"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="• 6-15 characters"
-                android:textColor="#FF0000"
-                android:textSize="14sp" />
+                android:layout_marginTop="5dp"
+                android:fontFamily="monospace"
+                android:text="6-15 characters"
+                android:textColor="#000000"
+                android:textSize="10sp" />
 
             <TextView
                 android:id="@+id/ruleUpper"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="• At least 1 uppercase letter"
-                android:textColor="#FF0000"
-                android:textSize="14sp" />
+                android:fontFamily="monospace"
+                android:text="At least 1 uppercase letter"
+                android:textColor="#000000"
+                android:textSize="10sp" />
 
             <TextView
                 android:id="@+id/ruleLower"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="• At least 1 lowercase letter"
-                android:textColor="#FF0000"
-                android:textSize="14sp" />
+                android:fontFamily="monospace"
+                android:text="At least 1 lowercase letter"
+                android:textColor="#000000"
+                android:textSize="10sp" />
 
             <TextView
                 android:id="@+id/ruleNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="• At least 1 number"
-                android:textColor="#FF0000"
-                android:textSize="14sp" />
+                android:fontFamily="monospace"
+                android:text="At least 1 number"
+                android:textColor="#000000"
+                android:textSize="10sp" />
 
             <TextView
                 android:id="@+id/ruleSpecial"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="• At least 1 special character (!@#$%^&amp;*)"
-                android:textColor="#FF0000"
-                android:textSize="14sp" />
+                android:fontFamily="monospace"
+                android:text="At least 1 special character (!@#$%^&amp;*)"
+                android:textColor="#000000"
+                android:textSize="10sp" />
         </LinearLayout>
-
-        <!-- OTP choice -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="6dp"
-            android:text="Choose Verification Method"
-            android:textSize="12sp"
-            android:textStyle="bold" />
-
-        <RadioGroup
-            android:id="@+id/rgVerificationMethod"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="16dp">
-
-            <RadioButton
-                android:id="@+id/rbEmailOTP"
-                android:layout_width="169dp"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="Email OTP" />
-
-            <RadioButton
-                android:id="@+id/rbPhoneOTP"
-                android:layout_width="214dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="26dp"
-                android:text="Phone OTP" />
-        </RadioGroup>
 
         <Button
             android:id="@+id/btnRegister"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:backgroundTint="?attr/colorPrimary"
+            android:layout_width="110dp"
+            android:layout_height="32dp"
+            android:background="#111927"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/black"
+            android:fontFamily="monospace"
             android:text="Sign Up"
             android:textAllCaps="false"
             android:textColor="?android:attr/textColorPrimaryInverse" />

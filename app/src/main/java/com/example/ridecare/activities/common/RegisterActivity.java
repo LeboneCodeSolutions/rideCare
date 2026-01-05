@@ -1,5 +1,7 @@
 package com.example.ridecare.activities.common;
 
+import static java.sql.Types.NULL;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -32,8 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseFirestore db;
     TextView ruleLength, ruleUpper, ruleLower, ruleNumber, ruleSpecial, tvPasswordStrength;
-    RadioGroup rgVerificationMethod, rgUserRole;
-    RadioButton rbEmailOTP, rbPhoneOTP, rbClient, rbMechanic;
+    RadioButton rbEmailOTP, rbClient, rbMechanic;
     View strengthBar;
 
     boolean passwordVisible = false;
@@ -68,10 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
         // password strength meter
         strengthBar = findViewById(R.id.strengthBar);
 
-        // Verification method radio
-        rgVerificationMethod = findViewById(R.id.rgVerificationMethod);
-        rbEmailOTP = findViewById(R.id.rbEmailOTP);
-        rbPhoneOTP = findViewById(R.id.rbPhoneOTP);
+
 
         // Toggle show password
         btnTogglePassword.setOnClickListener(v -> {
@@ -178,16 +176,13 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        if (rgVerificationMethod.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "Select verification method", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
         // Determine role based on radio button selection
         String userRole = rbClient.isChecked() ? "client" : "mechanic";
 
+
+        // Revist this
         // Determine OTP method
-        boolean emailMethod = rbEmailOTP.isChecked();
+   //     boolean emailMethod = rbEmailOTP.isChecked();
 
         auth.createUserWithEmailAndPassword(email, password)
                 .addOnSuccessListener(result -> {
@@ -205,12 +200,6 @@ public class RegisterActivity extends AppCompatActivity {
                             .set(user)
                             .addOnSuccessListener(r -> {
 
-                                if (emailMethod) {
-                                    auth.getCurrentUser().sendEmailVerification();
-                                    Toast.makeText(this, "Account created! Verify email to continue", Toast.LENGTH_LONG).show();
-                                } else {
-                                    Toast.makeText(this, "Phone OTP (future upgrade — Firebase paid tier)", Toast.LENGTH_LONG).show();
-                                }
                                 if(userRole.equals("mechanic")){
                                     startActivity(new Intent(this, MechanicDashboardActivity.class));
                                 }

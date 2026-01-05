@@ -7,6 +7,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.ridecare.R;
+import com.example.ridecare.models.ClientServiceRequest;
 import com.example.ridecare.models.ServiceRequest;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +53,10 @@ public class ServiceRequestAdapter extends RecyclerView.Adapter<ServiceRequestAd
     public void setItems(List<ServiceRequest> serviceList) {
         this.list = (serviceList != null) ? serviceList : new ArrayList<>();
         notifyDataSetChanged();
+    }
+
+    public void updateList(ArrayList<ClientServiceRequest> list) {
+        
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
