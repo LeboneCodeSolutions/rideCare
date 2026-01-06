@@ -88,7 +88,7 @@
         <activity android:name=".activities.common.LoginActivity" android:exported="true" />
         <activity android:name=".activities.common.SettingsActivity" android:exported="false" />
         <activity android:name=".activities.common.ForgotPasswordActivity" android:exported="false" />
-
+<activity android:name=".activities.common.EditProfileActivity" android:exported="false"/>
         <!-- Firebase Messaging Service -->
         <service
             android:name=".services.cFirebaseMessagingService"
