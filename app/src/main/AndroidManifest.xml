@@ -37,6 +37,7 @@
         <activity android:name=".activities.mechanic.InvoiceCreateActivity"
             android:exported="true" />
 
+
         <!-- Client Activities -->
         <activity android:name=".activities.client.ServiceListActivity"
             android:exported="false" />
@@ -55,6 +56,7 @@
             android:exported="true" />
         <activity android:name=".activities.client.EditVehicleActivity"
             android:exported="true" />
+
 
         <!-- Payment result activity with its intent-filters -->
         <activity
