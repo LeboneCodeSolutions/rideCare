@@ -2,12 +2,9 @@ package com.example.ridecare.activities.client;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.view.View;
@@ -22,12 +19,12 @@ import com.google.firebase.firestore.*;
 public class DashboardActivity extends AppCompatActivity {
 
 
-    ImageView ivProfile, menuIcon, heroCar, ivServiceRequest, invoiceImage;
-    TextView myGarageBtn;
-
+    ImageView heroCar;
+    TextView myGarageBtn, tvViewMore;
 
             /* Developer Note
             * Create a page to view the menuIcon for the client pending
+            * Create Page for view more
             * */
 
     @Override
@@ -35,18 +32,8 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_dashboard);
 
-
         heroCar = findViewById(R.id.heroCar);
         myGarageBtn = findViewById(R.id.myGarageBtn);
-
-        // LinearLayout
-        LinearLayout overHaulCard;
-        LinearLayout oilChangeCard;
-        LinearLayout towingCard;
-
-        overHaulCard = findViewById(R.id.overHaulCard);
-        oilChangeCard = findViewById(R.id.towingCard);
-        towingCard = findViewById(R.id.towingCard);
 
 
         // Constraint Layout
@@ -55,7 +42,7 @@ public class DashboardActivity extends AppCompatActivity {
         serviceRequestCard = findViewById(R.id.serviceRequestCard);
         invoiceCard = findViewById(R.id.invoiceCard);
 
-
+        // Image View
         ImageView ivProfile = findViewById(R.id.ivProfile);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -72,30 +59,20 @@ public class DashboardActivity extends AppCompatActivity {
                 startActivity(new Intent(DashboardActivity.this, SettingsActivity.class))
         );
 
-
-
         // vehicle list
         View.OnClickListener openVehicleList = v -> startActivity(new Intent(DashboardActivity.this, VehicleListActivity.class));
-        heroCar.setOnClickListener(openVehicleList);
         myGarageBtn.setOnClickListener(openVehicleList);
 
         //Service Request
         View.OnClickListener openServiceRequest = v -> startActivity(new Intent(DashboardActivity.this,ServiceListActivity.class));
-        ivServiceRequest.setOnClickListener(openServiceRequest);
         serviceRequestCard.setOnClickListener(openServiceRequest);
 
-
-       /*
-        need to check if it works without this
         // View profile button
         ivProfile.setOnClickListener(v ->
                 startActivity(new Intent(DashboardActivity.this, SettingsActivity.class)));
-        */
-
 
         // invoice list button
         View.OnClickListener openInvoice = v ->startActivity(new Intent(DashboardActivity.this, InvoiceListActivity.class));
-        invoiceImage.setOnClickListener(openInvoice);
         invoiceCard.setOnClickListener(openInvoice);
 
         /* code will be used in another sections
