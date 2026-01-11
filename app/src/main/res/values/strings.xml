@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">RideCare</string>
+
+    <!--TextView Labels -->
+    <string name="homeTitle"> Home</string>
+    <string name="serviceRequest"> Service Request</string>
+    <string name="myGarage">MY GARAGE</string>
+    <string name="tvOverhaul">Overhaul</string>
+    <string name="tvOilChange">Oil Change</string>
+    <string name="tvTowing">Towing</string>
+    <string name="tvViewMore">View More</string>
+
+    <!--TextView Descriptions-->
+    <string name="serviceTypeDescription"> What Service would you like?</string>
+    <string name="invoiceDescription">View, track, and manage all invoices related to your vehicle services in one place.</string>
+    <!-- Icon Descriptions -->
+    <string name="vehicleOverhaul">Icon Service Car</string>
+    <string name="iconOil">Icon Oil Tank </string>
+    <string name="iconTowing">Icon Tow Truck</string>
+    <!-- Image Descriptions -->
+    <string name="carHeroDashBoard">2015 volkswagen golf 7, white, no background</string>
+    <string name="serviceRequestImage">2015 Audi A3 sedan, bonnet open, mechanic working on the engine</string>
+    <string name="invoiceImage">Invoice slip image</string>
 </resources>
+
+
