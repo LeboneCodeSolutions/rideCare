@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ridecare.R; // Use your actual R file import
@@ -17,7 +18,6 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VH> {
     public interface OnVehicleAction {
         void onBook(Vehicle vehicle);
         void onEdit(Vehicle vehicle);
-        void onDelete(Vehicle vehicle);
     }
 
     private List<Vehicle> vehicleList;
@@ -38,7 +38,7 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VH> {
     public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Correctly inflates the item layout
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_vehicle, parent, false);
+                .inflate(R.layout.item_vehicle_update_1, parent, false);
         return new VH(view);
     }
 
@@ -49,14 +49,16 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VH> {
 
         // Binds the data to the TextViews in the item layout
         String title = vehicle.getMake() + " " + vehicle.getModel();
-        String subtitle = "Year: " + vehicle.getYear() + " • Vehicle Reg: " + vehicle.getRegistrationNumber();
+        //String odometerReading = vehicle.getOdometerReading
+        String vinNum = vehicle.getVin();
+        // Developer note: this doesn't show
+        String vehicleReg = vehicle.getRegistrationNumber();
 
         holder.tvVehicleTitle.setText(title);
-        holder.tvVehicleSubtitle.setText(subtitle);
+        holder.tvVehicleReg.setText(vehicleReg);
+        holder.tvVinNum.setText(vinNum);
+        holder.cardService.setOnClickListener(v -> listener.onBook(vehicle));
 
-        holder.btnBookService.setOnClickListener(v -> listener.onBook(vehicle));
-        holder.btnEdit.setOnClickListener(v -> listener.onEdit(vehicle));
-        holder.btnDelete.setOnClickListener(v -> listener.onDelete(vehicle));
     }
 
     @Override
@@ -67,19 +69,19 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VH> {
 
     // ViewHolder class to hold the views for each item
     static class VH extends RecyclerView.ViewHolder {
-        TextView tvVehicleTitle, tvVehicleSubtitle;
-        View btnBookService, btnEdit, btnDelete;
-
+        TextView tvVehicleTitle, tvOdometerReading, tvVinNum, tvVehicleReg;
+        ConstraintLayout cardService;
         public VH(@NonNull View itemView) {
             super(itemView);
+            
             // Finds the views from the inflated layout (item_vehicle.xml)
-            tvVehicleTitle = itemView.findViewById(R.id.tvVehicleTitle); // Make sure these IDs exist in item_vehicle.xml
-            tvVehicleSubtitle = itemView.findViewById(R.id.tvVehicleSubtitle);
+            tvVehicleTitle = itemView.findViewById(R.id.titleText); // Make sure these IDs exist in item_vehicle.xml
 
-            btnBookService = itemView.findViewById(R.id.btnBookService);
-            btnEdit = itemView.findViewById(R.id.btnEdit);
-            btnDelete = itemView.findViewById(R.id.btnDelete);
-            // Make sure these IDs exist in item_vehicle.xml
+            tvOdometerReading = itemView.findViewById(R.id.tvOdometerReading);
+            tvVinNum = itemView.findViewById(R.id.tvVinNum);
+            tvVehicleReg = itemView.findViewById(R.id.tvVehicleReg);
+            cardService = itemView.findViewById(R.id.cardService);
+
         }
     }
 }

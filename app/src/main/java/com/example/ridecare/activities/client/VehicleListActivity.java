@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,7 +32,7 @@ public class VehicleListActivity extends AppCompatActivity {
     private Button btnAddVehicle;
     private VehicleAdapter adapter;
     private List<Vehicle> vehicleList;
-
+private ImageView ivAddVehicle, backArrow;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
 
@@ -48,7 +50,8 @@ public class VehicleListActivity extends AppCompatActivity {
 
         // Find views from the layout
         rvVehicles = findViewById(R.id.rvVehicles);
-        btnAddVehicle = findViewById(R.id.btnAddVehicle);
+        ivAddVehicle = findViewById(R.id.ivAddVehicle);
+        backArrow = findViewById(R.id.backArrow);
         vehicleList = new ArrayList<>();
         adapter = new VehicleAdapter(vehicleList, this, new VehicleAdapter.OnVehicleAction() {
             @Override
@@ -67,15 +70,15 @@ public class VehicleListActivity extends AppCompatActivity {
                 startActivity(intent);
             }
 
-            @Override
-            public void onDelete(Vehicle vehicle) {
-                Log.d(TAG, "Delete clicked");
-            }
         });
         rvVehicles.setLayoutManager(new LinearLayoutManager(this));
         rvVehicles.setAdapter(adapter);
         loadVehiclesRealtime();
-        btnAddVehicle.setOnClickListener(v -> {
+
+        backArrow.setOnClickListener(v ->{
+            startActivity(new Intent(VehicleListActivity.this, DashboardActivity.class));
+        });
+        ivAddVehicle.setOnClickListener(v -> {
            startActivity(new Intent(VehicleListActivity.this, AddVehicleActivity.class)                                                                                                                                                                                          );
         });
     }
