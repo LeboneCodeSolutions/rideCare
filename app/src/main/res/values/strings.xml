@@ -21,6 +21,8 @@
     <string name="carHeroDashBoard">2015 volkswagen golf 7, white, no background</string>
     <string name="serviceRequestImage">2015 Audi A3 sedan, bonnet open, mechanic working on the engine</string>
     <string name="invoiceImage">Invoice slip image</string>
+    <string name="back">Back arrow left</string>
+    <string name="addVehicleIcon"> Add icon</string>
 </resources>
 
 
