@@ -38,7 +38,7 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VH> {
     public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Correctly inflates the item layout
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_vehicle_update_1, parent, false);
+                .inflate(R.layout.item_vehicle, parent, false);
         return new VH(view);
     }
 

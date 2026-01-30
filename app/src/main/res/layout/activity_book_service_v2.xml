@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/book_service"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!--Vehicle Card -->
+        <include
+            android:id="@+id/vehicleCardImport"
+            layout="@layout/item_vehicle"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!--Service Options TV -->
+        <TextView
+            android:id="@+id/tvServiceOptions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Service Options"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="30dp"
+            app:layout_constraintTop_toBottomOf="@id/vehicleCardImport"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/containerPopularOptions"
+            android:layout_width="175dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="124dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/bg_color_card_gradient_2"
+            android:padding="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvServiceOptions">
+            <TextView
+                android:id="@+id/tvPopularOptions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Popular Service Options"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <!--Oil Change Container-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/containerOilChange"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/bg_color_card_gradient_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/containerPopularOptions">
+
+            <ImageView
+                android:id="@+id/ivOilChange"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginBottom="40dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/oil_barrel_24px"
+                app:tint="@color/white" />
+
+            <TextView
+                android:id="@+id/tvOilChange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Oil Change"
+                android:textColor="@color/white"
+                android:textSize="10dp"
+                android:layout_marginStart="50dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivOilChange"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--Tire Repair Container-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/containerTyreReplacement"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="215dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/bg_color_card_gradient_2"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/containerPopularOptions">
+
+            <ImageView
+                android:id="@+id/ivTyreReplacement"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginBottom="40dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/tire_repair_24px"
+                app:tint="@color/white" />
+
+            <TextView
+                android:id="@+id/tvTyreReplacement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tyre Repair"
+                android:textColor="@color/white"
+                android:textSize="10dp"
+                android:layout_marginStart="50dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivTyreReplacement" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--Braking System  Container-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/containerBrakingSystem"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_color_card_gradient_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/containerOilChange">
+
+            <ImageView
+                android:id="@+id/ivBrakingSystem"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/back_hand_24px"
+                app:tint="@color/white"
+                android:layout_marginBottom="40dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/tvBrakingSystem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Brake System"
+                android:textColor="@color/white"
+                android:textSize="10dp"
+                android:layout_marginStart="50dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivBrakingSystem"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--Battery Replacement Container-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/containerBattteryReplacement"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="215dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_color_card_gradient_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/containerTyreReplacement">
+
+            <ImageView
+                android:id="@+id/ivBatttery"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/electric_car_24px"
+                app:tint="@color/white"
+                android:layout_marginBottom="40dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tvBattery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:text="Battery Replacement"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivBatttery" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--Engine Overhaul Container-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/containerOverhaul"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_color_card_gradient_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/containerBrakingSystem">
+
+            <TextView
+                android:id="@+id/tvOverhaul"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="55dp"
+                android:text="Overhaul"
+                android:textColor="@color/white"
+                android:textSize="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivOverhaul" />
+
+            <ImageView
+                android:id="@+id/ivOverhaul"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/car_repair"
+                app:tint="@color/white"
+                android:layout_marginBottom="40dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--Mobile Towing Container-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/containerTowing"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="215dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_color_card_gradient_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/containerBattteryReplacement">
+
+            <TextView
+                android:id="@+id/tvTowing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:text="Mobile Towing"
+                android:textColor="@color/white"
+                android:textSize="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivTowing" />
+
+            <ImageView
+                android:id="@+id/ivTowing"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/auto_towing_24px"
+                app:tint="@color/white"
+                android:layout_marginBottom="40dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--Description Container-->
+
+        <!--Bottom Container-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
