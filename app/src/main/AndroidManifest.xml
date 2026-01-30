@@ -37,6 +37,11 @@
         <activity android:name=".activities.mechanic.InvoiceCreateActivity"
             android:exported="true" />
 
+        <!-- Service Activities -->
+        <activity android:name=".activities.service.oilChangeActivity"
+            android:exported="true"/>
+
+
 
         <!-- Client Activities -->
         <activity android:name=".activities.client.ServiceListActivity"

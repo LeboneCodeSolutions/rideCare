@@ -1,28 +1,29 @@
 package com.example.ridecare.activities.client;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.*;
 
 import com.example.ridecare.R;
+import com.example.ridecare.activities.service.oilChangeActivity;
 import com.example.ridecare.models.ServiceRequest;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class BookServiceActivity extends AppCompatActivity {
-
-    Spinner spServiceType;
     EditText etDescription;
-    Button btnSubmit;
-
     FirebaseFirestore db;
     FirebaseAuth auth;
+    ConstraintLayout containerOilChange, containerTyreReplacement, containerBrakingSystem, containerBattteryReplacement, containerOverhaul, containerTowing;
 
-    String vehicleId ;
-    String status = "pending";
+
+    TextView tvOilChange;
+    String  selectedService;
+
 
     // Mechanic assigned later when job is accepted
     String mechanicID = null;
@@ -30,26 +31,66 @@ public class BookServiceActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book_service);
+        setContentView(R.layout.activity_book_service_v2);
 
 
+        //Service Types
+        containerOilChange = findViewById(R.id.containerOilChange);
+        containerTyreReplacement = findViewById(R.id.containerTyreReplacement);
+        containerBrakingSystem = findViewById(R.id.containerBrakingSystem);
+        containerBattteryReplacement = findViewById(R.id.containerBattteryReplacement);
+        containerOverhaul = findViewById(R.id.containerOverhaul);
+        containerTowing = findViewById(R.id.containerTowing);
 
-        spServiceType = findViewById(R.id.spServiceType);
+
         etDescription = findViewById(R.id.etDescription);
-        btnSubmit = findViewById(R.id.btnSubmitRequest);
+
+        tvOilChange = findViewById(R.id.tvOilChange);
+
 
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
 
-        btnSubmit.setOnClickListener(v -> submitRequest());
+        // Developer Note: Create a cancel service button
+
+
+        // Developer Note: Set functionality on the containers,
+        //Preset the container values - staus = done
+        // user can't select more than 1 container at a time
+        // and once user confirms the oder
+        containerOilChange.setOnClickListener(v -> {
+            startActivity(new Intent(BookServiceActivity.this, oilChangeActivity.class));
+        });
+
+        containerTyreReplacement.setOnClickListener(v -> {
+            selectedService = "Tyre Replacement";
+        });
+
+        containerBrakingSystem.setOnClickListener(v -> {
+            selectedService = "Brakes Inspection/Replacement";
+        });
+
+        containerBattteryReplacement.setOnClickListener(v -> {
+            selectedService = "Battery Inspection/Replacement";
+        });
+
+        containerOverhaul.setOnClickListener(v -> {
+            selectedService = "Engine Overhaul";
+        });
+
+        containerTowing.setOnClickListener(v -> {
+            selectedService = "24/7 Towing Request";
+        });
     }
 
-    private void submitRequest() {
-        if (spServiceType.getSelectedItem() == null) {
-            Toast.makeText(this, "Select service type", Toast.LENGTH_SHORT).show();
+}
+  /*  private void submitRequest() {
+
+
+        if (selectedService == null) {
+            Toast.makeText(this, "Please Select service type", Toast.LENGTH_SHORT).show();
             return;
         }
-        String serviceType = spServiceType.getSelectedItem().toString();
         String desc = etDescription.getText().toString().trim();
 
         if (desc.isEmpty()) {
@@ -158,3 +199,4 @@ public class BookServiceActivity extends AppCompatActivity {
                 );
     }
 }
+*/
