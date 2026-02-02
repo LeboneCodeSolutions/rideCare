@@ -22,6 +22,8 @@ public class ServiceRequest implements Serializable {
     // Service info
     private String serviceType;
     private String status;
+    private String servicePrevDate;
+    private String odometerReading;
     private String clientDescription;
 
     // REQUIRED empty constructor (Firebase)
@@ -39,7 +41,9 @@ public class ServiceRequest implements Serializable {
             String vehicleModel,
             String serviceType,
             String status,
-            String clientDescription
+            String clientDescription,
+            String servicePrevDate,
+            String odometerReading
     ) {
         this.serviceRequestId = serviceRequestId;
         this.vehicleID = vehicleId;
@@ -52,6 +56,8 @@ public class ServiceRequest implements Serializable {
         this.serviceType = serviceType;
         this.status = status;
         this.clientDescription = clientDescription;
+        this.servicePrevDate = servicePrevDate;
+        this.odometerReading = odometerReading;
     }
 
     //  Getters & Setters
@@ -142,5 +148,21 @@ public class ServiceRequest implements Serializable {
 
     public void setClientDescription(String clientDescription) {
         this.clientDescription = clientDescription;
+    }
+
+    public String getServicePrevDate(String serviceDate){
+        return servicePrevDate;
+    }
+
+    public String getOdometerReading(){
+        return odometerReading;
+    }
+
+    public void setOdometerReading(String odometerReading) {
+        this.odometerReading = odometerReading;
+    }
+
+    public void setServicePrevDate(String servicePrevDate){
+        this.servicePrevDate = servicePrevDate;
     }
 }
