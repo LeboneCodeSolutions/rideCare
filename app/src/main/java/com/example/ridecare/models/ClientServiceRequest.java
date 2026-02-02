@@ -22,6 +22,8 @@ public class ClientServiceRequest implements Serializable {
     private String status;      // pending, in_progress, completed
     private String description;
 
+    private String servicePrevDate;
+    private String odometerReading;
     // Metadata
     @ServerTimestamp
     private Date createdAt;
@@ -34,12 +36,16 @@ public class ClientServiceRequest implements Serializable {
             String userId,
             String vehicleId,
             String serviceType,
-            String description
+            String description,
+            String servicePrevDate,
+            String odometerReading
     ) {
         this.userId = userId;
         this.vehicleId = vehicleId;
         this.serviceType = serviceType;
         this.description = description;
+        this.servicePrevDate = servicePrevDate;
+        this.odometerReading = odometerReading;
         this.status = Status.PENDING;
     }
 
@@ -52,7 +58,21 @@ public class ClientServiceRequest implements Serializable {
     public void setServiceRequestId(String serviceRequestId) {
         this.serviceRequestId = serviceRequestId;
     }
+    public String getServicePrevDate(){
+        return servicePrevDate;
+    }
 
+    public String getOdometerReading(){
+        return odometerReading;
+    }
+
+    public void setOdometerReading(String odometerReading) {
+        this.odometerReading = odometerReading;
+    }
+
+    public void setServicePrevDate(String servicePrevDate){
+        this.servicePrevDate = servicePrevDate;
+    }
     public String getUserId() {
         return userId;
     }
