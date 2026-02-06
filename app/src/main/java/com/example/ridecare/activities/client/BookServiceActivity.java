@@ -9,6 +9,7 @@ import android.widget.*;
 
 import com.example.ridecare.R;
 import com.example.ridecare.activities.service.oilChangeActivity;
+import com.example.ridecare.activities.service.tyreRepairActivity;
 import com.example.ridecare.models.ServiceRequest;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -23,8 +24,7 @@ public class BookServiceActivity extends AppCompatActivity {
 
     TextView tvOilChange;
     String  selectedService;
-
-
+    String vehicleId;
     // Mechanic assigned later when job is accepted
     String mechanicID = null;
 
@@ -50,7 +50,17 @@ public class BookServiceActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
+        vehicleId = getIntent().getStringExtra("vehicleId");
 
+        if (vehicleId == null || vehicleId.isEmpty()) {
+            vehicleId = getIntent().getStringExtra("id");
+        }
+
+        if (vehicleId == null || vehicleId.isEmpty()) {
+            Toast.makeText(this, "Vehicle not selected", Toast.LENGTH_LONG).show();
+            finish();
+            return;
+        }
         // Developer Note: Create a cancel service button
 
 
@@ -59,11 +69,15 @@ public class BookServiceActivity extends AppCompatActivity {
         // user can't select more than 1 container at a time
         // and once user confirms the oder
         containerOilChange.setOnClickListener(v -> {
-            startActivity(new Intent(BookServiceActivity.this, oilChangeActivity.class));
+            Intent intent = new Intent(BookServiceActivity.this, oilChangeActivity.class);
+            intent.putExtra("vehicleId", vehicleId);
+            startActivity(intent);
         });
 
         containerTyreReplacement.setOnClickListener(v -> {
-            selectedService = "Tyre Replacement";
+            Intent intent = new Intent(BookServiceActivity.this, tyreRepairActivity.class);
+            intent.putExtra("vehicleId", vehicleId);
+            startActivity(intent);
         });
 
         containerBrakingSystem.setOnClickListener(v -> {
