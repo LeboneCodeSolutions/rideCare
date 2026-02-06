@@ -1,32 +1,42 @@
 package com.example.ridecare.activities.service;
 
-import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
-import android.widget.Toast;
-import com.example.ridecare.utils.MyUtils;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import com.example.ridecare.utils.MyUtils;
+
 import com.example.ridecare.R;
-import com.example.ridecare.models.ServiceRequest;
+import com.example.ridecare.models.OilChangeRequest;
+import com.example.ridecare.utils.MyUtils;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.Calendar;
-
+/**
+ * oilChangeActivity
+ *
+ * Handles oil change service request submission.
+ * Collects user input, validates fields, retrieves user & vehicle data,
+ * and saves an OilChangeRequest to Firestore.
+ */
 public class oilChangeActivity extends AppCompatActivity {
 
+    // Static request metadata
     String serviceType = "Oil Change";
     String status = "Service Requested";
     String mechanicID = null;
+
+    // Runtime values
     String vehicleId;
 
+    // Form inputs
     EditText etOdometerReading, etServiceDate;
+
+    // Submit container acting as a button
     ConstraintLayout clSubmitOilChange;
 
+    // Firebase instances
     FirebaseFirestore db;
     FirebaseAuth auth;
 
@@ -35,70 +45,85 @@ public class oilChangeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_oil_change);
 
+        // Bind UI elements
         etOdometerReading = findViewById(R.id.etOdometerReading);
         etServiceDate = findViewById(R.id.etServiceDate);
         clSubmitOilChange = findViewById(R.id.clSubmitOilChange);
 
+        // Initialize Firebase
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
 
-        // Date picker
-        etServiceDate.setOnClickListener(v ->  MyUtils.openDatePicker(this, etServiceDate));
+        // Attach reusable DatePicker helper to service date field
+        etServiceDate.setOnClickListener(v ->
+                MyUtils.openDatePicker(this, etServiceDate)
+        );
 
-        // Submit
+        // Handle submit action
         clSubmitOilChange.setOnClickListener(v -> submitRequest());
     }
 
-
-
+    /**
+     * Handles oil change request submission:
+     * - Extracts and validates form inputs
+     * - Ensures user is authenticated
+     * - Retrieves vehicle details
+     * - Builds OilChangeRequest model
+     * - Saves request to Firestore
+     */
     private void submitRequest() {
 
+        // Extract sanitized input values using reusable helper
         String odometerReading = MyUtils.newStr(etOdometerReading);
         String serviceDate = MyUtils.newStr(etServiceDate);
 
-        if (!MyUtils.requireString(odometerReading, etOdometerReading,"Odometer Reading Required")) return;
-
+        // Validate required inputs before proceeding
+        if (!MyUtils.requireString(odometerReading, etOdometerReading, "Odometer Reading Required")) return;
         if (!MyUtils.requireString(serviceDate, etServiceDate, "Service date required")) return;
 
-
+        // Ensure user is logged in and retrieve UID
         String uid = MyUtils.UidCheck(this, auth);
         if (uid == null) return;
 
+        // Retrieve vehicle ID safely from Intent
         vehicleId = MyUtils.vehicleIdCheck(this);
         if (vehicleId == null) return;
 
+        // Create new Firestore document reference
         DocumentReference docRef = db.collection("request_service_vehicle").document();
 
+        // Verify user exists before continuing
         db.collection("users").document(uid).get().addOnSuccessListener(userDoc -> {
             if (!MyUtils.requireDocument(userDoc, this, "User not found")) return;
 
+            // Fetch vehicle details for request metadata
             db.collection("vehicles").document(vehicleId).get().addOnSuccessListener(vehicleDoc -> {
                 if (!MyUtils.requireDocument(vehicleDoc, this, "Vehicle")) return;
 
+                // Create oil change request model
+                OilChangeRequest request = new OilChangeRequest();
 
-                ServiceRequest request = new ServiceRequest();
+                // Base service request fields
                 request.setServiceRequestId(docRef.getId());
                 request.setUserId(uid);
                 request.setVehicleID(vehicleId);
+                request.setServiceType(serviceType);
+                request.setStatus(status);
+                request.setMechanicId(mechanicID);
+
+                // Vehicle metadata
                 request.setVehicleReg(vehicleDoc.getString("registrationNumber"));
                 request.setVinNumber(vehicleDoc.getString("vin"));
                 request.setVehicleMake(vehicleDoc.getString("make"));
                 request.setVehicleModel(vehicleDoc.getString("model"));
-                request.setServiceType(serviceType);
 
-                request.setMechanicId(mechanicID);
-                request.setStatus(status);
+                // Oil-specific fields
+                request.setOdometerReading(odometerReading);
+                request.setPrevServiceDate(serviceDate);
 
-                docRef.set(request)
-                        .addOnSuccessListener(aVoid -> {
-                            Toast.makeText(this, "Service booked successfully", Toast.LENGTH_SHORT).show();
-                            finish();
-                        })
-                        .addOnFailureListener(e ->
-                                Toast.makeText(this, "Failed: " + e.getMessage(), Toast.LENGTH_LONG).show());
-
+                // Save request to Firestore using reusable helper
+                MyUtils.saveAndClose(this, docRef, request, this);
             });
-
         });
     }
 }

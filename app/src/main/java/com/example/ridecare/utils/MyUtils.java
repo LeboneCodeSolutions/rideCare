@@ -1,22 +1,49 @@
+/**
+ * MyUtils.java
+ *
+ * Central utility class for reusable helper methods used across the RideCare app.
+ *
+ * Responsibilities:
+ * - Form input handling (EditText → String conversion)
+ * - Field validation
+ * - DatePicker helpers
+ * - Firebase-related checks
+ * - Dropdown setup
+ * - Common UI actions (Toast, navigation, etc.)
+ *
+ * Purpose:
+ * Reduce duplicated code across Activities and keep business logic clean.
+ *
+ * Author: Lebone Ngobese
+ * Project: RideCare
+ */
+
 package com.example.ridecare.utils;
 
-import static android.content.Intent.getIntent;
-
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.app.Activity;
-import android.content.Intent;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.Calendar;
 
 public class MyUtils {
+
+    // =============================
+    // DATE HELPERS
+    // =============================
+
+    /**
+     * Opens a DatePicker dialog and inserts the selected date into the provided EditText.
+     */
     public static void openDatePicker(Context context, EditText etServiceDate) {
         Calendar calendar = Calendar.getInstance();
 
@@ -33,12 +60,29 @@ public class MyUtils {
 
         datePicker.show();
     }
-    public static String newStr(EditText text){
+
+    // =============================
+    // TEXT INPUT HELPERS
+    // =============================
+
+    /**
+     * Safely extracts trimmed text from an EditText.
+     * Prevents null pointer crashes.
+     */
+    public static String newStr(EditText text) {
+        if (text == null || text.getText() == null) return "";
         return text.getText().toString().trim();
     }
 
+    // =============================
+    // VALIDATION HELPERS
+    // =============================
+
+    /**
+     * Validates that a string is not empty and displays an error on the field if it is.
+     */
     public static boolean requireString(String value, EditText editText, String errorMessage) {
-        if (value.isEmpty()) {
+        if (value == null || value.isEmpty()) {
             editText.setError(errorMessage);
             editText.requestFocus();
             return false;
@@ -46,32 +90,9 @@ public class MyUtils {
         return true;
     }
 
-
-    public static String UidCheck(Context context, FirebaseAuth auth) {
-        if (auth.getCurrentUser() == null) {
-            Toast.makeText(context, "Not logged in", Toast.LENGTH_SHORT).show();
-            return null;
-        }
-        return auth.getCurrentUser().getUid();
-    }
-
-    public static String vehicleIdCheck(Activity activity){
-        Intent intent = activity.getIntent();
-        String vehicleId = intent.getStringExtra("vehicleId");
-
-        if (vehicleId == null) {
-            intent.getStringExtra("id");
-        }
-
-        if (vehicleId == null || vehicleId.isEmpty()) {
-            Toast.makeText(activity, "Vehicle ID missing. Please reopen vehicle.", Toast.LENGTH_LONG).show();
-            activity.finish(); // closes the broken screen
-            return null;
-        }
-        return vehicleId;
-    }
-
-
+    /**
+     * Ensures a Firestore document exists before proceeding.
+     */
     public static boolean requireDocument(DocumentSnapshot doc, Context context, String message) {
         if (doc == null || !doc.exists()) {
             Toast.makeText(context, message, Toast.LENGTH_LONG).show();
@@ -80,6 +101,61 @@ public class MyUtils {
         return true;
     }
 
+    // =============================
+    // FIREBASE HELPERS
+    // =============================
+
+    /**
+     * Checks if a user is logged in and returns the UID.
+     */
+    public static String UidCheck(Context context, FirebaseAuth auth) {
+        if (auth.getCurrentUser() == null) {
+            Toast.makeText(context, "Not logged in", Toast.LENGTH_SHORT).show();
+            return null;
+        }
+        return auth.getCurrentUser().getUid();
+    }
+
+    /**
+     * Retrieves vehicleId from Intent safely.
+     */
+    public static String vehicleIdCheck(Activity activity) {
+        Intent intent = activity.getIntent();
+        String vehicleId = intent.getStringExtra("vehicleId");
+
+        if (vehicleId == null) {
+            vehicleId = intent.getStringExtra("id");   // FIXED: was missing assignment
+        }
+
+        if (vehicleId == null || vehicleId.isEmpty()) {
+            Toast.makeText(activity, "Vehicle ID missing. Please reopen vehicle.", Toast.LENGTH_LONG).show();
+            activity.finish();
+            return null;
+        }
+        return vehicleId;
+    }
+
+    /**
+     * Saves data to Firestore and closes the activity on success.
+     */
+    public static void saveAndClose(Context context, DocumentReference docRef, Object data, Activity activity) {
+        docRef.set(data)
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(context, "Saved successfully", Toast.LENGTH_SHORT).show();
+                    activity.finish();
+                })
+                .addOnFailureListener(e ->
+                        Toast.makeText(context, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show()
+                );
+    }
+
+    // =============================
+    // DROPDOWN HELPERS
+    // =============================
+
+    /**
+     * Attaches an ArrayAdapter to an AutoCompleteTextView dropdown.
+     */
     public static void setDropdown(Context context,
                                    AutoCompleteTextView dropdown,
                                    String[] items) {
@@ -92,18 +168,4 @@ public class MyUtils {
 
         dropdown.setAdapter(adapter);
     }
-
-    public static void saveAndClose(Context context, DocumentReference docRef, Object data, Activity activity) {
-        docRef.set(data)
-                .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(context, "Saved successfully", Toast.LENGTH_SHORT).show();
-                    activity.finish();
-                })
-                .addOnFailureListener(e ->
-                        Toast.makeText(context, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show()
-                );
-    }
-
-
 }
-
