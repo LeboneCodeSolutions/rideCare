@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clTyreRepairContainer"
+            android:layout_width="@dimen/clServiceContainer_layoutWidth"
+            android:layout_height="@dimen/clServiceContainer_layoutHeight"
+            android:layout_marginTop="@dimen/clServiceContainer_layoutMarginTop"
+            android:background="@drawable/bg_color_card_gradient_2"
+            android:padding="@dimen/clServiceContainer_padding"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/clTextView_marginBottom"
+                android:hint="TYRE REPAIR"
+                android:textAlignment="center"
+                android:textColorHint="@color/white"
+                android:textSize="@dimen/clTextView_textSize"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tvTyreSize"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_marginStart="108dp"
+            android:layout_marginTop="20dp"
+            android:text="Tyre Size"
+            android:textColor="@color/black"
+            android:textSize="@dimen/clTextView_textSize"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clTyreRepairContainer" />
+
+        <EditText
+            android:id="@+id/tyreDiametre"
+            android:layout_width="@dimen/etLayoutWidthTyres"
+
+            android:layout_height="@dimen/etlayoutHeightTyres"
+            android:layout_marginStart="248dp"
+            android:layout_marginTop="@dimen/clMarginTop"
+            android:background="@android:drawable/edit_text"
+            android:hint="65"
+            android:inputType="number"
+            android:textSize="@dimen/clTextView_textSize"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTyreSize" />
+
+        <EditText
+            android:id="@+id/tyreWidth"
+            android:layout_width="@dimen/etLayoutWidthTyres"
+
+            android:layout_height="@dimen/etlayoutHeightTyres"
+            android:layout_marginStart="108dp"
+            android:layout_marginTop="@dimen/clMarginTop"
+            android:background="@android:drawable/edit_text"
+            android:hint="175"
+            android:inputType="number"
+            android:textSize="@dimen/clTextView_textSize"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTyreSize" />
+
+        <EditText
+            android:id="@+id/tyreHeight"
+            android:layout_width="@dimen/etLayoutWidthTyres"
+
+            android:layout_height="@dimen/etlayoutHeightTyres"
+            android:layout_marginStart="176dp"
+            android:layout_marginTop="@dimen/clMarginTop"
+            android:background="@android:drawable/edit_text"
+            android:hint="65"
+            android:inputType="number"
+            android:textSize="@dimen/clTextView_textSize"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTyreSize" />
+<TextView
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/tyreHeight"
+
+    android:id="@+id/tvTyreQty"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="108dp"
+    android:layout_marginTop="20dp"
+    android:text="Tyre Quantity"
+    android:textColor="@color/black"
+    android:textSize="@dimen/clTextView_textSize"
+    android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etTyreQty"
+            android:layout_width="@dimen/clServiceContainer_layoutWidth"
+
+            android:layout_height="@dimen/etlayoutHeightTyres"
+            android:layout_marginStart="108dp"
+            android:layout_marginTop="@dimen/clMarginTop"
+            android:background="@android:drawable/edit_text"
+            android:hint="How many tyres do you need ?"
+            android:inputType="number"
+            android:textSize="@dimen/clTextView_textSize"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTyreQty" />
+
+        <TextView
+            android:id="@+id/tvPrevPurchDate"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_marginStart="108dp"
+            android:layout_marginTop="70dp"
+            android:text="Previous Purchase Date"
+            android:textColor="@color/black"
+            android:textSize="@dimen/clTextView_textSize"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTyreQty" />
+
+        <EditText
+            android:id="@+id/etPrevPurchDate"
+            android:layout_width="@dimen/clServiceContainer_layoutWidth"
+            android:layout_height="@dimen/clServiceContainer_layoutHeight"
+            android:layout_marginStart="108dp"
+            android:layout_marginTop="@dimen/clMarginTop"
+            android:background="@android:drawable/edit_text"
+            android:clickable="true"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:hint="Select service date"
+            android:inputType="text"
+            android:textSize="@dimen/clTextView_textSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPrevPurchDate" />
+
+        <TextView
+            android:id="@+id/tvTyreQuality"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="108dp"
+            android:layout_marginTop="16dp"
+            android:text="Tyre Type"
+            android:textColor="@color/black"
+            android:textSize="@dimen/clTextView_textSize"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etPrevPurchDate" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilTyreQuality"
+            android:layout_width="194dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="108dp"
+            android:layout_marginTop="@dimen/clMarginTop"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTyreQuality">
+
+            <AutoCompleteTextView
+                android:id="@+id/ddTyreQuality"
+                android:background="@android:drawable/edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/clServiceContainer_layoutHeight"
+                android:hint="Select Tyre Type"
+                android:inputType="none"
+                android:textSize="@dimen/clTextView_textSize"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tvTyreBrand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="108dp"
+            android:layout_marginTop="16dp"
+            android:text="Tyre Brand"
+            android:textColor="@color/black"
+            android:textSize="@dimen/clTextView_textSize"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilTyreQuality"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilTyreBrand"
+            android:layout_width="194dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="108dp"
+            android:layout_marginTop="@dimen/clMarginTop"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTyreBrand">
+
+            <AutoCompleteTextView
+                android:id="@+id/ddTyreBrand"
+                android:background="@android:drawable/edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/clServiceContainer_layoutHeight"
+                android:hint="Select Tyre Brand"
+                android:inputType="none"
+                android:textSize="@dimen/clTextView_textSize"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clSubmitTyreRepair"
+            android:layout_width="90dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="156dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_color_card_gradient_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilTyreBrand"
+
+            >
+
+            <TextView
+                android:id="@+id/tvTyreRepairAccept"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:hint="Accept"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.509"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -41,6 +41,11 @@
         <activity android:name=".activities.service.oilChangeActivity"
             android:exported="true"/>
 
+        <activity android:name=".activities.service.tyreRepairActivity"
+            android:exported="true"/>
+
+
+
 
 
         <!-- Client Activities -->

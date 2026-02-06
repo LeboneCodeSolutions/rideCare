@@ -8,4 +8,23 @@
     <dimen name="layerHeightIV">30dp</dimen>
     <dimen name="layerWidthIV">60dp</dimen>
     <dimen name="nullValue">0dp</dimen>
+
+
+    <!-- Constraint Layout - Service Activities -->
+    <dimen name="clServiceContainer_layoutWidth">180dp</dimen>
+    <dimen name="clServiceContainer_layoutHeight">40dp</dimen>
+    <dimen name="clServiceContainer_layoutMarginTop">80dp</dimen>
+    <dimen name="clServiceContainer_padding">5dp</dimen>
+
+    <dimen name="clTextView_marginBottom">4dp</dimen>
+    <dimen name="clTextView_textSize">15sp</dimen>
+
+
+    <dimen name="clTextView_MarginStart">116dp</dimen>
+    <dimen name="clTextView_MarginTop">28dp</dimen>
+
+    <dimen name="etLayoutWidthTyres">50dp</dimen>
+    <dimen name="etlayoutHeightTyres">40dp</dimen>
+
+    <dimen name="clMarginTop">12dp</dimen>
 </resources>

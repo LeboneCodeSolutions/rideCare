@@ -5,10 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.Toast;
-
+import com.example.ridecare.utils.MyUtils;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-
+import com.example.ridecare.utils.MyUtils;
 import com.example.ridecare.R;
 import com.example.ridecare.models.ServiceRequest;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,6 +21,7 @@ public class oilChangeActivity extends AppCompatActivity {
 
     String serviceType = "Oil Change";
     String status = "Service Requested";
+    String mechanicID = null;
     String vehicleId;
 
     EditText etOdometerReading, etServiceDate;
@@ -42,73 +43,38 @@ public class oilChangeActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
 
         // Date picker
-        etServiceDate.setOnClickListener(v -> openDatePicker());
+        etServiceDate.setOnClickListener(v ->  MyUtils.openDatePicker(this, etServiceDate));
 
         // Submit
         clSubmitOilChange.setOnClickListener(v -> submitRequest());
     }
 
-    private void openDatePicker() {
-        Calendar calendar = Calendar.getInstance();
 
-        DatePickerDialog datePicker = new DatePickerDialog(
-                this,
-                (view, year, month, dayOfMonth) -> {
-                    String date = dayOfMonth + "/" + (month + 1) + "/" + year;
-                    etServiceDate.setText(date);
-                },
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)
-        );
-
-        datePicker.show();
-    }
 
     private void submitRequest() {
 
-        String odometerReading = etOdometerReading.getText().toString().trim();
-        String serviceDate = etServiceDate.getText().toString().trim();
+        String odometerReading = MyUtils.newStr(etOdometerReading);
+        String serviceDate = MyUtils.newStr(etServiceDate);
 
-        if (odometerReading.isEmpty()) {
-            etOdometerReading.setError("Odometer reading required");
-            return;
-        }
+        if (!MyUtils.requireString(odometerReading, etOdometerReading,"Odometer Reading Required")) return;
 
-        if (serviceDate.isEmpty()) {
-            etServiceDate.setError("Service date required");
-            return;
-        }
+        if (!MyUtils.requireString(serviceDate, etServiceDate, "Service date required")) return;
 
-        if (auth.getCurrentUser() == null) {
-            Toast.makeText(this, "Not logged in", Toast.LENGTH_SHORT).show();
-            return;
-        }
 
-        String uid = auth.getCurrentUser().getUid();
+        String uid = MyUtils.UidCheck(this, auth);
+        if (uid == null) return;
 
-        // Get vehicle ID
-        Intent intent = getIntent();
-        vehicleId = intent.getStringExtra("vehicleId");
-        if (vehicleId == null) {
-            vehicleId = intent.getStringExtra("id");
-        }
+        vehicleId = MyUtils.vehicleIdCheck(this);
+        if (vehicleId == null) return;
 
         DocumentReference docRef = db.collection("request_service_vehicle").document();
 
         db.collection("users").document(uid).get().addOnSuccessListener(userDoc -> {
-
-            if (!userDoc.exists()) {
-                Toast.makeText(this, "User not found", Toast.LENGTH_LONG).show();
-                return;
-            }
+            if (!MyUtils.requireDocument(userDoc, this, "User not found")) return;
 
             db.collection("vehicles").document(vehicleId).get().addOnSuccessListener(vehicleDoc -> {
+                if (!MyUtils.requireDocument(vehicleDoc, this, "Vehicle")) return;
 
-                if (!vehicleDoc.exists()) {
-                    Toast.makeText(this, "Vehicle not found", Toast.LENGTH_LONG).show();
-                    return;
-                }
 
                 ServiceRequest request = new ServiceRequest();
                 request.setServiceRequestId(docRef.getId());
@@ -119,8 +85,8 @@ public class oilChangeActivity extends AppCompatActivity {
                 request.setVehicleMake(vehicleDoc.getString("make"));
                 request.setVehicleModel(vehicleDoc.getString("model"));
                 request.setServiceType(serviceType);
-                request.setOdometerReading(odometerReading);
-                request.setServicePrevDate(serviceDate); // ✅ FIXED
+
+                request.setMechanicId(mechanicID);
                 request.setStatus(status);
 
                 docRef.set(request)

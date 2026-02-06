@@ -1,9 +1,9 @@
 package com.example.ridecare.models;
-
 import java.io.Serializable;
 
-public class ServiceRequest implements Serializable {
 
+
+public class ServiceRequest implements Serializable {
 
     // IDs
     private String serviceRequestId;
@@ -26,10 +26,9 @@ public class ServiceRequest implements Serializable {
     private String odometerReading;
     private String clientDescription;
 
-    // REQUIRED empty constructor (Firebase)
     public ServiceRequest() {}
+
 // This will handle what the mechanic will see
-    // MAIN constructor
     public ServiceRequest(
             String serviceRequestId,
             String mechanicId,
@@ -40,10 +39,7 @@ public class ServiceRequest implements Serializable {
             String vehicleMake,
             String vehicleModel,
             String serviceType,
-            String status,
-            String clientDescription,
-            String servicePrevDate,
-            String odometerReading
+            String status
     ) {
         this.serviceRequestId = serviceRequestId;
         this.vehicleID = vehicleId;
@@ -55,9 +51,6 @@ public class ServiceRequest implements Serializable {
         this.mechanicId = mechanicId;
         this.serviceType = serviceType;
         this.status = status;
-        this.clientDescription = clientDescription;
-        this.servicePrevDate = servicePrevDate;
-        this.odometerReading = odometerReading;
     }
 
     //  Getters & Setters
@@ -66,7 +59,7 @@ public class ServiceRequest implements Serializable {
     public String getMechanicId(){
         return mechanicId;
     }
-    public void setMechanicId(){
+    public void setMechanicId(String mechanicID){
         this.mechanicId = mechanicId;
     }
     public String getServiceRequestId() {
@@ -142,27 +135,5 @@ public class ServiceRequest implements Serializable {
         this.status = status;
     }
 
-    public String getClientDescription() {
-        return clientDescription;
-    }
 
-    public void setClientDescription(String clientDescription) {
-        this.clientDescription = clientDescription;
-    }
-
-    public String getServicePrevDate(String serviceDate){
-        return servicePrevDate;
-    }
-
-    public String getOdometerReading(){
-        return odometerReading;
-    }
-
-    public void setOdometerReading(String odometerReading) {
-        this.odometerReading = odometerReading;
-    }
-
-    public void setServicePrevDate(String servicePrevDate){
-        this.servicePrevDate = servicePrevDate;
-    }
 }

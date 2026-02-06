@@ -74,7 +74,6 @@ public class MechanicJobDetailsActivity extends AppCompatActivity {
         // 🔹 Populate UI
         tvService.setText("Service: " + request.getServiceType());
         tvVehicle.setText("Vehicle ID: " + request.getVehicleID());
-        tvDescription.setText("Problem: " + request.getClientDescription());
         tvStatus.setText("Status: " + request.getStatus());
 
         btnUploadImage.setOnClickListener(v -> pickImage());
