@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clBrakeSystemContainer"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            android:layout_width="@dimen/clServiceContainer_layoutWidth"
+            android:layout_height="@dimen/clServiceContainer_layoutHeight"
+            android:layout_marginTop="@dimen/clServiceContainer_layoutMarginTop"
+            android:background="@drawable/bg_color_card_gradient_2"
+            android:padding="@dimen/clServiceContainer_padding">
+
+
+            <TextView
+                android:id="@+id/tvBrakeSystemChange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/clTextView_marginBottom"
+                android:hint="BRAKE SYSTEM"
+                android:textColorHint="@color/white"
+                android:textAlignment="center"
+                android:textSize="@dimen/clTextView_textSize"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/tvOdometerLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/clTextView_MarginStart"
+            android:layout_marginTop="@dimen/clTextView_MarginTop"
+            android:text="Current Odometer Reading"
+            android:textColor="@color/black"
+            android:textSize="@dimen/clTextView_textSize"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clBrakeSystemContainer" />
+
+        <EditText
+            android:id="@+id/etOdometerReading"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="128dp"
+            android:layout_marginTop="4dp"
+            android:background="@android:drawable/edit_text"
+            android:inputType="number"
+            android:hint="Enter mileage (km)"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvOdometerLabel" />
+
+
+        <TextView
+            android:id="@+id/tvBrakeSystemDateLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="104dp"
+            android:layout_marginTop="20dp"
+            android:text="Previous Brake System Check"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etOdometerReading" />
+
+        <EditText
+            android:id="@+id/etServiceDate"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:hint="Select date"
+            android:textSize="15sp"
+            android:padding="12dp"
+            android:background="@android:drawable/edit_text"
+            android:focusable="false"
+            android:clickable="true"
+            android:cursorVisible="false"
+            android:inputType="text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvBrakeSystemDateLabel"
+            android:layout_marginTop="8dp"/>
+
+
+        <TextView
+            android:id="@+id/tvBrakeSystemQ1"
+            android:layout_width="228dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="12dp"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:hint="Any Noise Coming From Brakes ?"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etServiceDate" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilBrakeSystemQ1"
+            android:layout_width="194dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="108dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvBrakeSystemQ1">
+
+            <AutoCompleteTextView
+                android:id="@+id/ddBrakeSystemQ1"
+                android:background="@android:drawable/edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/clServiceContainer_layoutHeight"
+                android:hint="Yes / No"
+                android:inputType="none"
+                android:textSize="@dimen/clTextView_textSize"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tvBrakeSystemQ2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="16dp"
+            android:text="Rate the level of noise from the brakes"
+            android:textColor="@color/black"
+            android:textSize="@dimen/clTextView_textSize"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilBrakeSystemQ1" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilBrakeSystemQ2"
+            android:layout_width="194dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="108dp"
+            android:layout_marginTop="@dimen/clMarginTop"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvBrakeSystemQ2">
+        <AutoCompleteTextView
+            android:id="@+id/ddBrakeSystemQ2"
+            android:background="@android:drawable/edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/clServiceContainer_layoutHeight"
+            android:hint="0-5"
+            android:inputType="none"
+            android:textSize="@dimen/clTextView_textSize"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/tvBrakeSystemQ3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="16dp"
+            android:text="Which side do you want resolved ?"
+            android:textColor="@color/black"
+            android:textSize="@dimen/clTextView_textSize"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilBrakeSystemQ2" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilBrakeSystemQ3"
+            android:layout_width="194dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="108dp"
+            android:layout_marginTop="@dimen/clMarginTop"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvBrakeSystemQ3">
+            <AutoCompleteTextView
+                android:id="@+id/ddBrakeSystemQ3"
+                android:background="@android:drawable/edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/clServiceContainer_layoutHeight"
+                android:hint="[Front / Rear / Both]"
+                android:inputType="none"
+                android:textSize="@dimen/clTextView_textSize"/>
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clSubmitBrakeJob"
+            android:layout_width="90dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="156dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_color_card_gradient_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilBrakeSystemQ3"
+
+            >
+
+            <TextView
+                android:id="@+id/tvBrakeJobAccept"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:hint="Accept"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.509"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
