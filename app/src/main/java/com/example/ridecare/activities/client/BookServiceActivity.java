@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.widget.*;
 
 import com.example.ridecare.R;
+import com.example.ridecare.activities.service.brakeSyetemRepairActivity;
 import com.example.ridecare.activities.service.oilChangeActivity;
 import com.example.ridecare.activities.service.tyreRepairActivity;
+import com.example.ridecare.models.BrakeSystemRequest;
 import com.example.ridecare.models.ServiceRequest;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -41,9 +43,6 @@ public class BookServiceActivity extends AppCompatActivity {
         containerBattteryReplacement = findViewById(R.id.containerBattteryReplacement);
         containerOverhaul = findViewById(R.id.containerOverhaul);
         containerTowing = findViewById(R.id.containerTowing);
-
-
-        etDescription = findViewById(R.id.etDescription);
 
         tvOilChange = findViewById(R.id.tvOilChange);
 
@@ -81,7 +80,9 @@ public class BookServiceActivity extends AppCompatActivity {
         });
 
         containerBrakingSystem.setOnClickListener(v -> {
-            selectedService = "Brakes Inspection/Replacement";
+            Intent intent = new Intent(BookServiceActivity.this, brakeSyetemRepairActivity.class);
+            intent.putExtra("vehicleId", vehicleId);
+            startActivity(intent);
         });
 
         containerBattteryReplacement.setOnClickListener(v -> {
