@@ -168,4 +168,37 @@ public class MyUtils {
 
         dropdown.setAdapter(adapter);
     }
+
+
+
+    public static String batterySpecs(String vehicleSize, String startStop) {
+        if ("Small".equals(vehicleSize)) {
+            if ("Yes".equals(startStop)) {
+                return "H5 | 60–70Ah | AGM";
+            }
+            return "H4/H5 | 40–60Ah | Lead-acid";
+        }
+        if ("Medium".equals(vehicleSize)) {
+            if ("Yes".equals(startStop)) {
+                return "H6 | 70–80Ah | AGM";
+            }
+            return "H5/H6 | 60–75Ah | Lead-acid";
+        }
+        if("Large/Diesel".equals(vehicleSize)){
+            if ("Yes".equals(startStop)){
+                return "H7/H8 | 80–95Ah | AGM";
+            }
+            return "H6/H7 | 70–90Ah | Lead-acid";
+        }
+
+        if("LargeSUV".equals(vehicleSize)){
+            if ("Yes".equals(startStop)){
+                return " H8/H9 | 95–120Ah | AGM";
+            }
+            return "N70/H8 | 90–120Ah | Lead-acid";
+        }
+
+        return "Battery size unknown";
+    }
+
 }

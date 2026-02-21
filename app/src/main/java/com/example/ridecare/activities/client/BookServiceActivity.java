@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.widget.*;
 
 import com.example.ridecare.R;
+import com.example.ridecare.activities.service.batteryReplacementActivity;
 import com.example.ridecare.activities.service.brakeSyetemRepairActivity;
+import com.example.ridecare.activities.service.engineOverhaulActivity;
 import com.example.ridecare.activities.service.oilChangeActivity;
 import com.example.ridecare.activities.service.tyreRepairActivity;
 import com.example.ridecare.models.BrakeSystemRequest;
@@ -86,11 +88,15 @@ public class BookServiceActivity extends AppCompatActivity {
         });
 
         containerBattteryReplacement.setOnClickListener(v -> {
-            selectedService = "Battery Inspection/Replacement";
+            Intent intent = new Intent(BookServiceActivity.this, batteryReplacementActivity.class);
+            intent.putExtra("vehicleId", vehicleId);
+            startActivity(intent);
         });
 
         containerOverhaul.setOnClickListener(v -> {
-            selectedService = "Engine Overhaul";
+            Intent intent = new Intent(BookServiceActivity.this, engineOverhaulActivity.class);
+            intent.putExtra("vehicleId", vehicleId);
+            startActivity(intent);
         });
 
         containerTowing.setOnClickListener(v -> {
