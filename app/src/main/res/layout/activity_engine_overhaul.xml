@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clEngineOverhaulContainer"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            android:layout_width="@dimen/clServiceContainer_layoutWidth"
+            android:layout_height="@dimen/clServiceContainer_layoutHeight"
+            android:layout_marginTop="@dimen/clServiceContainer_layoutMarginTop"
+            android:background="@drawable/bg_color_card_gradient_2"
+            android:padding="@dimen/clServiceContainer_padding">
+
+
+            <TextView
+                android:id="@+id/tvBatteryReplaceChange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/clTextView_marginBottom"
+                android:hint="Engine Overhaul"
+                android:textColorHint="@color/white"
+                android:textAlignment="center"
+                android:textSize="@dimen/clTextView_textSize"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvOdometerLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/clTextView_MarginStart"
+            android:layout_marginTop="@dimen/clTextView_MarginTop"
+            android:text="Current Odometer Reading"
+            android:textColor="@color/black"
+            android:textSize="@dimen/clTextView_textSize"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clEngineOverhaulContainer" />
+
+        <EditText
+            android:id="@+id/etOdometerReading"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="128dp"
+            android:layout_marginTop="4dp"
+            android:background="@android:drawable/edit_text"
+            android:inputType="number"
+            android:hint="Enter mileage (km)"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvOdometerLabel" />
+
+        <TextView
+            android:id="@+id/tvNonRunner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="128dp"
+            android:layout_marginTop="24dp"
+            android:text="Is the vehicle running?"
+            android:textColor="@color/black"
+            android:textSize="@dimen/clTextView_textSize"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etOdometerReading" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilRunner"
+            android:layout_width="194dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="108dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvNonRunner">
+
+            <AutoCompleteTextView
+                android:id="@+id/ddRunner"
+                android:background="@android:drawable/edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/clServiceContainer_layoutHeight"
+                android:hint="Yes / No"
+                android:inputType="none"
+                android:textSize="@dimen/clTextView_textSize"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tvCheckEngineLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="108dp"
+            android:layout_marginTop="20dp"
+            android:text="Is the check engine Light on?"
+            android:textColor="@color/black"
+            android:textSize="@dimen/clTextView_textSize"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilRunner" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilCheckEngineLight"
+            android:layout_width="194dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="108dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCheckEngineLight">
+
+            <AutoCompleteTextView
+                android:id="@+id/ddCheckEngineLight"
+                android:background="@android:drawable/edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/clServiceContainer_layoutHeight"
+                android:hint="Yes / No"
+                android:inputType="none"
+                android:textSize="@dimen/clTextView_textSize"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tvEngineWork"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="20dp"
+            android:text="Has there been engine work done in the past?"
+            android:textColor="@color/black"
+            android:textSize="@dimen/clTextView_textSize"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilCheckEngineLight" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilEngineWork"
+            android:layout_width="194dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="108dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvEngineWork">
+
+            <AutoCompleteTextView
+                android:id="@+id/ddEngineWork"
+                android:background="@android:drawable/edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/clServiceContainer_layoutHeight"
+                android:hint="Yes / No"
+                android:inputType="none"
+                android:textSize="@dimen/clTextView_textSize"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tvOverhaulPreference"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="136dp"
+            android:layout_marginTop="16dp"
+            android:text="Overhaul Preference"
+            android:textColor="@color/black"
+            android:textSize="@dimen/clTextView_textSize"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilEngineWork" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilOverhaulPreference"
+            android:layout_width="194dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="108dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvOverhaulPreference">
+
+            <AutoCompleteTextView
+                android:id="@+id/ddOverhaulPreference"
+                android:background="@android:drawable/edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/clServiceContainer_layoutHeight"
+                android:hint="Select Option"
+                android:inputType="none"
+                android:textSize="@dimen/clTextView_textSize"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clSubmitEngineOverhaulJob"
+            android:layout_width="90dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="160dp"
+            android:layout_marginTop="44dp"
+            android:background="@drawable/bg_color_card_gradient_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilOverhaulPreference">
+
+            <TextView
+                android:id="@+id/tvEngineOverhaulJobAccept"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:hint="Accept"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.509"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

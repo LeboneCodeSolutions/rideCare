@@ -47,6 +47,11 @@
         <activity android:name=".activities.service.brakeSyetemRepairActivity"
             android:exported="true"/>
 
+        <activity android:name=".activities.service.batteryReplacementActivity"
+            android:exported="true"/>
+        <activity android:name=".activities.service.engineOverhaulActivity"
+            android:exported="true" />
+
 
 
 

@@ -146,7 +146,6 @@ public class brakeSyetemRepairActivity extends AppCompatActivity {
                 request.setVehicleModel(vehicleDoc.getString("model"));
 
                 //Brake System Specific Fields
-
                 request.setBrakeNoise(brakeQ1String);
                 request.setOdometerReading(odomedtreReadString);
                 request.setBrakeNoiseRating(brakeQ2String);
