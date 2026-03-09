@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ══════════════════════════════════════════
+         App Theme  –  dark, no action bar
+    ══════════════════════════════════════════ -->
+    <style name="Theme.TowDispatch" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/bg_black</item>
+        <item name="colorPrimary">@color/accent_amber</item>
+        <item name="colorPrimaryVariant">@color/accent_amber</item>
+        <item name="colorOnPrimary">@color/text_on_amber</item>
+        <item name="colorSurface">@color/bg_panel</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:statusBarColor">@color/bg_black</item>
+        <item name="android:navigationBarColor">@color/bg_black</item>
+    </style>
+
+    <!-- ══════════════════════════════════════════
+         Widget.TowDispatch  –  BASE style
+         Required parent for all Widget.TowDispatch.*
+         child styles. Without this Android cannot
+         resolve the dot-notation style hierarchy.
+    ══════════════════════════════════════════ -->
+    <style name="Widget.TowDispatch" parent="android:Widget" />
+
+    <!-- ══════════════════════════════════════════
+         Section card
+    ══════════════════════════════════════════ -->
+    <style name="Widget.TowDispatch.SectionCard">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="cardBackgroundColor">@color/bg_panel</item>
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="strokeColor">@color/bg_border</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
+    <!-- ══════════════════════════════════════════
+         Section number (Bebas-style large label)
+    ══════════════════════════════════════════ -->
+    <style name="Widget.TowDispatch.SectionNumber">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/accent_amber</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.05</item>
+    </style>
+
+    <!-- ══════════════════════════════════════════
+         Section title
+    ══════════════════════════════════════════ -->
+    <style name="Widget.TowDispatch.SectionTitle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.08</item>
+        <item name="android:layout_marginStart">12dp</item>
+    </style>
+
+    <!-- ══════════════════════════════════════════
+         Field label (small uppercase)
+    ══════════════════════════════════════════ -->
+    <style name="Widget.TowDispatch.FieldLabel">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_muted</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.1</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+    <!-- ══════════════════════════════════════════
+         Text input (EditText) wrapper via TextInputLayout
+    ══════════════════════════════════════════ -->
+    <style name="Widget.TowDispatch.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="boxBackgroundColor">@color/bg_steel</item>
+        <item name="boxStrokeColor">@color/bg_border</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxCornerRadiusTopStart">10dp</item>
+        <item name="boxCornerRadiusTopEnd">10dp</item>
+        <item name="boxCornerRadiusBottomStart">10dp</item>
+        <item name="boxCornerRadiusBottomEnd">10dp</item>
+        <item name="hintTextColor">@color/text_muted</item>
+        <item name="android:textColorHint">@color/text_muted</item>
+    </style>
+
+    <style name="Widget.TowDispatch.TextInputEditText" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textColorHint">@color/text_muted</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <!-- ══════════════════════════════════════════
+         Choice pill button  (RadioButton / ToggleButton)
+    ══════════════════════════════════════════ -->
+    <style name="Widget.TowDispatch.ChoiceChip" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">42dp</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:textColor">@color/text_muted</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:paddingStart">18dp</item>
+        <item name="android:paddingEnd">18dp</item>
+        <item name="strokeColor">@color/bg_border</item>
+        <item name="backgroundTint">@color/bg_steel</item>
+        <item name="cornerRadius">50dp</item>
+        <item name="rippleColor">@color/accent_amber</item>
+    </style>
+
+    <!-- ══════════════════════════════════════════
+         Yes / No full-width toggle buttons
+    ══════════════════════════════════════════ -->
+    <style name="Widget.TowDispatch.YesNoButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">46dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="backgroundTint">@color/bg_steel</item>
+        <item name="strokeColor">@color/bg_border</item>
+        <item name="cornerRadius">10dp</item>
+        <item name="android:textColor">@color/text_muted</item>
+    </style>
+
+    <!-- ══════════════════════════════════════════
+         Submit button
+    ══════════════════════════════════════════ -->
+    <style name="Widget.TowDispatch.SubmitButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">58dp</item>
+        <item name="android:textColor">@color/text_on_amber</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.12</item>
+        <item name="backgroundTint">@color/accent_amber</item>
+        <item name="cornerRadius">14dp</item>
+        <item name="rippleColor">@color/text_on_amber</item>
+        <item name="elevation">6dp</item>
+    </style>
+
+    <!-- ══════════════════════════════════════════
+         Divider
+    ══════════════════════════════════════════ -->
+    <style name="Widget.TowDispatch.Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/bg_border</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+    <!-- ══════════════════════════════════════════
+         TowLabel  –  small uppercase field label
+         Usage: style="@style/TowLabel"
+    ══════════════════════════════════════════ -->
+    <style name="TowLabel">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_muted</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.08</item>
+        <item name="android:layout_marginBottom">6dp</item>
+    </style>
+
+    <!-- ══════════════════════════════════════════
+         TowChip  –  pill-shaped choice chip
+         Usage: style="@style/TowChip" on Chip views
+         inside a ChipGroup
+    ══════════════════════════════════════════ -->
+    <style name="TowChip" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_muted</item>
+        <item name="chipBackgroundColor">@color/bg_steel</item>
+        <item name="chipStrokeColor">@color/bg_border</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="chipCornerRadius">50dp</item>
+        <item name="checkedIconVisible">false</item>
+        <item name="rippleColor">@color/accent_amber</item>
+    </style>
+
+    <!-- ══════════════════════════════════════════
+         TowYesNo  –  full-width Yes/No button
+         Used when two buttons share a full-width row
+         Usage: style="@style/TowYesNo"
+    ══════════════════════════════════════════ -->
+    <style name="TowYesNo" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">46dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/text_muted</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="backgroundTint">@color/bg_steel</item>
+        <item name="strokeColor">@color/bg_border</item>
+        <item name="cornerRadius">10dp</item>
+        <item name="rippleColor">@color/accent_amber</item>
+    </style>
+
+    <!-- ══════════════════════════════════════════
+         TowYesNoSm  –  compact Yes/No button
+         Used inside side-by-side column pairs where
+         space is tight (e.g. Steering / Rolls freely)
+         Usage: style="@style/TowYesNoSm"
+    ══════════════════════════════════════════ -->
+    <style name="TowYesNoSm" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">42dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/text_muted</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="backgroundTint">@color/bg_steel</item>
+        <item name="strokeColor">@color/bg_border</item>
+        <item name="cornerRadius">10dp</item>
+        <item name="rippleColor">@color/accent_amber</item>
+    </style>
+
+</resources>

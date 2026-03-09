@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    section_vehicle_condition.xml
+    Section 03 – Vehicle Condition
+-->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.TowDispatch.SectionCard">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- ── Header ── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/num_03"
+                style="@style/Widget.TowDispatch.SectionNumber" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/sec_condition"
+                style="@style/Widget.TowDispatch.SectionTitle" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🔧"
+                android:textSize="24sp"
+                android:alpha="0.2" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="100dp"
+            android:layout_height="2dp"
+            android:background="@color/accent_amber"
+            android:layout_marginBottom="20dp" />
+
+        <!-- ── Q1: What happened? ── -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_what_happened"
+            style="@style/Widget.TowDispatch.FieldLabel" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/cgIncident"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            app:singleSelection="true"
+            app:selectionRequired="false">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipBreakdown"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/btn_breakdown"
+                app:chipBackgroundColor="@color/bg_steel"
+                app:chipStrokeColor="@color/bg_border"
+                app:chipStrokeWidth="1dp"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="50dp"
+                android:textColor="@color/text_muted" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipAccident"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/btn_accident"
+                app:chipBackgroundColor="@color/bg_steel"
+                app:chipStrokeColor="@color/bg_border"
+                app:chipStrokeWidth="1dp"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="50dp"
+                android:textColor="@color/text_muted" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipFlat"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/btn_flat"
+                app:chipBackgroundColor="@color/bg_steel"
+                app:chipStrokeColor="@color/bg_border"
+                app:chipStrokeWidth="1dp"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="50dp"
+                android:textColor="@color/text_muted" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipBattery"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/btn_battery"
+                app:chipBackgroundColor="@color/bg_steel"
+                app:chipStrokeColor="@color/bg_border"
+                app:chipStrokeWidth="1dp"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="50dp"
+                android:textColor="@color/text_muted" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipOtherIncident"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/btn_other"
+                app:chipBackgroundColor="@color/bg_steel"
+                app:chipStrokeColor="@color/bg_border"
+                app:chipStrokeWidth="1dp"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="50dp"
+                android:textColor="@color/text_muted" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <!-- ── Q2: Damaged / Q3: Wheels intact (side by side) ── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp">
+
+            <!-- Damaged -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginEnd="8dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_damaged"
+                    style="@style/Widget.TowDispatch.FieldLabel" />
+
+                <LinearLayout
+                    android:id="@+id/rgDamaged"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnDamagedYes"
+                        style="@style/Widget.TowDispatch.YesNoButton"
+                        android:text="@string/btn_damaged_yes"
+                        android:textColor="@color/text_muted" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnDamagedNo"
+                        style="@style/Widget.TowDispatch.YesNoButton"
+                        android:text="@string/btn_no_damage"
+                        android:textColor="@color/text_muted" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Wheels intact -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_wheels_intact"
+                    style="@style/Widget.TowDispatch.FieldLabel" />
+
+                <LinearLayout
+                    android:id="@+id/rgWheels"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnWheelsYes"
+                        style="@style/Widget.TowDispatch.YesNoButton"
+                        android:text="@string/btn_yes"
+                        android:textColor="@color/text_muted" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnWheelsNo"
+                        style="@style/Widget.TowDispatch.YesNoButton"
+                        android:text="@string/btn_no"
+                        android:textColor="@color/text_muted" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- ── Q4: Vehicle stuck? ── -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_stuck"
+            style="@style/Widget.TowDispatch.FieldLabel" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/cgStuck"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            app:singleSelection="true"
+            app:selectionRequired="false">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipNotStuck"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/btn_not_stuck"
+                app:chipBackgroundColor="@color/bg_steel"
+                app:chipStrokeColor="@color/bg_border"
+                app:chipStrokeWidth="1dp"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="50dp"
+                android:textColor="@color/text_muted" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipMud"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/btn_mud"
+                app:chipBackgroundColor="@color/bg_steel"
+                app:chipStrokeColor="@color/bg_border"
+                app:chipStrokeWidth="1dp"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="50dp"
+                android:textColor="@color/text_muted" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipDitch"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/btn_ditch"
+                app:chipBackgroundColor="@color/bg_steel"
+                app:chipStrokeColor="@color/bg_border"
+                app:chipStrokeWidth="1dp"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="50dp"
+                android:textColor="@color/text_muted" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSand"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/btn_sand"
+                app:chipBackgroundColor="@color/bg_steel"
+                app:chipStrokeColor="@color/bg_border"
+                app:chipStrokeWidth="1dp"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="50dp"
+                android:textColor="@color/text_muted" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <!-- ── Additional notes ── -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_condition_notes"
+            style="@style/Widget.TowDispatch.FieldLabel" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutConditionNotes"
+            style="@style/Widget.TowDispatch.TextInputLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etConditionNotes"
+                style="@style/Widget.TowDispatch.TextInputEditText"
+                android:hint="@string/hint_condition_notes"
+                android:inputType="textMultiLine|textCapSentences"
+                android:minLines="3"
+                android:gravity="top" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

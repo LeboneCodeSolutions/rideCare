@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RideCare</string>
+
 
     <!--TextView Labels -->
     <string name="homeTitle"> Home</string>
@@ -23,6 +23,103 @@
     <string name="invoiceImage">Invoice slip image</string>
     <string name="back">Back arrow left</string>
     <string name="addVehicleIcon"> Add icon</string>
+
+
+    <string name="app_name">Tow Dispatch</string>
+
+    <!-- Section titles -->
+    <string name="sec_location">LOCATION</string>
+    <string name="sec_vehicle_info">VEHICLE INFORMATION</string>
+    <string name="sec_condition">VEHICLE CONDITION</string>
+    <string name="sec_payment">PAYMENT</string>
+
+    <!-- Section numbers -->
+    <string name="num_01">01</string>
+    <string name="num_02">02</string>
+    <string name="num_03">03</string>
+    <string name="num_04">04</string>
+
+    <!-- Labels -->
+    <string name="label_current_location">CURRENT VEHICLE LOCATION</string>
+    <string name="label_vehicle_position">VEHICLE POSITION</string>
+    <string name="label_safe_access">IS IT SAFE FOR THE DRIVER TO ACCESS THE VEHICLE?</string>
+    <string name="label_make_model">MAKE &amp; MODEL</string>
+    <string name="label_year">YEAR</string>
+    <string name="label_drive_type">DRIVE TYPE</string>
+    <string name="label_modifications">VEHICLE MODIFICATIONS</string>
+    <string name="label_steering_locked">IS THE STEERING LOCKED?</string>
+    <string name="label_rolls_free">CAN THE VEHICLE ROLL FREELY?</string>
+    <string name="label_what_happened">WHAT HAPPENED?</string>
+    <string name="label_damaged">IS THE VEHICLE DAMAGED?</string>
+    <string name="label_wheels_intact">WHEELS INTACT?</string>
+    <string name="label_stuck">IS THE VEHICLE STUCK?</string>
+    <string name="label_condition_notes">ADDITIONAL NOTES ABOUT THE CONDITION</string>
+    <string name="label_payment_method">PREFERRED PAYMENT METHOD</string>
+    <string name="label_insurance">ROADSIDE ASSISTANCE / INSURANCE COVERING THE TOW?</string>
+    <string name="label_insurance_provider">INSURANCE / ASSISTANCE PROVIDER</string>
+    <string name="label_receipt">DO YOU NEED AN INVOICE OR RECEIPT?</string>
+    <string name="label_customer_name">CUSTOMER NAME</string>
+    <string name="label_phone">CONTACT NUMBER</string>
+
+    <!-- Hints -->
+    <string name="hint_location">Street address, landmark, or GPS coordinates…</string>
+    <string name="hint_make_model">e.g. Toyota Hilux</string>
+    <string name="hint_year">e.g. 2019</string>
+    <string name="hint_condition_notes">Describe any other damage, smells, warning lights…</string>
+    <string name="hint_insurance_provider">e.g. AA, OUTsurance, Hollard…</string>
+    <string name="hint_customer_name">Full name</string>
+    <string name="hint_phone">+27 …</string>
+
+    <!-- Button labels -->
+    <string name="btn_on_road">🛣  On the road</string>
+    <string name="btn_shoulder">↔  Shoulder</string>
+    <string name="btn_parking">🅿  Parking lot</string>
+    <string name="btn_private">🏠  Private property</string>
+
+    <string name="btn_yes_safe">✓  Yes, Safe</string>
+    <string name="btn_not_safe">✕  Not Safe</string>
+
+    <string name="btn_fwd">FWD</string>
+    <string name="btn_rwd">RWD</string>
+    <string name="btn_awd">AWD</string>
+    <string name="btn_unknown">Unknown</string>
+
+    <string name="btn_lowered">Lowered</string>
+    <string name="btn_modified">Modified</string>
+    <string name="btn_oversized">Oversized / Lifted</string>
+    <string name="btn_none_mod">None</string>
+
+    <string name="btn_locked">✕  Locked</string>
+    <string name="btn_free">✓  Free</string>
+
+    <string name="btn_yes">✓  Yes</string>
+    <string name="btn_no">✕  No</string>
+
+    <string name="btn_breakdown">⚙  Breakdown</string>
+    <string name="btn_accident">💥  Accident</string>
+    <string name="btn_flat">🔴  Flat tyre</string>
+    <string name="btn_battery">🔋  Dead battery</string>
+    <string name="btn_other">Other</string>
+
+    <string name="btn_not_stuck">Not stuck</string>
+    <string name="btn_mud">🪨  Mud</string>
+    <string name="btn_ditch">⬇  Ditch</string>
+    <string name="btn_sand">🏜  Sand</string>
+
+    <string name="btn_cash">💵  Cash</string>
+    <string name="btn_card">💳  Card</string>
+    <string name="btn_eft">🏦  EFT</string>
+
+    <string name="btn_invoice">Invoice</string>
+    <string name="btn_receipt_only">Receipt</string>
+    <string name="btn_both">Both</string>
+    <string name="btn_not_needed">Not needed</string>
+
+    <string name="btn_damaged_yes">✕  Damaged</string>
+    <string name="btn_no_damage">✓  No damage</string>
+
+    <string name="btn_submit">SUBMIT DISPATCH REQUEST →</string>
+    <string name="submit_note">A dispatcher will confirm via call or SMS within minutes</string>
 </resources>
 
 

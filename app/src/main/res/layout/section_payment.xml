@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    section_payment.xml
+    Section 04 – Payment Questions
+-->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.TowDispatch.SectionCard">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- ── Header ── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/num_04"
+                style="@style/Widget.TowDispatch.SectionNumber" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/sec_payment"
+                style="@style/Widget.TowDispatch.SectionTitle" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="💳"
+                android:textSize="24sp"
+                android:alpha="0.2" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="100dp"
+            android:layout_height="2dp"
+            android:background="@color/accent_amber"
+            android:layout_marginBottom="20dp" />
+
+        <!-- ── Payment method ── -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_payment_method"
+            style="@style/Widget.TowDispatch.FieldLabel" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/cgPayment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            app:singleSelection="true"
+            app:selectionRequired="false">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipCash"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/btn_cash"
+                app:chipBackgroundColor="@color/bg_steel"
+                app:chipStrokeColor="@color/bg_border"
+                app:chipStrokeWidth="1dp"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="50dp"
+                android:textColor="@color/text_muted" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipCard"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/btn_card"
+                app:chipBackgroundColor="@color/bg_steel"
+                app:chipStrokeColor="@color/bg_border"
+                app:chipStrokeWidth="1dp"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="50dp"
+                android:textColor="@color/text_muted" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipEft"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/btn_eft"
+                app:chipBackgroundColor="@color/bg_steel"
+                app:chipStrokeColor="@color/bg_border"
+                app:chipStrokeWidth="1dp"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="50dp"
+                android:textColor="@color/text_muted" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <!-- ── Insurance / Roadside Assistance ── -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_insurance"
+            style="@style/Widget.TowDispatch.FieldLabel" />
+
+        <LinearLayout
+            android:id="@+id/rgInsurance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnInsuranceYes"
+                style="@style/Widget.TowDispatch.YesNoButton"
+                android:text="@string/btn_yes"
+                android:textColor="@color/text_muted" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnInsuranceNo"
+                style="@style/Widget.TowDispatch.YesNoButton"
+                android:text="@string/btn_no"
+                android:textColor="@color/text_muted" />
+
+        </LinearLayout>
+
+        <!-- ── Insurance provider (revealed when Yes selected) ── -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutInsuranceProvider"
+            style="@style/Widget.TowDispatch.TextInputLayout"
+            android:layout_marginBottom="20dp"
+            android:visibility="gone">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etInsuranceProvider"
+                style="@style/Widget.TowDispatch.TextInputEditText"
+                android:hint="@string/hint_insurance_provider"
+                android:inputType="textCapWords" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- ── Invoice / Receipt ── -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_receipt"
+            style="@style/Widget.TowDispatch.FieldLabel" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/cgReceipt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            app:singleSelection="true"
+            app:selectionRequired="false">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipInvoice"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/btn_invoice"
+                app:chipBackgroundColor="@color/bg_steel"
+                app:chipStrokeColor="@color/bg_border"
+                app:chipStrokeWidth="1dp"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="50dp"
+                android:textColor="@color/text_muted" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipReceiptOnly"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/btn_receipt_only"
+                app:chipBackgroundColor="@color/bg_steel"
+                app:chipStrokeColor="@color/bg_border"
+                app:chipStrokeWidth="1dp"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="50dp"
+                android:textColor="@color/text_muted" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipBoth"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/btn_both"
+                app:chipBackgroundColor="@color/bg_steel"
+                app:chipStrokeColor="@color/bg_border"
+                app:chipStrokeWidth="1dp"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="50dp"
+                android:textColor="@color/text_muted" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipNotNeeded"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/btn_not_needed"
+                app:chipBackgroundColor="@color/bg_steel"
+                app:chipStrokeColor="@color/bg_border"
+                app:chipStrokeWidth="1dp"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="50dp"
+                android:textColor="@color/text_muted" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <!-- ── Divider ── -->
+        <View style="@style/Widget.TowDispatch" />
+
+
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    section_location.xml
+    Section 01 – Location Questions
+    Included inside activity_main.xml
+-->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.TowDispatch.SectionCard">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- ── Section header row ── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/num_01"
+                style="@style/Widget.TowDispatch.SectionNumber" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/sec_location"
+                style="@style/Widget.TowDispatch.SectionTitle" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📍"
+                android:textSize="24sp"
+                android:alpha="0.2" />
+
+        </LinearLayout>
+
+        <!-- ── Amber top accent line ── -->
+        <View
+            android:layout_width="100dp"
+            android:layout_height="2dp"
+            android:background="@color/accent_amber"
+            android:layout_marginBottom="20dp" />
+
+        <!-- ── Q1: Current vehicle location ── -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_current_location"
+            style="@style/Widget.TowDispatch.FieldLabel" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutLocation"
+            style="@style/Widget.TowDispatch.TextInputLayout"
+            android:layout_marginBottom="20dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etLocation"
+                style="@style/Widget.TowDispatch.TextInputEditText"
+                android:hint="@string/hint_location"
+                android:inputType="textPostalAddress|textMultiLine"
+                android:minLines="2" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- ── Q2: Vehicle position ── -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_vehicle_position"
+            style="@style/Widget.TowDispatch.FieldLabel" />
+
+        <!--
+            ChipGroup for single-select pill buttons.
+            Use app:singleSelection="true" for radio behaviour.
+        -->
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/cgPosition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            app:singleSelection="true"
+            app:selectionRequired="false">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipOnRoad"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/btn_on_road"
+                app:chipBackgroundColor="@color/bg_steel"
+                app:chipStrokeColor="@color/bg_border"
+                app:chipStrokeWidth="1dp"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="50dp"
+                android:textColor="@color/text_muted" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipShoulder"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/btn_shoulder"
+                app:chipBackgroundColor="@color/bg_steel"
+                app:chipStrokeColor="@color/bg_border"
+                app:chipStrokeWidth="1dp"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="50dp"
+                android:textColor="@color/text_muted" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipParking"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/btn_parking"
+                app:chipBackgroundColor="@color/bg_steel"
+                app:chipStrokeColor="@color/bg_border"
+                app:chipStrokeWidth="1dp"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="50dp"
+                android:textColor="@color/text_muted" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipPrivate"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/btn_private"
+                app:chipBackgroundColor="@color/bg_steel"
+                app:chipStrokeColor="@color/bg_border"
+                app:chipStrokeWidth="1dp"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="50dp"
+                android:textColor="@color/text_muted" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <!-- ── Q3: Safe access ── -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_safe_access"
+            style="@style/Widget.TowDispatch.FieldLabel" />
+
+        <!-- Yes / No toggle row -->
+        <LinearLayout
+            android:id="@+id/rgSafeAccess"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSafeYes"
+                style="@style/Widget.TowDispatch.YesNoButton"
+                android:text="@string/btn_yes_safe"
+                android:textColor="@color/text_muted" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSafeNo"
+                style="@style/Widget.TowDispatch.YesNoButton"
+                android:text="@string/btn_not_safe"
+                android:textColor="@color/text_muted" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

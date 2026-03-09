@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    section_vehicle_info.xml
+    Section 02 – Vehicle Information
+-->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.TowDispatch.SectionCard">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- ── Header ── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/num_02"
+                style="@style/Widget.TowDispatch.SectionNumber" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/sec_vehicle_info"
+                style="@style/Widget.TowDispatch.SectionTitle" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🚗"
+                android:textSize="24sp"
+                android:alpha="0.2" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="100dp"
+            android:layout_height="2dp"
+            android:background="@color/accent_amber"
+            android:layout_marginBottom="20dp" />
+
+        <!-- ── Make & Model / Year (side by side) ── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp"/>
+
+        <!-- ── Drive Type ── -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_drive_type"
+            style="@style/Widget.TowDispatch.FieldLabel" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/cgDriveType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            app:singleSelection="true"
+            app:selectionRequired="false">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipFwd"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/btn_fwd"
+                app:chipBackgroundColor="@color/bg_steel"
+                app:chipStrokeColor="@color/bg_border"
+                app:chipStrokeWidth="1dp"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="50dp"
+                android:textColor="@color/text_muted" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipRwd"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/btn_rwd"
+                app:chipBackgroundColor="@color/bg_steel"
+                app:chipStrokeColor="@color/bg_border"
+                app:chipStrokeWidth="1dp"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="50dp"
+                android:textColor="@color/text_muted" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipAwd"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/btn_awd"
+                app:chipBackgroundColor="@color/bg_steel"
+                app:chipStrokeColor="@color/bg_border"
+                app:chipStrokeWidth="1dp"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="50dp"
+                android:textColor="@color/text_muted" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipDriveUnknown"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/btn_unknown"
+                app:chipBackgroundColor="@color/bg_steel"
+                app:chipStrokeColor="@color/bg_border"
+                app:chipStrokeWidth="1dp"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="50dp"
+                android:textColor="@color/text_muted" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <!-- ── Modifications (multi-select) ── -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_modifications"
+            style="@style/Widget.TowDispatch.FieldLabel" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/cgMods"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            app:singleSelection="false">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipLowered"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/btn_lowered"
+                app:chipBackgroundColor="@color/bg_steel"
+                app:chipStrokeColor="@color/bg_border"
+                app:chipStrokeWidth="1dp"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="50dp"
+                android:textColor="@color/text_muted" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipModified"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/btn_modified"
+                app:chipBackgroundColor="@color/bg_steel"
+                app:chipStrokeColor="@color/bg_border"
+                app:chipStrokeWidth="1dp"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="50dp"
+                android:textColor="@color/text_muted" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipOversized"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/btn_oversized"
+                app:chipBackgroundColor="@color/bg_steel"
+                app:chipStrokeColor="@color/bg_border"
+                app:chipStrokeWidth="1dp"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="50dp"
+                android:textColor="@color/text_muted" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipNoMods"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="@string/btn_none_mod"
+                app:chipBackgroundColor="@color/bg_steel"
+                app:chipStrokeColor="@color/bg_border"
+                app:chipStrokeWidth="1dp"
+                app:checkedIconVisible="false"
+                app:chipCornerRadius="50dp"
+                android:textColor="@color/text_muted" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <!-- ── Divider ── -->
+        <View style="@style/Widget.TowDispatch" />
+
+        <!-- ── Steering locked / Rolls free (side by side) ── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Steering locked -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginEnd="8dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_steering_locked"
+                    style="@style/Widget.TowDispatch.FieldLabel" />
+
+                <LinearLayout
+                    android:id="@+id/rgSteering"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSteeringLocked"
+                        style="@style/Widget.TowDispatch.YesNoButton"
+                        android:text="@string/btn_locked"
+                        android:textColor="@color/text_muted" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSteeringFree"
+                        style="@style/Widget.TowDispatch.YesNoButton"
+                        android:text="@string/btn_free"
+                        android:textColor="@color/text_muted" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Rolls freely -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_rolls_free"
+                    style="@style/Widget.TowDispatch.FieldLabel" />
+
+                <LinearLayout
+                    android:id="@+id/rgRolls"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnRollsYes"
+                        style="@style/Widget.TowDispatch.YesNoButton"
+                        android:text="@string/btn_yes"
+                        android:textColor="@color/text_muted" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnRollsNo"
+                        style="@style/Widget.TowDispatch.YesNoButton"
+                        android:text="@string/btn_no"
+                        android:textColor="@color/text_muted" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
