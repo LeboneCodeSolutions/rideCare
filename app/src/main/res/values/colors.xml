@@ -6,6 +6,30 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+
     <color name="dark_blue_grey">#233D4D</color>
+    <!-- Background layers -->
+    <color name="bg_black">#0A0A0A</color>
+    <color name="bg_panel">#141720</color>
+    <color name="bg_steel">#1C1F26</color>
+    <color name="bg_border">#2A2F3D</color>
+
+    <!-- Accent colours -->
+    <color name="accent_amber">#F5A623</color>
+    <color name="accent_red">#E84040</color>
+    <color name="accent_green">#22C55E</color>
+
+    <!-- Text -->
+    <color name="text_primary">#E8EAF0</color>
+    <color name="text_muted">#6B7280</color>
+    <color name="text_on_amber">#0A0A0A</color>
+
+    <!-- Tinted backgrounds for selected states -->
+    <color name="amber_tint">#1AF5A623</color>
+    <color name="green_tint">#1A22C55E</color>
+    <color name="red_tint">#1AE84040</color>
+
+    <!-- White shades -->
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
 </resources>

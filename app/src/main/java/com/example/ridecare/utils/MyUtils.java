@@ -24,11 +24,19 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
+import com.example.ridecare.R;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -124,7 +132,7 @@ public class MyUtils {
         String vehicleId = intent.getStringExtra("vehicleId");
 
         if (vehicleId == null) {
-            vehicleId = intent.getStringExtra("id");   // FIXED: was missing assignment
+            vehicleId = intent.getStringExtra("id");
         }
 
         if (vehicleId == null || vehicleId.isEmpty()) {
@@ -169,8 +177,6 @@ public class MyUtils {
         dropdown.setAdapter(adapter);
     }
 
-
-
     public static String batterySpecs(String vehicleSize, String startStop) {
         if ("Small".equals(vehicleSize)) {
             if ("Yes".equals(startStop)) {
@@ -201,4 +207,193 @@ public class MyUtils {
         return "Battery size unknown";
     }
 
+    // =============================
+    //Tow Truck
+    // =============================
+    public static String towTruckType(String drivetrain, String modification, String steeringLocked, String canRoll) {
+
+        // Oversized — always needs a low-bed loader
+        if ("Oversized".equals(modification)) {
+            return "Low-Bed Loader Truck Required";
+        }
+
+        // AWD / Not Sure — flatbed required to protect drivetrain
+        if ("AWD".equals(drivetrain) || "NotSure".equals(drivetrain)) {
+            return "Flatbed Truck Required";
+        }
+
+        // Wheels can't roll — flatbed only
+        if ("No".equals(canRoll)) {
+            return "Flatbed Truck Required";
+        }
+
+        // Lowered or Modified — boom truck needed for access
+        if ("Lowered".equals(modification) || "Modified".equals(modification)) {
+            return "Boom Truck Required";
+        }
+
+        // RWD + steering locked + can roll — dolly tow
+        if ("RWD".equals(drivetrain) && "Yes".equals(steeringLocked) && "Yes".equals(canRoll)) {
+            return "Dolly Truck Required";
+        }
+
+        // FWD — standard wheel lift (lift front wheels)
+        if ("FWD".equals(drivetrain) && "No".equals(steeringLocked) && "Yes".equals(canRoll)) {
+            return "Wheel Lift Truck Required";
+        }
+
+        // RWD — standard wheel lift (lift rear wheels)
+        if ("RWD".equals(drivetrain) && "No".equals(steeringLocked) && "Yes".equals(canRoll)) {
+            return "Wheel Lift Truck Required";
+        }
+
+        // Fallback — flatbed is always the safest default
+        return "Flatbed Truck Required";
+    }
+
+    public static String vehicleCondition(String incident, String isDamaged, String wheelsIntact) {
+
+        // Accident with damage — flatbed recommended, vehicle may not be safe to roll
+        if ("Accident".equals(incident) && "Yes".equals(isDamaged)) {
+            return "Accident - Damaged - Flatbed Recommended";
+        }
+
+        // Accident but no visible damage — still inspect before towing
+        if ("Accident".equals(incident) && "No".equals(isDamaged)) {
+            return "Accident - No Known Damage - Inspect Before Tow";
+        }
+
+        // Wheels not intact — cannot roll, flatbed only
+        if ("No".equals(wheelsIntact)) {
+            return "Wheel Damage - Flatbed Only";
+        }
+
+        // Flat tire — can be changed on site or flatbed if no spare
+        if ("Flat Tyre".equals(incident)) {
+            return "Flat Tyre - Roadside Change or Flatbed";
+        }
+
+        // Dead battery — jump start attempt first, tow if unsuccessful
+        if ("Dead Battery".equals(incident)) {
+            return "Dead Battery - Jump Start First";
+        }
+
+        // Standard breakdown, wheels intact, no damage, not stuck
+        if ("Breakdown".equals(incident) && "No".equals(isDamaged) && "Yes".equals(wheelsIntact)) {
+            return "Standard Breakdown - Ready to Tow";
+        }
+
+        // Breakdown with damage
+        if ("Breakdown".equals(incident) && "Yes".equals(isDamaged)) {
+            return "Breakdown - Damaged - Flatbed Recommended";
+        }
+
+        return "Condition Unknown - Assess On Site";
+    }
+
+    public static String paymentMethod(String paymentType, String hasAssistance, String needsInvoice) {
+
+        // Roadside assistance or insurance covering the tow
+        if ("Yes".equals(hasAssistance)) {
+            if ("Yes".equals(needsInvoice)) {
+                return "Covered - Send Invoice to Insurer";
+            }
+            return "Covered - Confirm with Assistance Provider";
+        }
+
+        // Cash payment
+        if ("Cash".equals(paymentType)) {
+            if ("Yes".equals(needsInvoice)) {
+                return "Cash - Receipt Required";
+            }
+            return "Cash - No Receipt Needed";
+        }
+
+        // Card payment
+        if ("Card".equals(paymentType)) {
+            if ("Yes".equals(needsInvoice)) {
+                return "Card - Invoice Required";
+            }
+            return "Card - No Invoice Needed";
+        }
+
+        // EFT payment
+        if ("EFT".equals(paymentType)) {
+            if ("Yes".equals(needsInvoice)) {
+                return "EFT - Invoice Required";
+            }
+            return "EFT - Confirm Bank Details On Site";
+        }
+
+        return "Payment Method Unknown - Confirm On Arrival";
+    }
+
+    public static String towCondition(String roadType, String isVehicleAccessible, String dayPeriod ){
+
+        if("No".equals(isVehicleAccessible)){
+            return "High Risk";
+        }
+        if("Parking Lot / Private Property".equals(roadType) && "Night-Time".equals(dayPeriod)){
+            return "High Risk";
+        }
+
+        if("Off-Road / Gravel / Farm".equals(roadType) && "Night-Time".equals(dayPeriod)){
+            return "High Risk";
+        }
+
+        return "Low Risk";
+    }
+
+
+
+
+// Test functions
+
+    public static String mapYesNoSelection(String currentValue, String userSelection) {
+        if (userSelection.equals("Yes")) {
+            currentValue = "Yes";
+        } else if (userSelection.equals("No")) {
+            currentValue = "No";
+        } else {
+            currentValue = "not selected";
+        }
+        return currentValue;
+    }
+
+    public static String getSelectedChipText(AppCompatActivity activity, int chipGroupId) {
+        ChipGroup chipGroup = activity.findViewById(chipGroupId);
+        int selectedChipId = chipGroup.getCheckedChipId();
+
+        if (selectedChipId != View.NO_ID) {
+            Chip selectedChip = activity.findViewById(selectedChipId);
+            return selectedChip.getText().toString();
+        }
+        return null;
+    }
+    public static void setupYesNo(Context context,
+                                  MaterialButton yes,
+                                  MaterialButton no,
+                                  int yesColor,
+                                  int noColor,
+                                  Runnable onChanged) {
+
+        View.OnClickListener resetAndApply = v -> {
+            // Reset both buttons
+            for (MaterialButton btn : new MaterialButton[]{yes, no}) {
+                btn.setTextColor(ContextCompat.getColor(context, R.color.text_muted));
+                btn.setStrokeColor(ContextCompat.getColorStateList(context, R.color.bg_border));
+                btn.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.bg_steel));
+            }
+            // Apply active colour to the tapped button
+            MaterialButton tapped = (MaterialButton) v;
+            int activeColor = (tapped == yes) ? yesColor : noColor;
+            tapped.setTextColor(ContextCompat.getColor(context, activeColor));
+            tapped.setStrokeColor(ContextCompat.getColorStateList(context, activeColor));
+
+            if (onChanged != null) onChanged.run();
+        };
+
+        yes.setOnClickListener(resetAndApply);
+        no.setOnClickListener(resetAndApply);
+    }
 }

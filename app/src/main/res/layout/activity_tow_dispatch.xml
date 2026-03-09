@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    activity_tow_dispatch.xml
+    ✅ No <include> tags
+    ✅ No @drawable/ic_tow_truck (uses emoji instead)
+    ✅ No custom styles or strings files needed
+    ✅ No @drawable/bg_progress_active (uses plain color backgrounds)
+    ✅ Drop this file into res/layout/ and it works immediately
+-->
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0A0A0A"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="40dp"
+        android:paddingBottom="80dp">
+
+        <!-- ════════════════════════════════
+             HEADER
+        ════════════════════════════════ -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginBottom="32dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                app:cardBackgroundColor="#F5A623"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="🚛"
+                    android:textSize="26sp" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TOW DISPATCH"
+                    android:textColor="#E8EAF0"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="VEHICLE INTAKE FORM · FILL ALL SECTIONS"
+                    android:textColor="#6B7280"
+                    android:textSize="9sp"
+                    android:letterSpacing="0.08" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ════════════════════════════════
+             PROGRESS BAR  (4 plain Views)
+        ════════════════════════════════ -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="28dp">
+
+            <View
+                android:id="@+id/progressSeg1"
+                android:layout_width="0dp"
+                android:layout_height="4dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="5dp"
+                android:background="#F5A623" />
+
+            <View
+                android:id="@+id/progressSeg2"
+                android:layout_width="0dp"
+                android:layout_height="4dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="5dp"
+                android:background="#2A2F3D" />
+
+            <View
+                android:id="@+id/progressSeg3"
+                android:layout_width="0dp"
+                android:layout_height="4dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="5dp"
+                android:background="#2A2F3D" />
+
+            <View
+                android:id="@+id/progressSeg4"
+                android:layout_width="0dp"
+                android:layout_height="4dp"
+                android:layout_weight="1"
+                android:background="#2A2F3D" />
+
+        </LinearLayout>
+
+        <!-- ════════════════════════════════
+             SECTION 01 – LOCATION
+        ════════════════════════════════ -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            app:cardBackgroundColor="#141720"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeColor="#2A2F3D"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="22dp">
+
+                <!-- Header row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="4dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="01"
+                        android:textColor="#F5A623"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:text="LOCATION"
+                        android:textColor="#E8EAF0"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.08" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="📍"
+                        android:textSize="20sp"
+                        android:alpha="0.2" />
+
+                </LinearLayout>
+
+                <!-- Q: Current location -->
+                <TextView style="@style/TowLabel" android:text="CURRENT VEHICLE LOCATION" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutLocation"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    app:boxBackgroundColor="#1C1F26"
+                    app:boxStrokeColor="#2A2F3D"
+                    app:boxStrokeWidth="1dp"
+                    app:boxCornerRadiusTopStart="10dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusBottomEnd="10dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etLocation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Street address, landmark or GPS coords…"
+                        android:textColor="#E8EAF0"
+                        android:textColorHint="#6B7280"
+                        android:inputType="textPostalAddress|textMultiLine"
+                        android:minLines="2" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Q: Vehicle position -->
+                <TextView style="@style/TowLabel" android:text="VEHICLE POSITION" />
+
+                <!-- Q: Safe access -->
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/cgPosition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    app:selectionRequired="false"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipOnRoad"
+                        style="@style/TowChip"
+                        android:text="🛣  On the road" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipShoulder"
+                        style="@style/TowChip"
+                        android:text="↔  Shoulder" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipParking"
+                        style="@style/TowChip"
+                        android:text="🅿  Parking lot" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipPrivate"
+                        style="@style/TowChip"
+                        android:text="🏠  Private property" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <TextView style="@style/TowLabel" android:text="IS IT SAFE FOR THE DRIVER TO ACCESS THE VEHICLE?" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSafeYes"
+                        style="@style/TowYesNo"
+                        android:layout_marginEnd="6dp"
+                        android:text="✓  Yes, Safe" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSafeNo"
+                        style="@style/TowYesNo"
+                        android:text="✕  Not Safe" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ════════════════════════════════
+      SECTION 02 – VEHICLE INFO
+ ════════════════════════════════ -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            app:cardBackgroundColor="#141720"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeColor="#2A2F3D"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="22dp">
+
+                <!-- Header row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="4dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="02"
+                        android:textColor="#F5A623"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:text="VEHICLE INFO"
+                        android:textColor="#E8EAF0"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.08" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🚗"
+                        android:textSize="20sp"
+                        android:alpha="0.2" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="72dp"
+                    android:layout_height="2dp"
+                    android:background="#F5A623"
+                    android:layout_marginBottom="18dp" />
+
+                <!-- Make & Model / Year -->
+
+                <!-- Drive Type -->
+                <TextView style="@style/TowLabel" android:text="DRIVE TYPE" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/cgDriveType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    app:singleSelection="true"
+                    app:selectionRequired="false">
+
+                    <com.google.android.material.chip.Chip android:id="@+id/chipFwd" style="@style/TowChip" android:text="FWD" />
+                    <com.google.android.material.chip.Chip android:id="@+id/chipRwd" style="@style/TowChip" android:text="RWD" />
+                    <com.google.android.material.chip.Chip android:id="@+id/chipAwd" style="@style/TowChip" android:text="AWD / 4WD" />
+                    <com.google.android.material.chip.Chip android:id="@+id/chipDriveUnknown" style="@style/TowChip" android:text="Unknown" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <!-- Modifications -->
+                <TextView style="@style/TowLabel" android:text="MODIFICATIONS" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/cgMods"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip android:id="@+id/chipLowered" style="@style/TowChip" android:text="Lowered" />
+                    <com.google.android.material.chip.Chip android:id="@+id/chipModified" style="@style/TowChip" android:text="Modified" />
+                    <com.google.android.material.chip.Chip android:id="@+id/chipOversized" style="@style/TowChip" android:text="Oversized" />
+                    <com.google.android.material.chip.Chip android:id="@+id/chipNoMods" style="@style/TowChip" android:text="None" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                    android:background="#2A2F3D" android:layout_marginBottom="18dp" />
+
+                <!-- Steering Locked / Rolls Freely -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Steering -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="8dp">
+
+                        <TextView style="@style/TowLabel" android:text="STEERING" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnSteeringLocked"
+                                style="@style/TowYesNoSm"
+                                android:layout_marginEnd="4dp"
+                                android:text="🔒 Locked" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnSteeringFree"
+                                style="@style/TowYesNoSm"
+                                android:text="✓ Free" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Rolls -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView style="@style/TowLabel" android:text="ROLLS FREELY?" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnRollsYes"
+                                style="@style/TowYesNoSm"
+                                android:layout_marginEnd="4dp"
+                                android:text="✓ Yes" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnRollsNo"
+                                style="@style/TowYesNoSm"
+                                android:text="✕ No" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <!-- ════════════════════════════════
+             SECTION 03 – VEHICLE CONDITION
+        ════════════════════════════════ -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            app:cardBackgroundColor="#141720"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeColor="#2A2F3D"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="22dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="4dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="03"
+                        android:textColor="#F5A623"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:text="VEHICLE CONDITION"
+                        android:textColor="#E8EAF0"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.08" />
+
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="🔧" android:textSize="20sp" android:alpha="0.2" />
+
+                </LinearLayout>
+
+                <View android:layout_width="72dp" android:layout_height="2dp"
+                    android:background="#F5A623" android:layout_marginBottom="18dp" />
+
+                <!-- What happened -->
+                <TextView style="@style/TowLabel" android:text="WHAT HAPPENED?" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/cgIncident"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    app:singleSelection="true"
+                    app:selectionRequired="false">
+
+                    <com.google.android.material.chip.Chip android:id="@+id/chipBreakdown" style="@style/TowChip" android:text="Breakdown" />
+                    <com.google.android.material.chip.Chip android:id="@+id/chipAccident" style="@style/TowChip" android:text="Accident" />
+                    <com.google.android.material.chip.Chip android:id="@+id/chipFlat" style="@style/TowChip" android:text="Flat tyre" />
+                    <com.google.android.material.chip.Chip android:id="@+id/chipBattery" style="@style/TowChip" android:text="Dead battery" />
+                    <com.google.android.material.chip.Chip android:id="@+id/chipOtherIncident" style="@style/TowChip" android:text="Other" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <!-- Damaged / Wheels -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="18dp">
+
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:layout_marginEnd="8dp" android:orientation="vertical">
+                        <TextView style="@style/TowLabel" android:text="IS THE VEHICLE DAMAGED?" />
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                            <com.google.android.material.button.MaterialButton android:id="@+id/btnDamagedYes" style="@style/TowYesNoSm" android:layout_marginEnd="4dp" android:text="✕ Damaged" />
+                            <com.google.android.material.button.MaterialButton android:id="@+id/btnDamagedNo" style="@style/TowYesNoSm" android:text="✓ No dmg" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical">
+                        <TextView style="@style/TowLabel" android:text="WHEELS INTACT?" />
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                            <com.google.android.material.button.MaterialButton android:id="@+id/btnWheelsYes" style="@style/TowYesNoSm" android:layout_marginEnd="4dp" android:text="✓ Yes" />
+                            <com.google.android.material.button.MaterialButton android:id="@+id/btnWheelsNo" style="@style/TowYesNoSm" android:text="✕ No" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- Stuck -->
+                <TextView style="@style/TowLabel" android:text="IS THE VEHICLE STUCK?" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/cgStuck"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    app:singleSelection="true"
+                    app:selectionRequired="false">
+
+                    <com.google.android.material.chip.Chip android:id="@+id/chipNotStuck" style="@style/TowChip" android:text="Not stuck" />
+                    <com.google.android.material.chip.Chip android:id="@+id/chipMud" style="@style/TowChip" android:text="Mud" />
+                    <com.google.android.material.chip.Chip android:id="@+id/chipDitch" style="@style/TowChip" android:text="Ditch" />
+                    <com.google.android.material.chip.Chip android:id="@+id/chipSand" style="@style/TowChip" android:text="Sand" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <!-- Notes -->
+                <TextView style="@style/TowLabel" android:text="ADDITIONAL NOTES" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutConditionNotes"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:boxBackgroundColor="#1C1F26"
+                    app:boxStrokeColor="#2A2F3D"
+                    app:boxStrokeWidth="1dp"
+                    app:boxCornerRadiusTopStart="10dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusBottomEnd="10dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etConditionNotes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Describe damage, warning lights, smells…"
+                        android:textColor="#E8EAF0"
+                        android:textColorHint="#6B7280"
+                        android:inputType="textMultiLine|textCapSentences"
+                        android:minLines="3"
+                        android:gravity="top" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.2"
+                    android:text="💳"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ════════════════════════════════
+             SECTION 04 – PAYMENT
+        ════════════════════════════════ -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            app:cardBackgroundColor="#141720"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeColor="#2A2F3D"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="22dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="4dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="04"
+                        android:textColor="#F5A623"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:text="PAYMENT"
+                        android:textColor="#E8EAF0"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.08" />
+
+                </LinearLayout>
+
+                <View android:layout_width="72dp" android:layout_height="2dp"
+                    android:background="#F5A623" android:layout_marginBottom="18dp" />
+
+                <!-- Payment method -->
+                <TextView style="@style/TowLabel" android:text="PREFERRED PAYMENT METHOD" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/cgPayment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    app:singleSelection="true"
+                    app:selectionRequired="false">
+
+                    <com.google.android.material.chip.Chip android:id="@+id/chipCash" style="@style/TowChip" android:text="Cash" />
+                    <com.google.android.material.chip.Chip android:id="@+id/chipCard" style="@style/TowChip" android:text="Card" />
+                    <com.google.android.material.chip.Chip android:id="@+id/chipEft" style="@style/TowChip" android:text="EFT" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <!-- Insurance -->
+                <TextView style="@style/TowLabel" android:text="ROADSIDE ASSISTANCE / INSURANCE COVERING TOW?" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="14dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnInsuranceYes"
+                        style="@style/TowYesNo"
+                        android:layout_marginEnd="6dp"
+                        android:text="✓  Yes" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnInsuranceNo"
+                        style="@style/TowYesNo"
+                        android:text="✕  No" />
+
+                </LinearLayout>
+
+                <!-- Insurance provider (hidden until Yes tapped) -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutInsuranceProvider"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    android:visibility="gone"
+                    app:boxBackgroundColor="#1C1F26"
+                    app:boxStrokeColor="#2A2F3D"
+                    app:boxStrokeWidth="1dp"
+                    app:boxCornerRadiusTopStart="10dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusBottomEnd="10dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etInsuranceProvider"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="e.g. AA, OUTsurance, Hollard…"
+                        android:textColor="#E8EAF0"
+                        android:textColorHint="#6B7280"
+                        android:inputType="textCapWords" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Receipt / Invoice -->
+                <TextView style="@style/TowLabel" android:text="DO YOU NEED AN INVOICE OR RECEIPT?" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/cgReceipt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    app:singleSelection="true"
+                    app:selectionRequired="false">
+
+                    <com.google.android.material.chip.Chip android:id="@+id/chipInvoice" style="@style/TowChip" android:text="Invoice" />
+                    <com.google.android.material.chip.Chip android:id="@+id/chipReceiptOnly" style="@style/TowChip" android:text="Receipt" />
+                    <com.google.android.material.chip.Chip android:id="@+id/chipBoth" style="@style/TowChip" android:text="Both" />
+                    <com.google.android.material.chip.Chip android:id="@+id/chipNotNeeded" style="@style/TowChip" android:text="Not needed" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                    android:background="#2A2F3D" android:layout_marginBottom="16dp" />
+
+                <!-- Customer Name + Phone -->
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ════════════════════════════════
+             SUBMIT BUTTON
+        ════════════════════════════════ -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="20dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:text="SUBMIT DISPATCH REQUEST →"
+                android:textColor="#0A0A0A"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.1"
+                app:backgroundTint="#F5A623"
+                app:cornerRadius="14dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="A dispatcher will confirm via call or SMS within minutes"
+                android:textColor="#6B7280"
+                android:textSize="11sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    dialog_success.xml
+    Shown after successful form submission.
+    Use as a full-screen Dialog or BottomSheetDialog.
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/bg_black"
+    android:padding="40dp">
+
+    <!-- Green check circle -->
+    <com.google.android.material.card.MaterialCardView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:cardBackgroundColor="@color/green_tint"
+        app:cardCornerRadius="40dp"
+        app:strokeColor="@color/accent_green"
+        app:strokeWidth="2dp"
+        app:cardElevation="0dp"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="✓"
+            android:textColor="@color/accent_green"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="REQUEST RECEIVED"
+        android:textColor="@color/accent_green"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.12"
+        android:layout_marginBottom="12dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your tow request has been logged and a dispatcher is being notified now."
+        android:textColor="@color/text_muted"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Job ID badge -->
+    <com.google.android.material.card.MaterialCardView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/amber_tint"
+        app:cardCornerRadius="8dp"
+        app:strokeColor="@color/accent_amber"
+        app:strokeWidth="1dp"
+        app:cardElevation="0dp"
+        android:layout_marginBottom="32dp">
+
+        <TextView
+            android:id="@+id/tvJobId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="JOB #TOW-0000"
+            android:textColor="@color/accent_amber"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.15"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- New request button -->
+    <com.google.android.material.button.MaterialButton
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/btnNewRequest"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start new request"
+        android:textColor="@color/text_muted"
+        app:strokeColor="@color/bg_border"
+        app:cornerRadius="10dp" />
+
+</LinearLayout>
