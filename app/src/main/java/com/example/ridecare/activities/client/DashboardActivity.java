@@ -5,12 +5,16 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.view.View;
 import com.example.ridecare.R;
 import com.example.ridecare.activities.common.LoginActivity;
 import com.example.ridecare.activities.common.SettingsActivity;
+import com.example.ridecare.activities.service.engineOverhaulActivity;
+import com.example.ridecare.activities.service.oilChangeActivity;
+import com.example.ridecare.activities.service.towDispatchActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.*;
@@ -21,7 +25,7 @@ public class DashboardActivity extends AppCompatActivity {
 
     ImageView heroCar;
     TextView myGarageBtn, tvViewMore;
-
+    LinearLayout overHaulcard, oilChangeCard, towingCard;
             /* Developer Note
             * Create a page to view the menuIcon for the client pending
             * Create Page for view more
@@ -35,6 +39,10 @@ public class DashboardActivity extends AppCompatActivity {
         heroCar = findViewById(R.id.heroCar);
         myGarageBtn = findViewById(R.id.myGarageBtn);
 
+        // Linear Layout
+        overHaulcard = findViewById(R.id.overHaulCard);
+        oilChangeCard = findViewById(R.id.oilChangeCard);
+        towingCard = findViewById(R.id.towingCard);
 
         // Constraint Layout
         ConstraintLayout serviceRequestCard;
@@ -59,6 +67,7 @@ public class DashboardActivity extends AppCompatActivity {
                 startActivity(new Intent(DashboardActivity.this, SettingsActivity.class))
         );
 
+
         // vehicle list
         View.OnClickListener openVehicleList = v -> startActivity(new Intent(DashboardActivity.this, VehicleListActivity.class));
         myGarageBtn.setOnClickListener(openVehicleList);
@@ -71,17 +80,22 @@ public class DashboardActivity extends AppCompatActivity {
         ivProfile.setOnClickListener(v ->
                 startActivity(new Intent(DashboardActivity.this, SettingsActivity.class)));
 
+
+        View.OnClickListener openOverhaulActivity = v -> startActivity(new Intent(DashboardActivity.this, engineOverhaulActivity.class ));
+        overHaulcard.setOnClickListener(openOverhaulActivity);
+
+
+        View.OnClickListener openOilChangeCard = v -> startActivity(new Intent(DashboardActivity.this, oilChangeActivity.class));
+        oilChangeCard.setOnClickListener(openOilChangeCard);
+
+        View.OnClickListener openTowingCard = v -> startActivity(new Intent(DashboardActivity.this, towDispatchActivity.class));
+        towingCard.setOnClickListener(openTowingCard);
+
+
         // invoice list button
         View.OnClickListener openInvoice = v ->startActivity(new Intent(DashboardActivity.this, InvoiceListActivity.class));
         invoiceCard.setOnClickListener(openInvoice);
 
-        /* code will be used in another sections
-        // Logout button
-        btnLogout.setOnClickListener(v -> {
-            FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(DashboardActivity.this, LoginActivity.class));
-            finish();
-        });
-         */
+
     }
 }

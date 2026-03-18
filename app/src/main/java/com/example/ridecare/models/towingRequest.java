@@ -61,12 +61,12 @@ public class towingRequest extends ServiceRequest implements Serializable {
             String incident,
             String isDamaged,
             String wheelsIntact,
-            String isSteeringLocked,
+
 
             // Vehicle Information
             String driveTrain,
             String condition,
-            String steerLocked,
+            String isSteeringLocked,
             String canRoll,
 
             // Payment Methods
@@ -104,14 +104,13 @@ public class towingRequest extends ServiceRequest implements Serializable {
         this.incident = incident;
         this.isDamaged = isDamaged;
         this.wheelsIntact = wheelsIntact;
-        this.isSteeringLocked = isSteeringLocked;
+
 
         // Vehicle Information
         this.driveTrain = driveTrain;
         this.condition = condition;
-        this.steerLocked = steerLocked;
         this.canRoll = canRoll;
-
+        this.isSteeringLocked = isSteeringLocked;
         // Payment Methods
         this.paymentType = paymentType;
         this.hasAssistance = hasAssistance;

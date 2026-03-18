@@ -12,7 +12,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0A0A0A"
+    android:background="@color/white"
     android:fillViewport="true">
 
     <LinearLayout
@@ -34,22 +34,6 @@
             android:orientation="horizontal"
             android:layout_marginBottom="32dp">
 
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                app:cardBackgroundColor="#F5A623"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="0dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="🚛"
-                    android:textSize="26sp" />
-
-            </com.google.android.material.card.MaterialCardView>
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -60,7 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TOW DISPATCH"
-                    android:textColor="#E8EAF0"
+                    android:textColor="@color/text_on_amber"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     android:letterSpacing="0.1" />
@@ -92,7 +76,7 @@
                 android:layout_height="4dp"
                 android:layout_weight="1"
                 android:layout_marginEnd="5dp"
-                android:background="#F5A623" />
+                android:background="@color/teal_200" />
 
             <View
                 android:id="@+id/progressSeg2"
@@ -126,10 +110,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="18dp"
-            app:cardBackgroundColor="#141720"
+            app:cardBackgroundColor="@color/text_primary"
             app:cardCornerRadius="16dp"
             app:cardElevation="0dp"
-            app:strokeColor="#2A2F3D"
+            app:strokeColor="@color/teal_200"
             app:strokeWidth="1dp">
 
             <LinearLayout
@@ -150,7 +134,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="01"
-                        android:textColor="#F5A623"
+                        android:textColor="@color/teal_200"
                         android:textSize="28sp"
                         android:textStyle="bold" />
 
@@ -160,7 +144,7 @@
                         android:layout_weight="1"
                         android:layout_marginStart="10dp"
                         android:text="LOCATION"
-                        android:textColor="#E8EAF0"
+                        android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:letterSpacing="0.08" />
@@ -183,8 +167,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="18dp"
-                    app:boxBackgroundColor="#1C1F26"
-                    app:boxStrokeColor="#2A2F3D"
+                    app:boxBackgroundColor="@color/white"
+                    app:boxStrokeColor="@color/teal_200"
                     app:boxStrokeWidth="1dp"
                     app:boxCornerRadiusTopStart="10dp"
                     app:boxCornerRadiusTopEnd="10dp"
@@ -196,10 +180,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Street address, landmark or GPS coords…"
-                        android:textColor="#E8EAF0"
-                        android:textColorHint="#6B7280"
                         android:inputType="textPostalAddress|textMultiLine"
-                        android:minLines="2" />
+                        android:minLines="2"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -248,12 +232,12 @@
                         android:id="@+id/btnSafeYes"
                         style="@style/TowYesNo"
                         android:layout_marginEnd="6dp"
-                        android:text="✓  Yes, Safe" />
+                        android:text="Yes, Safe" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnSafeNo"
                         style="@style/TowYesNo"
-                        android:text="✕  Not Safe" />
+                        android:text="Not Safe" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -266,10 +250,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="18dp"
-            app:cardBackgroundColor="#141720"
+            app:cardBackgroundColor="@color/text_primary"
             app:cardCornerRadius="16dp"
             app:cardElevation="0dp"
-            app:strokeColor="#2A2F3D"
+            app:strokeColor="@color/teal_200"
             app:strokeWidth="1dp">
 
             <LinearLayout
@@ -282,66 +266,85 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="4dp">
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="02"
-                        android:textColor="#F5A623"
+                        android:textColor="@color/teal_200"
                         android:textSize="28sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:letterSpacing="0.08"
                         android:text="VEHICLE INFO"
-                        android:textColor="#E8EAF0"
+                        android:textColor="@color/black"
                         android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:letterSpacing="0.08" />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:alpha="0.2"
                         android:text="🚗"
-                        android:textSize="20sp"
-                        android:alpha="0.2" />
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
                 <View
                     android:layout_width="72dp"
                     android:layout_height="2dp"
-                    android:background="#F5A623"
-                    android:layout_marginBottom="18dp" />
+                    android:layout_marginBottom="18dp"
+                    android:background="@color/teal_200" />
 
                 <!-- Make & Model / Year -->
 
                 <!-- Drive Type -->
-                <TextView style="@style/TowLabel" android:text="DRIVE TYPE" />
+                <TextView
+                    style="@style/TowLabel"
+                    android:text="DRIVE TYPE" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/cgDriveType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="18dp"
-                    app:singleSelection="true"
-                    app:selectionRequired="false">
+                    app:selectionRequired="false"
+                    app:singleSelection="true">
 
-                    <com.google.android.material.chip.Chip android:id="@+id/chipFwd" style="@style/TowChip" android:text="FWD" />
-                    <com.google.android.material.chip.Chip android:id="@+id/chipRwd" style="@style/TowChip" android:text="RWD" />
-                    <com.google.android.material.chip.Chip android:id="@+id/chipAwd" style="@style/TowChip" android:text="AWD / 4WD" />
-                    <com.google.android.material.chip.Chip android:id="@+id/chipDriveUnknown" style="@style/TowChip" android:text="Unknown" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipFwd"
+                        style="@style/TowChip"
+                        android:text="FWD" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipRwd"
+                        style="@style/TowChip"
+                        android:text="RWD" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipAwd"
+                        style="@style/TowChip"
+                        android:text="AWD / 4WD" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipDriveUnknown"
+                        style="@style/TowChip"
+                        android:text="Unknown" />
 
                 </com.google.android.material.chip.ChipGroup>
 
                 <!-- Modifications -->
-                <TextView style="@style/TowLabel" android:text="MODIFICATIONS" />
+                <TextView
+                    style="@style/TowLabel"
+                    android:text="MODIFICATIONS" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/cgMods"
@@ -350,15 +353,33 @@
                     android:layout_marginBottom="18dp"
                     app:singleSelection="true">
 
-                    <com.google.android.material.chip.Chip android:id="@+id/chipLowered" style="@style/TowChip" android:text="Lowered" />
-                    <com.google.android.material.chip.Chip android:id="@+id/chipModified" style="@style/TowChip" android:text="Modified" />
-                    <com.google.android.material.chip.Chip android:id="@+id/chipOversized" style="@style/TowChip" android:text="Oversized" />
-                    <com.google.android.material.chip.Chip android:id="@+id/chipNoMods" style="@style/TowChip" android:text="None" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipLowered"
+                        style="@style/TowChip"
+                        android:text="Lowered" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipModified"
+                        style="@style/TowChip"
+                        android:text="Modified" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipOversized"
+                        style="@style/TowChip"
+                        android:text="Oversized" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipNoMods"
+                        style="@style/TowChip"
+                        android:text="None" />
 
                 </com.google.android.material.chip.ChipGroup>
 
-                <View android:layout_width="match_parent" android:layout_height="1dp"
-                    android:background="#2A2F3D" android:layout_marginBottom="18dp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="18dp"
+                    android:background="#2A2F3D" />
 
                 <!-- Steering Locked / Rolls Freely -->
                 <LinearLayout
@@ -370,11 +391,13 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
                         android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_marginEnd="8dp">
+                        android:orientation="vertical">
 
-                        <TextView style="@style/TowLabel" android:text="STEERING" />
+                        <TextView
+                            style="@style/TowLabel"
+                            android:text="STEERING" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -385,12 +408,12 @@
                                 android:id="@+id/btnSteeringLocked"
                                 style="@style/TowYesNoSm"
                                 android:layout_marginEnd="4dp"
-                                android:text="🔒 Locked" />
+                                android:text="Locked" />
 
                             <com.google.android.material.button.MaterialButton
                                 android:id="@+id/btnSteeringFree"
                                 style="@style/TowYesNoSm"
-                                android:text="✓ Free" />
+                                android:text="Free" />
 
                         </LinearLayout>
                     </LinearLayout>
@@ -402,7 +425,9 @@
                         android:layout_weight="1"
                         android:orientation="vertical">
 
-                        <TextView style="@style/TowLabel" android:text="ROLLS FREELY?" />
+                        <TextView
+                            style="@style/TowLabel"
+                            android:text="ROLLS FREELY?" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -413,12 +438,12 @@
                                 android:id="@+id/btnRollsYes"
                                 style="@style/TowYesNoSm"
                                 android:layout_marginEnd="4dp"
-                                android:text="✓ Yes" />
+                                android:text="Yes" />
 
                             <com.google.android.material.button.MaterialButton
                                 android:id="@+id/btnRollsNo"
                                 style="@style/TowYesNoSm"
-                                android:text="✕ No" />
+                                android:text="No" />
 
                         </LinearLayout>
                     </LinearLayout>
@@ -434,10 +459,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="18dp"
-            app:cardBackgroundColor="#141720"
+            app:cardBackgroundColor="@color/text_primary"
             app:cardCornerRadius="16dp"
             app:cardElevation="0dp"
-            app:strokeColor="#2A2F3D"
+            app:strokeColor="@color/teal_200"
             app:strokeWidth="1dp">
 
             <LinearLayout
@@ -455,9 +480,9 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:text="03"
-                        android:textColor="#F5A623"
+                        android:textColor="@color/teal_200"
                         android:textSize="28sp"
                         android:textStyle="bold" />
 
@@ -467,7 +492,7 @@
                         android:layout_weight="1"
                         android:layout_marginStart="10dp"
                         android:text="VEHICLE CONDITION"
-                        android:textColor="#E8EAF0"
+                        android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:letterSpacing="0.08" />
@@ -478,7 +503,7 @@
                 </LinearLayout>
 
                 <View android:layout_width="72dp" android:layout_height="2dp"
-                    android:background="#F5A623" android:layout_marginBottom="18dp" />
+                    android:background="@color/teal_200" android:layout_marginBottom="18dp" />
 
                 <!-- What happened -->
                 <TextView style="@style/TowLabel" android:text="WHAT HAPPENED?" />
@@ -510,8 +535,8 @@
                         android:layout_weight="1" android:layout_marginEnd="8dp" android:orientation="vertical">
                         <TextView style="@style/TowLabel" android:text="IS THE VEHICLE DAMAGED?" />
                         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
-                            <com.google.android.material.button.MaterialButton android:id="@+id/btnDamagedYes" style="@style/TowYesNoSm" android:layout_marginEnd="4dp" android:text="✕ Damaged" />
-                            <com.google.android.material.button.MaterialButton android:id="@+id/btnDamagedNo" style="@style/TowYesNoSm" android:text="✓ No dmg" />
+                            <com.google.android.material.button.MaterialButton android:id="@+id/btnDamagedYes" style="@style/TowYesNoSm" android:layout_marginEnd="4dp" android:text="Damaged" />
+                            <com.google.android.material.button.MaterialButton android:id="@+id/btnDamagedNo" style="@style/TowYesNoSm" android:text="No dmg" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -519,8 +544,8 @@
                         android:layout_weight="1" android:orientation="vertical">
                         <TextView style="@style/TowLabel" android:text="WHEELS INTACT?" />
                         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
-                            <com.google.android.material.button.MaterialButton android:id="@+id/btnWheelsYes" style="@style/TowYesNoSm" android:layout_marginEnd="4dp" android:text="✓ Yes" />
-                            <com.google.android.material.button.MaterialButton android:id="@+id/btnWheelsNo" style="@style/TowYesNoSm" android:text="✕ No" />
+                            <com.google.android.material.button.MaterialButton android:id="@+id/btnWheelsYes" style="@style/TowYesNoSm" android:layout_marginEnd="4dp" android:text="Yes" />
+                            <com.google.android.material.button.MaterialButton android:id="@+id/btnWheelsNo" style="@style/TowYesNoSm" android:text="No" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -545,7 +570,6 @@
                 </com.google.android.material.chip.ChipGroup>
 
                 <!-- Notes -->
-                <TextView style="@style/TowLabel" android:text="ADDITIONAL NOTES" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/layoutConditionNotes"
@@ -553,32 +577,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:boxBackgroundColor="#1C1F26"
-                    app:boxStrokeColor="#2A2F3D"
+                    app:boxStrokeColor="@color/white"
                     app:boxStrokeWidth="1dp"
                     app:boxCornerRadiusTopStart="10dp"
                     app:boxCornerRadiusTopEnd="10dp"
                     app:boxCornerRadiusBottomStart="10dp"
-                    app:boxCornerRadiusBottomEnd="10dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etConditionNotes"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Describe damage, warning lights, smells…"
-                        android:textColor="#E8EAF0"
-                        android:textColorHint="#6B7280"
-                        android:inputType="textMultiLine|textCapSentences"
-                        android:minLines="3"
-                        android:gravity="top" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:alpha="0.2"
-                    android:text="💳"
-                    android:textSize="20sp" />
+                    app:boxCornerRadiusBottomEnd="10dp"/>
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -590,10 +594,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="18dp"
-            app:cardBackgroundColor="#141720"
+            app:cardBackgroundColor="@color/text_primary"
             app:cardCornerRadius="16dp"
             app:cardElevation="0dp"
-            app:strokeColor="#2A2F3D"
+            app:strokeColor="@color/teal_200"
             app:strokeWidth="1dp">
 
             <LinearLayout
@@ -613,7 +617,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="04"
-                        android:textColor="#F5A623"
+                        android:textColor="@color/teal_200"
                         android:textSize="28sp"
                         android:textStyle="bold" />
 
@@ -623,7 +627,7 @@
                         android:layout_weight="1"
                         android:layout_marginStart="10dp"
                         android:text="PAYMENT"
-                        android:textColor="#E8EAF0"
+                        android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:letterSpacing="0.08" />
@@ -631,7 +635,7 @@
                 </LinearLayout>
 
                 <View android:layout_width="72dp" android:layout_height="2dp"
-                    android:background="#F5A623" android:layout_marginBottom="18dp" />
+                    android:background="@color/teal_200" android:layout_marginBottom="18dp" />
 
                 <!-- Payment method -->
                 <TextView style="@style/TowLabel" android:text="PREFERRED PAYMENT METHOD" />
@@ -663,12 +667,12 @@
                         android:id="@+id/btnInsuranceYes"
                         style="@style/TowYesNo"
                         android:layout_marginEnd="6dp"
-                        android:text="✓  Yes" />
+                        android:text="Yes" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnInsuranceNo"
                         style="@style/TowYesNo"
-                        android:text="✕  No" />
+                        android:text="No" />
 
                 </LinearLayout>
 
@@ -681,7 +685,7 @@
                     android:layout_marginBottom="18dp"
                     android:visibility="gone"
                     app:boxBackgroundColor="#1C1F26"
-                    app:boxStrokeColor="#2A2F3D"
+                    app:boxStrokeColor="@color/teal_200"
                     app:boxStrokeWidth="1dp"
                     app:boxCornerRadiusTopStart="10dp"
                     app:boxCornerRadiusTopEnd="10dp"
@@ -694,7 +698,7 @@
                         android:layout_height="wrap_content"
                         android:hint="e.g. AA, OUTsurance, Hollard…"
                         android:textColor="#E8EAF0"
-                        android:textColorHint="#6B7280"
+                        android:textColorHint="@color/teal_200"
                         android:inputType="textCapWords" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -718,7 +722,7 @@
                 </com.google.android.material.chip.ChipGroup>
 
                 <View android:layout_width="match_parent" android:layout_height="1dp"
-                    android:background="#2A2F3D" android:layout_marginBottom="16dp" />
+                    android:background="@color/teal_200" android:layout_marginBottom="16dp" />
 
                 <!-- Customer Name + Phone -->
             </LinearLayout>
@@ -743,7 +747,7 @@
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:letterSpacing="0.1"
-                app:backgroundTint="#F5A623"
+                app:backgroundTint="@color/teal_200"
                 app:cornerRadius="14dp" />
 
             <TextView

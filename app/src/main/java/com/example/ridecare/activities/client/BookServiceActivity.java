@@ -12,6 +12,7 @@ import com.example.ridecare.activities.service.batteryReplacementActivity;
 import com.example.ridecare.activities.service.brakeSyetemRepairActivity;
 import com.example.ridecare.activities.service.engineOverhaulActivity;
 import com.example.ridecare.activities.service.oilChangeActivity;
+import com.example.ridecare.activities.service.towDispatchActivity;
 import com.example.ridecare.activities.service.tyreRepairActivity;
 import com.example.ridecare.models.BrakeSystemRequest;
 import com.example.ridecare.models.ServiceRequest;
@@ -100,7 +101,9 @@ public class BookServiceActivity extends AppCompatActivity {
         });
 
         containerTowing.setOnClickListener(v -> {
-            selectedService = "24/7 Towing Request";
+            Intent intent = new Intent(BookServiceActivity.this, towDispatchActivity.class);
+            intent.putExtra("vehicleId", vehicleId);
+            startActivity(intent);
         });
     }
 
