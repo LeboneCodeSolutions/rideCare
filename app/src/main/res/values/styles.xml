@@ -6,8 +6,8 @@
     ══════════════════════════════════════════ -->
     <style name="Theme.TowDispatch" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowBackground">@color/bg_black</item>
-        <item name="colorPrimary">@color/accent_amber</item>
-        <item name="colorPrimaryVariant">@color/accent_amber</item>
+        <item name="colorPrimary">@color/teal_200</item>
+        <item name="colorPrimaryVariant">@color/teal_200</item>
         <item name="colorOnPrimary">@color/text_on_amber</item>
         <item name="colorSurface">@color/bg_panel</item>
         <item name="colorOnSurface">@color/text_primary</item>
@@ -44,7 +44,7 @@
     <style name="Widget.TowDispatch.SectionNumber">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/accent_amber</item>
+        <item name="android:textColor">@color/teal_200</item>
         <item name="android:textSize">32sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:letterSpacing">0.05</item>
@@ -116,7 +116,7 @@
         <item name="strokeColor">@color/bg_border</item>
         <item name="backgroundTint">@color/bg_steel</item>
         <item name="cornerRadius">50dp</item>
-        <item name="rippleColor">@color/accent_amber</item>
+        <item name="rippleColor">@color/teal_200</item>
     </style>
 
     <!-- ══════════════════════════════════════════
@@ -145,7 +145,7 @@
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:letterSpacing">0.12</item>
-        <item name="backgroundTint">@color/accent_amber</item>
+        <item name="backgroundTint">@color/teal_200</item>
         <item name="cornerRadius">14dp</item>
         <item name="rippleColor">@color/text_on_amber</item>
         <item name="elevation">6dp</item>
@@ -184,13 +184,13 @@
     <style name="TowChip" parent="Widget.MaterialComponents.Chip.Choice">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/text_muted</item>
-        <item name="chipBackgroundColor">@color/bg_steel</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="chipBackgroundColor">@color/white</item>
         <item name="chipStrokeColor">@color/bg_border</item>
         <item name="chipStrokeWidth">1dp</item>
         <item name="chipCornerRadius">50dp</item>
         <item name="checkedIconVisible">false</item>
-        <item name="rippleColor">@color/accent_amber</item>
+        <item name="rippleColor">@color/teal_200</item>
     </style>
 
     <!-- ══════════════════════════════════════════
@@ -202,13 +202,13 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">46dp</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:textColor">@color/text_muted</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:textSize">13sp</item>
         <item name="android:textStyle">bold</item>
-        <item name="backgroundTint">@color/bg_steel</item>
+        <item name="backgroundTint">@color/white</item>
         <item name="strokeColor">@color/bg_border</item>
         <item name="cornerRadius">10dp</item>
-        <item name="rippleColor">@color/accent_amber</item>
+        <item name="rippleColor">@color/teal_200</item>
     </style>
 
     <!-- ══════════════════════════════════════════
@@ -221,13 +221,13 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">42dp</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:textColor">@color/text_muted</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:textSize">11sp</item>
         <item name="android:textStyle">bold</item>
-        <item name="backgroundTint">@color/bg_steel</item>
+        <item name="backgroundTint">@color/white</item>
         <item name="strokeColor">@color/bg_border</item>
         <item name="cornerRadius">10dp</item>
-        <item name="rippleColor">@color/accent_amber</item>
+        <item name="rippleColor">@color/teal_200</item>
     </style>
 
 </resources>

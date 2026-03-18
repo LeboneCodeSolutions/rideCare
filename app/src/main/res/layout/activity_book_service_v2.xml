@@ -43,19 +43,25 @@
             android:layout_marginTop="28dp"
             android:background="@drawable/bg_color_card_gradient_2"
             android:padding="5dp"
+            app:strokeColor="@color/teal_200"
+            app:strokeWidth="1dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvServiceOptions">
+
             <TextView
                 android:id="@+id/tvPopularOptions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="8dp"
+                android:letterSpacing="0.02"
                 android:text="Popular Service Options"
                 android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="10sp"
+                android:textColor="@color/black"
+                android:textSize="9sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.489"
                 app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
         <!--Oil Change Container-->
@@ -78,15 +84,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:srcCompat="@drawable/oil_barrel_24px"
-                app:tint="@color/white" />
+                app:tint="@color/black" />
 
             <TextView
                 android:id="@+id/tvOilChange"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Oil Change"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="10dp"
+                android:textStyle="bold"
                 android:layout_marginStart="50dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ivOilChange"/>

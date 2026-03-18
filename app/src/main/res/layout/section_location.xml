@@ -156,7 +156,7 @@
                 android:id="@+id/btnSafeYes"
                 style="@style/Widget.TowDispatch.YesNoButton"
                 android:text="@string/btn_yes_safe"
-                android:textColor="@color/text_muted" />
+                android:textColor="@color/text_primary" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSafeNo"

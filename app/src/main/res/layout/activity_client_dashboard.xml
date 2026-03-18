@@ -222,7 +222,7 @@
                 tools:layout_editor_absoluteY="397dp">
 
                 <ImageView
-                    android:layout_width="36dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="41dp"
                     android:contentDescription="@string/vehicleOverhaul"
                     app:srcCompat="@drawable/car_repair"
@@ -303,10 +303,6 @@
                 android:textSize="13sp"
                 android:textStyle="bold" />
         </LinearLayout>
-
-        <!-- VIEW MORE -->
-
-        <!-- ================= SERVICE REQUEST CARD ================= -->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
