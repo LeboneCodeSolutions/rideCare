@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    res/drawable/img_map_placeholder.xml
+    Static vector map used as the MapView placeholder in widget_tow_dispatch.xml.
+    Dimensions match the 400 x 190dp map frame in the widget.
+-->
+<vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="400dp"
+    android:height="190dp"
+    android:viewportWidth="400"
+    android:viewportHeight="190">
+
+    <!-- Background -->
+    <path
+        android:pathData="M0,0 H400 V190 H0 Z"
+        android:fillColor="#E8EDF5"/>
+
+    <!-- City blocks — top row -->
+    <path android:pathData="M10,8 H78 V52 H10 Z"   android:fillColor="#D4DAEA" android:strokeWidth="0"/>
+    <path android:pathData="M90,8 H182 V52 H90 Z"  android:fillColor="#D8DFEE" android:strokeWidth="0"/>
+    <path android:pathData="M196,8 H284 V52 H196 Z" android:fillColor="#D4DAEA" android:strokeWidth="0"/>
+    <path android:pathData="M298,8 H392 V52 H298 Z" android:fillColor="#D8DFEE" android:strokeWidth="0"/>
+
+    <!-- City blocks — middle row -->
+    <path android:pathData="M10,62 H78 V114 H10 Z"   android:fillColor="#D8DFEE" android:strokeWidth="0"/>
+    <path android:pathData="M90,62 H182 V114 H90 Z"  android:fillColor="#D4DAEA" android:strokeWidth="0"/>
+    <path android:pathData="M196,62 H284 V114 H196 Z" android:fillColor="#D8DFEE" android:strokeWidth="0"/>
+    <path android:pathData="M298,62 H392 V114 H298 Z" android:fillColor="#D4DAEA" android:strokeWidth="0"/>
+
+    <!-- City blocks — bottom row -->
+    <path android:pathData="M10,124 H78 V190 H10 Z"   android:fillColor="#D4DAEA" android:strokeWidth="0"/>
+    <path android:pathData="M90,124 H182 V190 H90 Z"  android:fillColor="#D8DFEE" android:strokeWidth="0"/>
+    <path android:pathData="M196,124 H284 V190 H196 Z" android:fillColor="#D4DAEA" android:strokeWidth="0"/>
+    <path android:pathData="M298,124 H392 V190 H298 Z" android:fillColor="#D8DFEE" android:strokeWidth="0"/>
+
+    <!-- Roads — horizontal -->
+    <path android:pathData="M0,52 H400 V62 H0 Z"   android:fillColor="#C8CFDF"/>
+    <path android:pathData="M0,114 H400 V124 H0 Z" android:fillColor="#C8CFDF"/>
+
+    <!-- Roads — vertical -->
+    <path android:pathData="M78,0 H90 V190 H78 Z"   android:fillColor="#C8CFDF"/>
+    <path android:pathData="M184,0 H196 V190 H184 Z" android:fillColor="#C8CFDF"/>
+    <path android:pathData="M286,0 H298 V190 H286 Z" android:fillColor="#C8CFDF"/>
+
+    <!-- Road centre dashes — horizontal -->
+    <path android:pathData="M0,57 H18"   android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M28,57 H46"  android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M56,57 H74"  android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M90,57 H108" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M118,57 H136" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M146,57 H164" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M174,57 H182" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M196,57 H214" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M224,57 H242" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M252,57 H270" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M280,57 H286" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M298,57 H316" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M326,57 H344" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M354,57 H372" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M382,57 H400" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+
+    <path android:pathData="M0,119 H18"   android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M28,119 H46"  android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M56,119 H74"  android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M90,119 H108" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M118,119 H136" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M146,119 H164" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M174,119 H182" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M196,119 H214" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M224,119 H242" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M252,119 H270" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M280,119 H286" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M298,119 H316" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M326,119 H344" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M354,119 H372" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M382,119 H400" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+
+    <!-- Road centre dashes — vertical -->
+    <path android:pathData="M84,0 V18"   android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M84,28 V46"  android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M84,62 V80"  android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M84,90 V108" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M84,124 V142" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M84,152 V170" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M84,180 V190" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+
+    <path android:pathData="M190,0 V18"   android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M190,28 V46"  android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M190,62 V80"  android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M190,90 V108" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M190,124 V142" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M190,152 V170" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M190,180 V190" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+
+    <path android:pathData="M292,0 V18"   android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M292,28 V46"  android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M292,62 V80"  android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M292,90 V108" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M292,124 V142" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M292,152 V170" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+    <path android:pathData="M292,180 V190" android:strokeColor="#B8BFCF" android:strokeWidth="1" android:fillColor="#00000000"/>
+
+    <!-- Dispatch route — dashed orange polyline: Base → Truck1 → Truck2 → Incident -->
+    <!-- Segment 1: Base(84,57) → right to Truck1(160,57) -->
+    <path android:pathData="M84,57 H104"  android:strokeColor="#F57C1F" android:strokeWidth="2.5" android:fillColor="#00000000" android:strokeLineCap="round"/>
+    <path android:pathData="M114,57 H134" android:strokeColor="#F57C1F" android:strokeWidth="2.5" android:fillColor="#00000000" android:strokeLineCap="round"/>
+    <path android:pathData="M144,57 H160" android:strokeColor="#F57C1F" android:strokeWidth="2.5" android:fillColor="#00000000" android:strokeLineCap="round"/>
+    <!-- Segment 2: Truck1(160,57) → right to junction(190,57) → down to Truck2(190,119) -->
+    <path android:pathData="M160,57 H180" android:strokeColor="#F57C1F" android:strokeWidth="2.5" android:fillColor="#00000000" android:strokeLineCap="round"/>
+    <path android:pathData="M190,67 V87"  android:strokeColor="#F57C1F" android:strokeWidth="2.5" android:fillColor="#00000000" android:strokeLineCap="round"/>
+    <path android:pathData="M190,97 V117" android:strokeColor="#F57C1F" android:strokeWidth="2.5" android:fillColor="#00000000" android:strokeLineCap="round"/>
+    <!-- Segment 3: Truck2(190,119) → right to Incident(292,119) -->
+    <path android:pathData="M200,119 H220" android:strokeColor="#F57C1F" android:strokeWidth="2.5" android:fillColor="#00000000" android:strokeLineCap="round"/>
+    <path android:pathData="M230,119 H250" android:strokeColor="#F57C1F" android:strokeWidth="2.5" android:fillColor="#00000000" android:strokeLineCap="round"/>
+    <path android:pathData="M260,119 H280" android:strokeColor="#F57C1F" android:strokeWidth="2.5" android:fillColor="#00000000" android:strokeLineCap="round"/>
+
+    <!-- Base depot marker (blue square with rounded corners) -->
+    <path
+        android:pathData="M79,49 Q79,49 93,49 Q93,49 93,63 Q93,63 79,63 Q79,63 79,49 Z"
+        android:fillColor="#3B82F6"/>
+    <!-- "B" label inside depot — represented as a small white cross shape -->
+    <path
+        android:pathData="M84,54 H88 M86,52 V56"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:fillColor="#00000000"
+        android:strokeLineCap="round"/>
+
+    <!-- Truck 1 — En Route (orange) at (160, 57) -->
+    <!-- Outer pulse ring -->
+    <path
+        android:pathData="M160,47 A10,10 0 1,1 159.99,47 Z"
+        android:fillColor="#F57C1F"
+        android:fillAlpha="0.18"/>
+    <!-- Inner dot -->
+    <path
+        android:pathData="M160,51 A6,6 0 1,1 159.99,51 Z"
+        android:fillColor="#F57C1F"/>
+    <!-- Highlight -->
+    <path
+        android:pathData="M160,54.5 A2.5,2.5 0 1,1 159.99,54.5 Z"
+        android:fillColor="#FFD0A0"/>
+
+    <!-- Truck 2 — On Scene (green) at (292, 119) -->
+    <!-- Outer pulse ring -->
+    <path
+        android:pathData="M292,109 A10,10 0 1,1 291.99,109 Z"
+        android:fillColor="#2CA74B"
+        android:fillAlpha="0.18"/>
+    <!-- Inner dot -->
+    <path
+        android:pathData="M292,113 A6,6 0 1,1 291.99,113 Z"
+        android:fillColor="#2CA74B"/>
+    <!-- Highlight -->
+    <path
+        android:pathData="M292,116.5 A2.5,2.5 0 1,1 291.99,116.5 Z"
+        android:fillColor="#A8EDBA"/>
+
+    <!-- Incident pin (red) at (292, 57) -->
+    <!-- Outer pulse ring -->
+    <path
+        android:pathData="M292,47 A10,10 0 1,1 291.99,47 Z"
+        android:fillColor="#EF4444"
+        android:fillAlpha="0.15"/>
+    <!-- Inner dot -->
+    <path
+        android:pathData="M292,51 A6,6 0 1,1 291.99,51 Z"
+        android:fillColor="#EF4444"/>
+    <!-- Pin stem -->
+    <path
+        android:pathData="M292,45 V39"
+        android:strokeColor="#EF4444"
+        android:strokeWidth="2"
+        android:fillColor="#00000000"
+        android:strokeLineCap="round"/>
+    <!-- Pin top dot -->
+    <path
+        android:pathData="M292,36.5 A2.5,2.5 0 1,1 291.99,36.5 Z"
+        android:fillColor="#EF4444"
+        android:fillAlpha="0.75"/>
+
+</vector>

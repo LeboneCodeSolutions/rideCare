@@ -20,8 +20,8 @@
     <color name="accent_green">#22C55E</color>
 
     <!-- Text -->
-    <color name="text_primary">#E8EAF0</color>
-    <color name="text_muted">#6B7280</color>
+
+
     <color name="text_on_amber">#0A0A0A</color>
 
     <!-- Tinted backgrounds for selected states -->
@@ -30,6 +30,47 @@
     <color name="red_tint">#1AE84040</color>
 
     <!-- White shades -->
-    <color name="white">#FFFFFF</color>
+
     <color name="transparent">#00000000</color>
+
+    <!-- Base surfaces -->
+    <color name="widget_bg">#F7F8FA</color>
+    <color name="widget_border">#E2E5EC</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- Brand -->
+    <color name="brand_orange">#F57C1F</color>
+    <color name="icon_bg_orange">#FFF3E0</color>
+
+    <!-- Status colours -->
+    <color name="status_green">#2CA74B</color>
+    <color name="status_blue">#3B82F6</color>
+    <color name="status_red">#EF4444</color>
+
+    <!-- Icon tints per status -->
+    <color name="icon_bg_green">#EDFAF2</color>
+    <color name="icon_bg_blue">#EFF4FF</color>
+
+    <!-- Pill backgrounds -->
+    <color name="pill_bg_orange">#FFF3E0</color>
+    <color name="pill_text_orange">#C4610A</color>
+    <color name="pill_bg_green">#EDFAF2</color>
+    <color name="pill_text_green">#1F8B3E</color>
+    <color name="pill_bg_blue">#EFF4FF</color>
+    <color name="pill_text_blue">#2563CF</color>
+
+    <!-- Live chip -->
+    <color name="live_bg">#F0FBF3</color>
+    <color name="live_border">#C3EACB</color>
+    <color name="live_text">#2A9946</color>
+    <color name="live_dot">#3DB85C</color>
+
+    <!-- Typography -->
+    <color name="text_primary">#1A1D23</color>
+    <color name="text_secondary">#555B6A</color>
+    <color name="text_muted">#9296A1</color>
+
+    <!-- Map placeholder bg (shown before MapView loads) -->
+    <color name="map_bg">#E8EDF5</color>
+
 </resources>

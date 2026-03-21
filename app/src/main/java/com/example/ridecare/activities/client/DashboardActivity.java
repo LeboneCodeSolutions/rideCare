@@ -15,15 +15,17 @@ import com.example.ridecare.activities.common.SettingsActivity;
 import com.example.ridecare.activities.service.engineOverhaulActivity;
 import com.example.ridecare.activities.service.oilChangeActivity;
 import com.example.ridecare.activities.service.towDispatchActivity;
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.*;
 
 
 public class DashboardActivity extends AppCompatActivity {
-
-
-    ImageView heroCar;
+    ImageView heroCar, mapPlaceholder, ivProfile;
+    MaterialButton btnNewDispatch, btnViewAll;
+    // Constraint Layout
+    ConstraintLayout serviceRequestCard,invoiceCard;
     TextView myGarageBtn, tvViewMore;
     LinearLayout overHaulcard, oilChangeCard, towingCard;
             /* Developer Note
@@ -38,21 +40,16 @@ public class DashboardActivity extends AppCompatActivity {
 
         heroCar = findViewById(R.id.heroCar);
         myGarageBtn = findViewById(R.id.myGarageBtn);
-
-        // Linear Layout
-        overHaulcard = findViewById(R.id.overHaulCard);
-        oilChangeCard = findViewById(R.id.oilChangeCard);
-        towingCard = findViewById(R.id.towingCard);
-
-        // Constraint Layout
-        ConstraintLayout serviceRequestCard;
-        ConstraintLayout invoiceCard;
         serviceRequestCard = findViewById(R.id.serviceRequestCard);
         invoiceCard = findViewById(R.id.invoiceCard);
 
-        // Image View
-        ImageView ivProfile = findViewById(R.id.ivProfile);
+        mapPlaceholder = findViewById(R.id.mapPlaceholder);
+        btnNewDispatch = findViewById(R.id.btnNewDispatch);
+        btnViewAll = findViewById(R.id.btnViewAll);
 
+        // Image View
+        ivProfile = findViewById(R.id.ivProfile);
+        onClickListenerFunction();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null) {
             startActivity(new Intent(this, LoginActivity.class));
@@ -68,6 +65,16 @@ public class DashboardActivity extends AppCompatActivity {
         );
 
 
+
+
+    }
+
+    public void onClickListenerFunction(){
+
+        View.OnClickListener openTowDispatch = v -> startActivity(new Intent(DashboardActivity.this, towDispatchActivity.class));
+        mapPlaceholder.setOnClickListener(openTowDispatch);
+        btnNewDispatch.setOnClickListener(openTowDispatch);
+
         // vehicle list
         View.OnClickListener openVehicleList = v -> startActivity(new Intent(DashboardActivity.this, VehicleListActivity.class));
         myGarageBtn.setOnClickListener(openVehicleList);
@@ -80,22 +87,9 @@ public class DashboardActivity extends AppCompatActivity {
         ivProfile.setOnClickListener(v ->
                 startActivity(new Intent(DashboardActivity.this, SettingsActivity.class)));
 
-
-        View.OnClickListener openOverhaulActivity = v -> startActivity(new Intent(DashboardActivity.this, engineOverhaulActivity.class ));
-        overHaulcard.setOnClickListener(openOverhaulActivity);
-
-
-        View.OnClickListener openOilChangeCard = v -> startActivity(new Intent(DashboardActivity.this, oilChangeActivity.class));
-        oilChangeCard.setOnClickListener(openOilChangeCard);
-
-        View.OnClickListener openTowingCard = v -> startActivity(new Intent(DashboardActivity.this, towDispatchActivity.class));
-        towingCard.setOnClickListener(openTowingCard);
-
-
         // invoice list button
         View.OnClickListener openInvoice = v ->startActivity(new Intent(DashboardActivity.this, InvoiceListActivity.class));
         invoiceCard.setOnClickListener(openInvoice);
-
 
     }
 }

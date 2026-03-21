@@ -1,8 +1,8 @@
 package com.example.ridecare.models;
 import java.io.Serializable;
+import com.google.firebase.firestore.IgnoreExtraProperties;
 
-
-
+@IgnoreExtraProperties
 public class ServiceRequest implements Serializable {
 
     // IDs
@@ -62,6 +62,8 @@ public class ServiceRequest implements Serializable {
     public void setMechanicId(String mechanicID){
         this.mechanicId = mechanicId;
     }
+
+
     public String getServiceRequestId() {
         return serviceRequestId;
     }

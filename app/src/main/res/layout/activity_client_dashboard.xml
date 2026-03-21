@@ -2,7 +2,6 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
@@ -10,93 +9,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-69dp">
+        android:layout_height="wrap_content">
 
         <!-- ================= HERO SECTION ================= -->
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/serviceRequestCard"
-            android:layout_width="350dp"
-            android:layout_height="200dp"
-            android:layout_margin="20dp"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/bg_color_card_icon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/serviceRow">
-
-            <ImageView
-                android:id="@+id/ivServiceRequest"
-                android:contentDescription="@string/serviceRequestImage"
-                android:layout_width="201dp"
-                android:layout_height="163dp"
-                android:layout_marginEnd="40dp"
-                android:layout_marginBottom="4dp"
-                android:alpha="0.85"
-
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/audia3_removebg_preview" />
-
-            <TextView
-                android:id="@+id/tvServiceRequest"
-                android:layout_width="131dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="300dp"
-                android:text="@string/serviceRequest"
-                android:textColor="#FFFFFF"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/invoiceCard"
-            android:layout_width="350dp"
-            android:layout_height="200dp"
-            android:layout_margin="20dp"
-            android:layout_marginTop="28dp"
-            android:background="@drawable/bg_color_card_icon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/serviceRequestCard">
-
-
-            <!-- Invoice content goes here -->
-
-            <ImageView
-                android:id="@+id/invoiceImage"
-                android:contentDescription="@string/invoiceImage"
-                android:layout_width="219dp"
-                android:layout_height="168dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                android:alpha="0.85"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/vehicle_invoice" />
-
-            <TextView
-                android:layout_width="98dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="76dp"
-                android:text="@string/invoiceDescription"
-                android:textColor="#FFFFFF"
-                android:textSize="6dp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@id/invoiceImage"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/heroSection"
@@ -105,7 +20,7 @@
             android:background="@drawable/bg_color_card_gradient"
             app:layout_constraintTop_toTopOf="parent">
 
-            <!-- Menu -->
+            <!-- Menu icon -->
             <ImageView
                 android:id="@+id/menuIcon"
                 android:layout_width="28dp"
@@ -116,7 +31,7 @@
                 app:srcCompat="@drawable/menu_24px"
                 app:tint="#FFFFFF" />
 
-            <!-- Home -->
+            <!-- Home title -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -125,20 +40,15 @@
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/menuIcon"
                 app:layout_constraintStart_toEndOf="@id/menuIcon"
                 app:layout_constraintTop_toTopOf="@id/menuIcon" />
 
-            <!-- Profile -->
-
-            <!-- MY GARAGE BUTTON -->
-
-            <!-- CAR IMAGE -->
-
+            <!-- Profile icon -->
             <ImageView
                 android:id="@+id/ivProfile"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:layout_margin="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="36dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -146,6 +56,7 @@
                 app:srcCompat="@drawable/account_circle_24px"
                 app:tint="#FFFFFF" />
 
+            <!-- My Garage button -->
             <TextView
                 android:id="@+id/myGarageBtn"
                 android:layout_width="wrap_content"
@@ -162,6 +73,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <!-- Hero car image -->
             <ImageView
                 android:id="@+id/heroCar"
                 android:contentDescription="@string/carHeroDashBoard"
@@ -171,7 +83,6 @@
                 android:scaleType="fitCenter"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:srcCompat="@drawable/volkswagen_golf_2015" />
 
@@ -179,16 +90,14 @@
 
         <!-- ================= SERVICES ================= -->
 
-        <!-- SERVICE CARDS -->
-
+        <!-- FIX: restored missing servicesTitle that towDispatch depends on -->
         <TextView
             android:id="@+id/servicesTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/serviceTypeDescription"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="4dp"
+            android:text=""
             android:textColor="#233D4D"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -196,113 +105,104 @@
             app:layout_constraintTop_toBottomOf="@id/heroSection" />
 
         <LinearLayout
-            android:id="@+id/serviceRow"
+            android:id="@+id/towDispatch"
             android:layout_width="0dp"
-            android:layout_height="150dp"
-            android:layout_marginBottom="20dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
             android:paddingHorizontal="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/servicesTitle">
 
-            <!-- CARD TEMPLATE -->
+            <include
+                layout="@layout/widget_tow_dispatch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/overHaulCard"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_margin="6dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical"
-                tools:layout_editor_absoluteX="26dp"
-                tools:layout_editor_absoluteY="397dp">
+        <!-- ================= SERVICE REQUEST CARD ================= -->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="41dp"
-                    android:contentDescription="@string/vehicleOverhaul"
-                    app:srcCompat="@drawable/car_repair"
-                    app:tint="#233D4D" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/serviceRequestCard"
+            android:layout_width="350dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/bg_color_card_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/towDispatch">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tvOverhaul"
-                    android:textColor="#233D4D"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/oilChangeCard"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_margin="6dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:contentDescription="@string/iconOil"
-                    app:srcCompat="@drawable/oil_barrel_24px"
-                    app:tint="#233D4D"
-                    tools:layout_editor_absoluteX="187dp"
-                    tools:layout_editor_absoluteY="439dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tvOilChange"
-                    android:textColor="#233D4D"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/towingCard"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_margin="6dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:contentDescription="@string/iconTowing"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    app:srcCompat="@drawable/auto_towing_24px"
-                    app:tint="#233D4D"
-                    tools:layout_editor_absoluteX="311dp"
-                    tools:layout_editor_absoluteY="439dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tvTowing"
-                    android:textColor="#233D4D"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+            <ImageView
+                android:id="@+id/ivServiceRequest"
+                android:contentDescription="@string/serviceRequestImage"
+                android:layout_width="201dp"
+                android:layout_height="163dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="4dp"
+                android:alpha="0.85"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/audia3_removebg_preview" />
 
             <TextView
-                android:id="@+id/tvViewMore"
-                android:layout_width="wrap_content"
+                android:id="@+id/tvServiceRequest"
+                android:layout_width="131dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/serviceRequest"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- ================= INVOICE CARD ================= -->
+
+        <!-- FIX: removed constraintBottom_toBottomOf="parent" — conflicts with
+             constraintTop_toBottomOf on a fixed-height view in a wrap_content parent -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/invoiceCard"
+            android:layout_width="350dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_color_card_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/serviceRequestCard">
+
+            <ImageView
+                android:id="@+id/invoiceImage"
+                android:contentDescription="@string/invoiceImage"
+                android:layout_width="219dp"
+                android:layout_height="168dp"
                 android:layout_marginEnd="16dp"
-                android:text="@string/tvViewMore"
-                android:textColor="#233D4D"
-                android:textSize="13sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+                android:layout_marginBottom="16dp"
+                android:alpha="0.85"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/vehicle_invoice" />
+
+            <TextView
+                android:id="@+id/tvInvoiceDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/invoiceDescription"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/invoiceImage"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
