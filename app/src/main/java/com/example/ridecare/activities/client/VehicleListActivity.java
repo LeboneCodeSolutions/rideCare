@@ -1,13 +1,17 @@
 package com.example.ridecare.activities.client; // Use your actual package name
 
+import static com.example.ridecare.utils.MyUtils.checkVehicleRequestLimit;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ridecare.R;
 import com.example.ridecare.adapters.VehicleAdapter;
 import com.example.ridecare.models.Vehicle;
+import com.example.ridecare.utils.MyUtils;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -29,7 +34,6 @@ public class VehicleListActivity extends AppCompatActivity {
     private static final String TAG = "VehicleListActivity";
 
     private RecyclerView rvVehicles;
-    private Button btnAddVehicle;
     private VehicleAdapter adapter;
     private List<Vehicle> vehicleList;
 private ImageView ivAddVehicle, backArrow;
@@ -56,14 +60,43 @@ private ImageView ivAddVehicle, backArrow;
         adapter = new VehicleAdapter(vehicleList, this, new VehicleAdapter.OnVehicleAction() {
             @Override
             public void onBook(Vehicle vehicle) {
-                // Example: Open a booking activity
-                Intent intent = new Intent(VehicleListActivity.this, BookServiceActivity.class);
-                intent.putExtra("vehicleId", vehicle.getVehicleId());
-                intent.putExtra("vehicleMake", vehicle.getMake());
-                intent.putExtra("vehicleModel", vehicle.getModel());
-                startActivity(intent);
+                /* Logic checks to see if the vehicle has more than x amount of requests to prevent from the system being flooded with request by one vehicle --
+                check myUtils checkVehicleRequestLimit for more information about this
+                */
+                    String vehicleIdVar = vehicle.getVehicleId();
+                    checkVehicleRequestLimit(vehicleIdVar, new MyUtils.OnLimitCheckListener(){
+                    @Override
+                    public void onCanProceed(int currentCount) {
+                        Intent intent = new Intent(VehicleListActivity.this, BookServiceActivity.class);
+                        intent.putExtra("vehicleId", vehicle.getVehicleId());
+                        intent.putExtra("vehicleMake", vehicle.getMake());
+                        intent.putExtra("vehicleModel", vehicle.getModel());
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onLimitReached(int currentCount) {
+                        /* Designed to output a message should request exceed the limit
+                        - refer to utils/MyUtils/function
+                        - requestLimitReachMessage to get a better understanding of the function
+                        */
+                        MyUtils.requestLimitReachMessage(currentCount,VehicleListActivity.this, ServiceListActivity.class );
+                    }
+
+
+                        /*
+                            - refer to utils/MyUtils/function
+                            -toastMakeErrorRequestLimit to get a better understanding of the function
+                            */
+                    @Override
+                    public void onError(Exception e) {
+                       MyUtils.toastMakeErrorRequestLimit(VehicleListActivity.this);
+                    }
+                });
+
             }
 
+            // Developer Note: Create a file which allows user to edit vehicle information
             @Override
             public void onEdit(Vehicle vehicle) {
                 Intent intent = new Intent(VehicleListActivity.this, EditVehicleActivity.class);
@@ -71,9 +104,12 @@ private ImageView ivAddVehicle, backArrow;
             }
 
         });
+
+        // Recycle view which displays the vehicles
         rvVehicles.setLayoutManager(new LinearLayoutManager(this));
         rvVehicles.setAdapter(adapter);
         loadVehiclesRealtime();
+
 
         backArrow.setOnClickListener(v ->{
             startActivity(new Intent(VehicleListActivity.this, DashboardActivity.class));
@@ -82,9 +118,6 @@ private ImageView ivAddVehicle, backArrow;
            startActivity(new Intent(VehicleListActivity.this, AddVehicleActivity.class)                                                                                                                                                                                          );
         });
     }
-
-
-
 
     private void loadVehiclesRealtime() {
         FirebaseUser currentUser = mAuth.getCurrentUser();

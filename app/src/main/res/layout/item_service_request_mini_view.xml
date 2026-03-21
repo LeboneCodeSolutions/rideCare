@@ -1,26 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-    item_service_request_card_light.xml
-    ─────────────────────────────────────────────────────────────
-    Light-theme service-request list card — Tow Dispatch style.
-
-    Color tokens (add to colors.xml):
-      colorSurface            #FFFFFF
-      colorBackground         #F0F4F8
-      colorBorderLight        #E2E8F0
-      colorBorderLighter      #F1F5F9
-      colorTeal               #0BBFB8
-      colorTealAlpha15        #260BBFB8
-      colorTextPrimary        #1E293B
-      colorTextSecondary      #475569
-      colorTextMuted          #94A3B8
-      colorAmber              #F59E0B
-      colorAmberAlpha15       #26F59E0B
-
-    Drawables needed:
-      ic_car_reg, ic_service_type, ic_status_dot, ic_chevron_right
-    ─────────────────────────────────────────────────────────────
--->
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -35,19 +13,18 @@
     app:strokeColor="#E2E8F0"
     app:strokeWidth="1dp">
 
-    <!-- Root row: left teal border strip + content -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <!-- ── Teal accent strip ── -->
+        <!-- Left accent strip — tint at runtime to match status colour -->
         <View
+            android:id="@+id/viewStatusStrip"
             android:layout_width="4dp"
             android:layout_height="match_parent"
-            android:background="#0BBFB8" />
+            android:background="#0097A7" />
 
-        <!-- ── Card content ── -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,80 +34,66 @@
             android:paddingTop="14dp"
             android:paddingBottom="14dp">
 
-            <!-- ── Header row: request ID + status chip ── -->
+            <!-- Header: delete icon + vehicle name + status chip -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
 
+                <!-- X (Delete) icon — top left -->
+                <ImageButton
+                    android:id="@+id/btnDelete"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Delete request"
+                    android:padding="2dp"
+                    android:src="@drawable/ic_close"
+                    app:tint="#94A3B8" />
+
                 <TextView
-                    android:id="@+id/tvRequestId"
+                    android:id="@+id/tvVehicleName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_marginStart="8dp"
                     android:fontFamily="sans-serif-medium"
-                    android:letterSpacing="0.08"
-                    android:textAllCaps="true"
-                    android:textColor="#0BBFB8"
-                    android:textSize="11sp"
-                    tools:text="JOB #TW-00412" />
+                    android:textColor="#1E293B"
+                    android:textSize="15sp"
+                    tools:text="Toyota Fortuner" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipStatus"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="37dp"
                     android:fontFamily="sans-serif-medium"
-                    android:textAllCaps="false"
-                    android:textColor="#0BBFB8"
+                    android:textColor="#0097A7"
                     android:textSize="11sp"
-                    app:chipBackgroundColor="#260BBFB8"
-                    app:chipCornerRadius="6dp"
-                    app:chipIconVisible="false"
+                    app:chipBackgroundColor="#1A0097A7"
+                    app:chipCornerRadius="20dp"
                     app:chipMinHeight="28dp"
-                    app:chipStrokeColor="#0BBFB8"
+                    app:chipStrokeColor="#0097A7"
                     app:chipStrokeWidth="1dp"
-                    tools:text="In Progress" />
+                    tools:text="Active" />
 
             </LinearLayout>
 
-            <!-- ── Vehicle registration ── -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginTop="10dp">
-
-
-                <TextView
-                    android:id="@+id/tvVehicleRegistration"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:textColor="#1E293B"
-                    android:textSize="18sp"
-                    android:letterSpacing="0.05"
-                    tools:text="CA 123-456" />
-
-            </LinearLayout>
-
-            <!-- ── Divider ── -->
+            <!-- Divider -->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="12dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="12dp"
                 android:background="#F1F5F9" />
 
-            <!-- ── Meta row: service type + status ── -->
+            <!-- Row 1: Registration Number | VIN -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <!-- Service Type -->
+                <!-- Registration Number -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -140,41 +103,26 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="SERVICE TYPE"
+                        android:text="REG NUMBER"
                         android:textColor="#94A3B8"
                         android:textSize="9sp"
                         android:fontFamily="sans-serif-medium"
-                        android:letterSpacing="0.12" />
+                        android:letterSpacing="0.10" />
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/tvRegistrationNumber"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:layout_marginTop="3dp">
+                        android:layout_marginTop="3dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="#1E293B"
+                        android:textSize="13sp"
+                        android:letterSpacing="0.04"
+                        tools:text="CA 123-456" />
 
-
-                        <TextView
-                            android:id="@+id/tvServiceType"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="6dp"
-                            android:fontFamily="sans-serif"
-                            android:textColor="#475569"
-                            android:textSize="13sp"
-                            tools:text="Service Type" />
-
-                    </LinearLayout>
                 </LinearLayout>
 
-                <!-- Vertical micro-divider -->
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginHorizontal="12dp"
-                    android:background="#E2E8F0" />
-
-                <!-- Service Status -->
+                <!-- VIN -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -184,43 +132,73 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="STATUS"
+                        android:text="VIN"
                         android:textColor="#94A3B8"
                         android:textSize="9sp"
                         android:fontFamily="sans-serif-medium"
-                        android:letterSpacing="0.12" />
+                        android:letterSpacing="0.10" />
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/tvVehicleIdentityNumber"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:layout_marginTop="3dp">
+                        android:layout_marginTop="3dp"
+                        android:fontFamily="monospace"
+                        android:textColor="#1E293B"
+                        android:textSize="12sp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        tools:text="1HGBH41JXMN109186" />
 
-
-                        <TextView
-                            android:id="@+id/tvServiceStatus"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="6dp"
-                            android:fontFamily="sans-serif"
-                            android:textColor="#475569"
-                            android:textSize="13sp"
-                            tools:text="Driver en route" />
-
-                    </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>
 
-            <!-- ── Divider ── -->
+            <!-- Row 2: Service Type -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SERVICE TYPE"
+                    android:textColor="#94A3B8"
+                    android:textSize="9sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.10" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="3dp">
+
+                    <TextView
+                        android:id="@+id/tvServiceType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:fontFamily="sans-serif"
+                        android:textColor="#334155"
+                        android:textSize="13sp"
+                        tools:text="Tow — Flatbed Recovery" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Divider -->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="12dp"
                 android:background="#F1F5F9" />
 
-            <!-- ── Action button ── -->
+            <!-- View button -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnView"
                 android:layout_width="match_parent"
@@ -228,15 +206,14 @@
                 android:layout_marginTop="12dp"
                 android:text="View Full Request"
                 android:textSize="13sp"
-                android:letterSpacing="0.04"
-                android:fontFamily="sans-serif-medium"
                 android:textColor="#FFFFFF"
-                app:backgroundTint="#0BBFB8"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.02"
+                app:backgroundTint="#0097A7"
                 app:cornerRadius="8dp"
-                app:icon="@drawable/ic_chevron_right"
                 app:iconGravity="end"
                 app:iconTint="#FFFFFF"
-                app:rippleColor="#1AFFFFFF" />
+                app:rippleColor="#33FFFFFF" />
 
         </LinearLayout>
     </LinearLayout>

@@ -14,8 +14,6 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class batteryReplacementActivity extends AppCompatActivity {
-
-
     // Static request metadata
     String serviceType = "Battery Replacement";
     String batterySpec;
@@ -37,37 +35,43 @@ public class batteryReplacementActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
      super.onCreate(savedInstanceState);
      setContentView(R.layout.activity_service_battery_replacment);
-
-
-     //Bind UI Elements
-     clSubmitBatteryReplaceJob = findViewById(R.id.clSubmitBatteryReplaceJob);
-     // Initialize Firebase
-     db = FirebaseFirestore.getInstance();
-     auth = FirebaseAuth.getInstance();
-
-     //dropdown setup
-
-     ddStartStop = findViewById(R.id.ddStartStop);
-     String[] startStop = {
-             "Yes",
-             "No"
-     };
-
-     MyUtils.setDropdown(this,ddStartStop,startStop);
-
-     ddVehicleTrim = findViewById(R.id.ddVehicleTrim);
-     String[] vehicleTrim = {
-             "Small",
-             "Medium",
-             "Large/Diesel",
-             "LargeSUV"
-     };
-     MyUtils.setDropdown(this,ddVehicleTrim, vehicleTrim);
-     clSubmitBatteryReplaceJob.setOnClickListener(v -> submitRequest());
-
+        bindViews();
+        submitRequest();
  }
 
-    private void submitRequest() {
+private void bindViews(){
+    //Bind UI Elements
+    clSubmitBatteryReplaceJob = findViewById(R.id.clSubmitBatteryReplaceJob);
+    // Initialize Firebase
+    db = FirebaseFirestore.getInstance();
+    auth = FirebaseAuth.getInstance();
+
+    //dropdown setup
+
+    ddStartStop = findViewById(R.id.ddStartStop);
+    String[] startStop = {
+            "Yes",
+            "No"
+    };
+
+    MyUtils.setDropdown(this,ddStartStop,startStop);
+
+    ddVehicleTrim = findViewById(R.id.ddVehicleTrim);
+    String[] vehicleTrim = {
+            "Small",
+            "Medium",
+            "Large/Diesel",
+            "LargeSUV"
+    };
+    MyUtils.setDropdown(this,ddVehicleTrim, vehicleTrim);
+
+
+
+
+}
+private void submitRequest() {
+    clSubmitBatteryReplaceJob.setOnClickListener(v -> {
+
         // Extract and sanitize form input values using reusable helper
         String vehicleTrim = MyUtils.newStr(ddVehicleTrim);
         String startStop = MyUtils.newStr(ddStartStop);
@@ -129,6 +133,7 @@ public class batteryReplacementActivity extends AppCompatActivity {
             });
 
         });
+    });
+ }
 
-    }
 }

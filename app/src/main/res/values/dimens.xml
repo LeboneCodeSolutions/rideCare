@@ -27,4 +27,8 @@
     <dimen name="etlayoutHeightTyres">40dp</dimen>
 
     <dimen name="clMarginTop">12dp</dimen>
+
+    <dimen name="widget_corner_radius">24dp</dimen>
+    <dimen name="item_corner_radius">14dp</dimen>
+    <dimen name="stat_corner_radius">14dp</dimen>
 </resources>

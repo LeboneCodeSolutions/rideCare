@@ -1,5 +1,7 @@
 package com.example.ridecare.activities.client;
 
+import static com.example.ridecare.utils.MyUtils.checkVehicleRequestLimit;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -16,6 +18,7 @@ import com.example.ridecare.activities.service.towDispatchActivity;
 import com.example.ridecare.activities.service.tyreRepairActivity;
 import com.example.ridecare.models.BrakeSystemRequest;
 import com.example.ridecare.models.ServiceRequest;
+import com.example.ridecare.utils.MyUtils;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -63,164 +66,58 @@ public class BookServiceActivity extends AppCompatActivity {
             finish();
             return;
         }
-        // Developer Note: Create a cancel service button
+        checkVehicleRequestLimit(vehicleId, new MyUtils.OnLimitCheckListener(){
 
+            @Override
+            public void onCanProceed(int currentCount) {
+                containerOilChange.setOnClickListener(v -> {
+                    Intent intent = new Intent(BookServiceActivity.this, oilChangeActivity.class);
+                    intent.putExtra("vehicleId", vehicleId);
+                    startActivity(intent);
+                });
 
-        // Developer Note: Set functionality on the containers,
-        //Preset the container values - staus = done
-        // user can't select more than 1 container at a time
-        // and once user confirms the oder
-        containerOilChange.setOnClickListener(v -> {
-            Intent intent = new Intent(BookServiceActivity.this, oilChangeActivity.class);
-            intent.putExtra("vehicleId", vehicleId);
-            startActivity(intent);
+                containerTyreReplacement.setOnClickListener(v -> {
+                    Intent intent = new Intent(BookServiceActivity.this, tyreRepairActivity.class);
+                    intent.putExtra("vehicleId", vehicleId);
+                    startActivity(intent);
+                });
+
+                containerBrakingSystem.setOnClickListener(v -> {
+                    Intent intent = new Intent(BookServiceActivity.this, brakeSyetemRepairActivity.class);
+                    intent.putExtra("vehicleId", vehicleId);
+                    startActivity(intent);
+                });
+
+                containerBattteryReplacement.setOnClickListener(v -> {
+                    Intent intent = new Intent(BookServiceActivity.this, batteryReplacementActivity.class);
+                    intent.putExtra("vehicleId", vehicleId);
+                    startActivity(intent);
+                });
+
+                containerOverhaul.setOnClickListener(v -> {
+                    Intent intent = new Intent(BookServiceActivity.this, engineOverhaulActivity.class);
+                    intent.putExtra("vehicleId", vehicleId);
+                    startActivity(intent);
+                });
+
+                containerTowing.setOnClickListener(v -> {
+                    Intent intent = new Intent(BookServiceActivity.this, towDispatchActivity.class);
+                    intent.putExtra("vehicleId", vehicleId);
+                    startActivity(intent);
+                });
+            }
+
+            @Override
+            public void onLimitReached(int currentCount) {
+                MyUtils.requestLimitReachMessage(currentCount,BookServiceActivity.this, ServiceListActivity.class);
+            }
+
+            @Override
+            public void onError(Exception e) {
+                MyUtils.toastMakeErrorRequestLimit(BookServiceActivity.this);
+            }
         });
 
-        containerTyreReplacement.setOnClickListener(v -> {
-            Intent intent = new Intent(BookServiceActivity.this, tyreRepairActivity.class);
-            intent.putExtra("vehicleId", vehicleId);
-            startActivity(intent);
-        });
-
-        containerBrakingSystem.setOnClickListener(v -> {
-            Intent intent = new Intent(BookServiceActivity.this, brakeSyetemRepairActivity.class);
-            intent.putExtra("vehicleId", vehicleId);
-            startActivity(intent);
-        });
-
-        containerBattteryReplacement.setOnClickListener(v -> {
-            Intent intent = new Intent(BookServiceActivity.this, batteryReplacementActivity.class);
-            intent.putExtra("vehicleId", vehicleId);
-            startActivity(intent);
-        });
-
-        containerOverhaul.setOnClickListener(v -> {
-            Intent intent = new Intent(BookServiceActivity.this, engineOverhaulActivity.class);
-            intent.putExtra("vehicleId", vehicleId);
-            startActivity(intent);
-        });
-
-        containerTowing.setOnClickListener(v -> {
-            Intent intent = new Intent(BookServiceActivity.this, towDispatchActivity.class);
-            intent.putExtra("vehicleId", vehicleId);
-            startActivity(intent);
-        });
     }
 
 }
-  /*  private void submitRequest() {
-
-
-        if (selectedService == null) {
-            Toast.makeText(this, "Please Select service type", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        String desc = etDescription.getText().toString().trim();
-
-        if (desc.isEmpty()) {
-            etDescription.setError("Description required");
-            return;
-        }
-        if (auth.getCurrentUser() == null) {
-            Toast.makeText(this, "Not logged in", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        String uid = auth.getCurrentUser().getUid();
-        String clientEmail = auth.getCurrentUser().getEmail();
-
-        // ✅ GET VEHICLE ID FIRST - BEFORE USING IT!
-        Intent intent = getIntent();
-        vehicleId = intent.getStringExtra("vehicleId");
-        if (vehicleId == null) {
-            vehicleId = intent.getStringExtra("id");
-        }
-
-        if (vehicleId == null || vehicleId.isEmpty()) {
-            Toast.makeText(this, "Vehicle ID not provided", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        // 🔹 Create Firestore document reference FIRST
-        DocumentReference docRef = db.collection("request_service_vehicle").document();
-
-        // 🔹 Fetch user profile
-        db.collection("users")
-                .document(uid)
-                .get()
-                .addOnSuccessListener(userDoc -> {
-
-                    if (!userDoc.exists()) {
-                        Toast.makeText(this, "User profile not found", Toast.LENGTH_LONG).show();
-                        return;
-                    }
-
-                    // 🔹 Fetch vehicle (NOW vehicleId has a value!)
-                    db.collection("vehicles")
-                            .document(vehicleId)
-                            .get()
-                            .addOnSuccessListener(vehicleDoc -> {
-
-                                if (!vehicleDoc.exists()) {
-                                    Toast.makeText(this, "Vehicle not found", Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-
-                                // ✅ REMOVED - Already got vehicleId above
-                                // Don't try to get it again here!
-
-                                String vehicleReg = vehicleDoc.getString("registrationNumber");
-                                String vinNumber = vehicleDoc.getString("vin");
-                                String vehicleMake = vehicleDoc.getString("make");
-                                String vehicleModel  = vehicleDoc.getString("model");
-
-                                // 🔹 Build ServiceRequest
-                                ServiceRequest request = new ServiceRequest();
-                                request.setVehicleID(vehicleId);
-                                request.setUserId(uid);
-                                request.setVehicleReg(vehicleReg);
-                                request.setVinNumber(vinNumber);
-                                request.setVehicleMake(vehicleMake);
-                                request.setVehicleModel(vehicleModel);
-                                request.setServiceType(serviceType);
-                                request.setStatus(status);
-                                request.setClientDescription(desc);
-                                request.setServiceRequestId(docRef.getId());
-
-                                // 🔹 WRITE TO FIRESTORE
-                                docRef.set(request)
-                                        .addOnSuccessListener(aVoid -> {
-                                            Toast.makeText(
-                                                    this,
-                                                    "Service request submitted!",
-                                                    Toast.LENGTH_SHORT
-                                            ).show();
-                                            finish();
-                                        })
-                                        .addOnFailureListener(e ->
-                                                Toast.makeText(
-                                                        this,
-                                                        "Write failed: " + e.getMessage(),
-                                                        Toast.LENGTH_LONG
-                                                ).show()
-                                        );
-
-                            })
-                            .addOnFailureListener(e ->
-                                    Toast.makeText(
-                                            this,
-                                            "Vehicle fetch failed: " + e.getMessage(),
-                                            Toast.LENGTH_LONG
-                                    ).show()
-                            );
-
-                })
-                .addOnFailureListener(e ->
-                        Toast.makeText(
-                                this,
-                                "User fetch failed: " + e.getMessage(),
-                                Toast.LENGTH_LONG
-                        ).show()
-                );
-    }
-}
-*/

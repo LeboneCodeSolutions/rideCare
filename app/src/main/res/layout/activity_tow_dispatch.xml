@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-    activity_tow_dispatch.xml
-    ✅ No <include> tags
-    ✅ No @drawable/ic_tow_truck (uses emoji instead)
-    ✅ No custom styles or strings files needed
-    ✅ No @drawable/bg_progress_active (uses plain color backgrounds)
-    ✅ Drop this file into res/layout/ and it works immediately
--->
+
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"

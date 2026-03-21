@@ -20,27 +20,35 @@
 
 package com.example.ridecare.utils;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.example.ridecare.R;
+import com.example.ridecare.activities.client.ServiceListActivity;
+import com.example.ridecare.activities.client.VehicleListActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Arrays;
 import java.util.Calendar;
 
 public class MyUtils {
@@ -395,5 +403,54 @@ public class MyUtils {
 
         yes.setOnClickListener(resetAndApply);
         no.setOnClickListener(resetAndApply);
+    }
+
+    public static void checkVehicleRequestLimit(String vehicleId, OnLimitCheckListener listener) {
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance(); // 👈 get instance directly
+
+        db.collection("request_service_vehicle")
+                .whereEqualTo("vehicleID", vehicleId)
+                .whereIn("status", Arrays.asList("pending", "active", "in_progress", "Service Requested"))
+                .get()
+                .addOnSuccessListener(querySnapshot -> {
+                    int activeCount = querySnapshot.size();
+                    if (activeCount >= 3) {
+                        listener.onLimitReached(activeCount);
+                    } else {
+                        listener.onCanProceed(activeCount);
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("ServiceRequest", "Failed to check request limit", e);
+                    listener.onError(e);
+                });
+    }
+    public interface OnLimitCheckListener {
+        void onCanProceed(int currentCount);
+        void onLimitReached(int currentCount);
+        void onError(Exception e);
+    }
+
+
+
+
+    public static void requestLimitReachMessage(int currentCount, Context context, Class<?> targetClass){
+        new AlertDialog.Builder(context)
+                .setTitle("Request Limit Reached")
+                .setMessage("This vehicle already has " + currentCount + " active service requests.\n\n" +
+                        "Please cancel an existing request or wait for a job to be completed before booking again.")
+                .setPositiveButton("View My Requests", (dialog, which) -> {
+                    context.startActivity(new Intent(context, targetClass));
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
+
+    public static void toastMakeErrorRequestLimit (Context context){
+        Toast.makeText(context,
+                "Could not verify request limit. Please try again.",
+                Toast.LENGTH_SHORT).show();
     }
 }
