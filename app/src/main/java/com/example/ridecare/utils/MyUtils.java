@@ -36,6 +36,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.example.ridecare.R;
 import com.example.ridecare.activities.client.ServiceListActivity;
@@ -85,10 +87,23 @@ public class MyUtils {
      * Safely extracts trimmed text from an EditText.
      * Prevents null pointer crashes.
      */
+
+
+    public static int intParser(String strValue, EditText etValue) {
+        // Function - Converts string value into a integer
+        try {
+            return Integer.parseInt(strValue);
+        } catch (NumberFormatException e) {
+            etValue.setError("Invalid Integer");
+            return 0 ;
+        }
+    }
+
     public static String newStr(EditText text) {
         if (text == null || text.getText() == null) return "";
         return text.getText().toString().trim();
     }
+
 
     // =============================
     // VALIDATION HELPERS
@@ -105,6 +120,16 @@ public class MyUtils {
         }
         return true;
     }
+
+
+// test function toastMake error used in add vehicle acticity
+
+
+    public static void eDisplay(Context context, String field){
+       String errText = "Error: ";
+        Toast.makeText(context, errText + field, Toast.LENGTH_SHORT).show();
+    }
+
 
     /**
      * Ensures a Firestore document exists before proceeding.
@@ -164,6 +189,18 @@ public class MyUtils {
                         Toast.makeText(context, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show()
                 );
     }
+
+
+public static boolean errEmptyVal(MutableLiveData<String> saveStatus, String value){
+
+    if(value == null || value.isEmpty()){
+        saveStatus.setValue("Error" + value);
+        return false;
+    }
+    return true;
+}
+
+
 
     // =============================
     // DROPDOWN HELPERS
@@ -357,6 +394,14 @@ public class MyUtils {
 
 // Test functions
 
+    /* public static String regNumberValidation(String regNum){
+        1. regex checker if that input has char A - Z and 0 - 9
+            2. max char 6 with province code [gp/mp/l/zn]
+            3. if identified as custom plate max 7 chars excl prov code
+            4. Western Cape has a different format the province code is first followeed by digts [123-679]
+            5. Custom plates in western cape always use WC in the end
+
+    };*/
     public static String mapYesNoSelection(String currentValue, String userSelection) {
         if (userSelection.equals("Yes")) {
             currentValue = "Yes";

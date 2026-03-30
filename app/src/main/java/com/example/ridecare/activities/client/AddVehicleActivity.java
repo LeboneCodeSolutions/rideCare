@@ -1,86 +1,86 @@
 package com.example.ridecare.activities.client;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.example.ridecare.R;
-import com.example.ridecare.models.Vehicle;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.example.ridecare.utils.MyUtils;
+import com.example.ridecare.viewmodels.AddVehicleViewModel;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddVehicleActivity extends AppCompatActivity {
 
+    // only UI variables here
     EditText etMake, etModel, etYear, etVIN, etReg;
     Button btnSave;
-    FirebaseAuth auth;
-    FirebaseFirestore db;
+    AddVehicleViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_vehicle);
 
-        etMake = findViewById(R.id.etMake);
-        etModel = findViewById(R.id.etModel);
-        etYear = findViewById(R.id.etYear);
-        etVIN = findViewById(R.id.etVIN);
-        etReg = findViewById(R.id.etReg);
-        btnSave = findViewById(R.id.btnSaveVehicle);
-
-        auth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
-
-        btnSave.setOnClickListener(v -> saveVehicle());
+        bindViews(); // -> bind the views
+        setupViewModel(); // -> send the values collected from the user to the processer == viewmodel
+        setupListeners();
     }
 
-    private void saveVehicle() {
+    private final Map<String, EditText> fieldMap = new HashMap<>();
+    private void bindViews() {
+        etMake  = findViewById(R.id.etMake);
+        etModel = findViewById(R.id.etModel);
+        etYear  = findViewById(R.id.etYear);
+        etVIN   = findViewById(R.id.etVIN);
+        etReg   = findViewById(R.id.etReg);
+        btnSave = findViewById(R.id.btnSaveVehicle);
 
-        // Check if the user is logged in or not
-        if (auth.getCurrentUser() == null) {
-            Toast.makeText(this, "Not logged in", Toast.LENGTH_SHORT).show();
-            return;
+        // Add New Values into map if i create a new field
+        fieldMap.put("make",  etMake);
+        fieldMap.put("model", etModel);
+        fieldMap.put("year",  etYear);
+        fieldMap.put("vin",   etVIN);
+        fieldMap.put("reg",   etReg);
+    }
+    private void setupViewModel() {
+        viewModel = new ViewModelProvider(this).get(AddVehicleViewModel.class);
+
+        viewModel.getSaveStatus().observe(this, status -> {
+            if (status.equals("success")) {
+                Toast.makeText(this, "Vehicle saved!", Toast.LENGTH_SHORT).show();
+                finish();
+            } else if (status.startsWith("error:")) {
+                handleError(status.replace("error:", ""));
+            }
+        });
+    }
+    private void setupListeners() {
+        btnSave.setOnClickListener(v -> {
+            // Activity just collects and passes - no logic
+            String make    = MyUtils.newStr(etMake);
+            String model   = MyUtils.newStr(etModel);
+            String yearStr = MyUtils.newStr(etYear);
+            String vin     = MyUtils.newStr(etVIN);
+            String reg     = MyUtils.newStr(etReg);
+            int year       = MyUtils.intParser(yearStr, etYear);
+
+            viewModel.saveVehicle(make, model, year, vin, reg);
+        });
+    }
+    private void handleError(String field) {
+        EditText formInputs = fieldMap.get(field);
+        if (formInputs != null) {
+            MyUtils.requireString(formInputs.getText().toString(), formInputs, "Required");
+        } else {
+
+            // Changed to myUtil Function Refer to MyUtils
+            MyUtils.eDisplay(this, field);
         }
-        String userId = auth.getCurrentUser().getUid();
-
-// Filled from the form
-        String make = etMake.getText().toString().trim();
-        String model = etModel.getText().toString().trim();
-        String yearStr = etYear.getText().toString().trim();
-        String vin = etVIN.getText().toString().trim().toUpperCase();
-        String reg = etReg.getText().toString().trim();
-
-        if (TextUtils.isEmpty(make)) { etMake.setError("Required"); return; }
-        if (TextUtils.isEmpty(model)) { etModel.setError("Required"); return; }
-        if (TextUtils.isEmpty(yearStr)) { etYear.setError("Required"); return; }
-        if (TextUtils.isEmpty(vin)) { etVIN.setError("Required"); return; }
-        if (TextUtils.isEmpty(reg)) { etReg.setError("Required"); return; }
-
-        int year;
-        try { year = Integer.parseInt(yearStr); }
-        catch (NumberFormatException e) { etYear.setError("Invalid year"); return; }
-
-        String uEmail = auth.getCurrentUser() != null ? auth.getCurrentUser().getEmail() : null;
-        if (uEmail == null) {
-            Toast.makeText(this, "Not logged in", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-
-        Vehicle vehicle = new Vehicle(userId,  make, model, year, vin, reg);
-
-        DocumentReference docRef = db.collection("vehicles").document();
-        // setId is linked to the vehicleId
-        vehicle.setVehicleId(docRef.getId());
-
-        docRef.set(vehicle)
-                .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(this, "Vehicle Added", Toast.LENGTH_SHORT).show();
-                    finish();
-                })
-                .addOnFailureListener(e -> Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show());
     }
 }
