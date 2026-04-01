@@ -11,7 +11,7 @@ public class Vehicle {
     private String model;
     private int year;
     private String vin;
-    private String regNumber;
+    private String regNumber , registrationRegion;
 
     @ServerTimestamp
     private Date addedAt;
@@ -20,13 +20,14 @@ public class Vehicle {
     public Vehicle() {
     }
 
-    public Vehicle(String userId, String make, String model, int year, String vin, String regNumber) {
+    public Vehicle(String userId, String make, String model, int year, String vin, String regNumber, String registrationRegion) {
         this.userId = userId;
         this.make = make;
         this.model = model;
         this.year = year;
         this.vin = vin;
         this.regNumber = regNumber;
+        this.registrationRegion = registrationRegion ;
     }
 
     // Getters & Setters for all fields
@@ -92,6 +93,13 @@ public class Vehicle {
         this.regNumber = registrationNumber;
     }
 
+    public String getVehicleRegRegion(){
+        return  registrationRegion;
+    }
+
+    public void setVehicleRegRegion(String registrationRegion){
+        this.registrationRegion = registrationRegion;
+    }
 
     public Date getAddedAt() {
         return addedAt;
