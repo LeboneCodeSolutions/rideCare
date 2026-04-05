@@ -7,4 +7,20 @@
         <item>Battery Replacement</item>
         <item>Engine Diagnostics</item>
     </string-array>
+
+    <string-array name="body_types">
+        <item>Sedan</item>
+        <item>Hatchback</item>
+        <item>SUV / Crossover</item>
+        <item>Coupe</item>
+        <item>Convertible / Cabriolet</item>
+        <item>Wagon / Estate</item>
+        <item>Pickup Truck</item>
+        <item>Minivan / MPV</item>
+        <item>Bakkie (Single Cab)</item>
+        <item>Bakkie (Double Cab)</item>
+        <item>Panel Van</item>
+        <item>Bus / Minibus</item>
+        <item>Other</item>
+    </string-array>
 </resources>

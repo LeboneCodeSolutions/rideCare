@@ -1,3 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.RideCare" parent="Theme.MaterialComponents.DayNight.NoActionBar"/>
+    <style name="Theme.RideCare" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/mint</item>
+        <item name="colorPrimaryVariant">@color/charcoal</item>
+        <item name="colorOnPrimary">@color/charcoal</item>
+        <item name="colorSecondary">@color/charcoal</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="android:statusBarColor">@color/status_bar</item>
+        <item name="android:windowLightStatusBar">false</item>
+
+        <!-- Input fields -->
+        <item name="textInputStyle">@style/Widget.AddVehicle.TextInputLayout</item>
+    </style>
+
+    <!-- TextInputLayout outlined style -->
+    <style name="Widget.AddVehicle.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/input_stroke_color</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">1.5dp</item>
+        <item name="boxCornerRadiusTopStart">10dp</item>
+        <item name="boxCornerRadiusTopEnd">10dp</item>
+        <item name="boxCornerRadiusBottomStart">10dp</item>
+        <item name="boxCornerRadiusBottomEnd">10dp</item>
+        <item name="boxBackgroundColor">@color/white</item>
+        <item name="hintTextColor">@color/text_secondary</item>
+        <item name="android:textColorHint">@color/text_hint</item>
+    </style>
+
+    <!-- Section label text style -->
+    <style name="TextAppearance.AddVehicle.SectionLabel">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/section_label</item>
+        <item name="android:letterSpacing">0.12</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <!-- Field label text style -->
+    <style name="TextAppearance.AddVehicle.FieldLabel">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+
+    <!-- Selected option card -->
+    <style name="Widget.AddVehicle.OptionCard.Selected">
+        <item name="android:background">@drawable/bg_option_selected</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <!-- Unselected option card -->
+    <style name="Widget.AddVehicle.OptionCard.Unselected">
+        <item name="android:background">@drawable/bg_option_unselected</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <!-- Save button -->
+    <style name="Widget.AddVehicle.SaveButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">@color/mint</item>
+        <item name="android:textColor">@color/charcoal</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.08</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="cornerRadius">14dp</item>
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:paddingBottom">15dp</item>
+    </style>
 </resources>

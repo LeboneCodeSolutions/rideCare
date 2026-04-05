@@ -1,66 +1,531 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:background="@color/background"
+    tools:context=".activities.client.AddVehicleActivity">
 
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:orientation="vertical">
+    <!-- App Bar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/app_bar"
+        app:elevation="0dp">
 
-      <TextView
-          android:layout_width="183dp"
-          android:layout_height="wrap_content"
-          android:layout_marginBottom="12dp"
-          android:text="Add Vehicle"
-          android:textSize="22sp"
-          android:textStyle="bold" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/app_bar"
+            app:navigationIcon="@drawable/ic_arrow_back_mint"
+            app:navigationContentDescription="@string/nav_back"
+            app:title="@string/title_add_vehicle"
+            app:titleTextColor="@color/white"
+            app:titleTextAppearance="@style/TextAppearance.AddVehicle.ToolbarTitle" />
 
-      <EditText
-          android:id="@+id/etMake"
-          android:layout_marginTop="16dp"
-          android:layout_width="match_parent"
-          android:layout_height="48dp"
-          android:hint="Car Make/Brand"
-          android:inputType="textPersonName"
-          android:layout_marginBottom="8dp" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-      <EditText
-          android:id="@+id/etModel"
-          android:layout_width="match_parent"
-          android:layout_height="48dp"
-          android:layout_marginBottom="8dp"
-          android:hint="Vehicle Model (e.g., BMW 3 Series)" />
+    <!-- Scrollable Content -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:fillViewport="true">
 
-      <EditText
-          android:id="@+id/etYear"
-          android:layout_width="match_parent"
-          android:layout_height="48dp"
-          android:hint="Year of Manufacture"
-          android:inputType="number"
-          android:layout_marginBottom="8dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-      <EditText
-          android:id="@+id/etVIN"
-          android:layout_width="match_parent"
-          android:layout_height="48dp"
-          android:hint="VIN (17 characters)"
-          android:layout_marginBottom="8dp"
-          android:inputType="number" />
+            <!-- ==============================
+                 SECTION: VEHICLE DETAILS
+                 ============================== -->
+            <TextView
+                android:id="@+id/labelVehicleDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:text="@string/section_vehicle_details"
+                style="@style/TextAppearance.AddVehicle.SectionLabel" />
 
-      <EditText
-          android:id="@+id/etReg"
-          android:layout_width="match_parent"
-          android:layout_height="48dp"
-          android:hint="Registration (e.g., AB 12 CD GP)"
-          android:layout_marginBottom="16dp" />
+            <!-- Car Make -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="@string/label_make"
+                style="@style/TextAppearance.AddVehicle.FieldLabel" />
 
-      <Button
-          android:id="@+id/btnSaveVehicle"
-          android:layout_width="match_parent"
-          android:layout_height="48dp"
-          android:text="Save Vehicle" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilMake"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                style="@style/Widget.AddVehicle.TextInputLayout">
 
-  </LinearLayout>
-</ScrollView>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tfMake"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_make"
+                    android:inputType="textCapWords"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_primary" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Vehicle Model -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="@string/label_model"
+                style="@style/TextAppearance.AddVehicle.FieldLabel" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilModel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                style="@style/Widget.AddVehicle.TextInputLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tfModel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_model"
+                    android:inputType="textCapWords"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_primary" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Year + Mileage (side by side) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:text="@string/label_year"
+                        style="@style/TextAppearance.AddVehicle.FieldLabel" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilYear"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.AddVehicle.TextInputLayout">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/tfYear"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/hint_year"
+                            android:inputType="number"
+                            android:maxLength="4"
+                            android:textSize="13sp"
+                            android:textColor="@color/text_primary" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:text="@string/label_mileage"
+                        style="@style/TextAppearance.AddVehicle.FieldLabel" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilMileage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.AddVehicle.TextInputLayout">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/tfMileage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/hint_mileage"
+                            android:inputType="number"
+                            android:textSize="13sp"
+                            android:textColor="@color/text_primary" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- VIN -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="@string/label_vin"
+                style="@style/TextAppearance.AddVehicle.FieldLabel" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilVin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                style="@style/Widget.AddVehicle.TextInputLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tfVin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_vin"
+                    android:inputType="textCapCharacters"
+                    android:maxLength="17"
+                    android:fontFamily="monospace"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_primary" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Registration -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="@string/label_registration"
+                style="@style/TextAppearance.AddVehicle.FieldLabel" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilRegistration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                style="@style/Widget.AddVehicle.TextInputLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tfRegistration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_registration"
+                    android:inputType="textCapCharacters"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_primary" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/divider" />
+
+            <!-- ==============================
+                 SECTION: SPECIFICATIONS
+                 ============================== -->
+            <TextView
+                android:id="@+id/labelSpecifications"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:text="@string/section_specifications"
+                style="@style/TextAppearance.AddVehicle.SectionLabel" />
+
+            <!-- Drive Type -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/label_drive_type"
+                style="@style/TextAppearance.AddVehicle.FieldLabel" />
+
+            <LinearLayout
+                android:id="@+id/driveTypeGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="14dp">
+
+                <!-- Manual -->
+                <LinearLayout
+                    android:id="@+id/btnManual"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="4dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:background="@drawable/bg_option_selected"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <TextView
+                        android:id="@+id/tvManual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/drive_manual"
+                        android:textColor="@color/mint"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/drive_manual_sub"
+                        android:textColor="@color/text_muted"
+                        android:textSize="10sp"
+                        android:layout_marginTop="2dp" />
+                </LinearLayout>
+
+                <!-- Automatic -->
+                <LinearLayout
+                    android:id="@+id/btnAutomatic"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="4dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:background="@drawable/bg_option_unselected"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <TextView
+                        android:id="@+id/tvAutomatic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/drive_auto"
+                        android:textColor="@color/text_hint"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/drive_auto_sub"
+                        android:textColor="@color/border_default"
+                        android:textSize="10sp"
+                        android:layout_marginTop="2dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Fuel Type -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/label_fuel_type"
+                style="@style/TextAppearance.AddVehicle.FieldLabel" />
+
+            <LinearLayout
+                android:id="@+id/fuelTypeGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="14dp">
+
+                <LinearLayout
+                    android:id="@+id/btnPetrol"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="4dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:background="@drawable/bg_option_unselected"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⛽" android:textSize="16sp" android:layout_marginBottom="3dp" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/fuel_petrol" android:textColor="@color/text_hint" android:textSize="11sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btnDiesel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:background="@drawable/bg_option_selected"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🛢️" android:textSize="16sp" android:layout_marginBottom="3dp" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/fuel_diesel" android:textColor="@color/mint" android:textSize="11sp" android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btnElectric"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="4dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:background="@drawable/bg_option_unselected"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⚡" android:textSize="16sp" android:layout_marginBottom="3dp" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/fuel_electric" android:textColor="@color/text_hint" android:textSize="11sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Body Type -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/label_body_type"
+                style="@style/TextAppearance.AddVehicle.FieldLabel" />
+
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/bodyTypeGrid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                app:columnCount="3"
+                app:rowCount="2">
+
+                <LinearLayout android:id="@+id/btnSedan" android:layout_width="0dp" android:layout_height="wrap_content" android:gravity="center" android:padding="9dp" android:background="@drawable/bg_option_unselected" android:clickable="true" android:focusable="true" app:layout_columnWeight="1" app:layout_rowWeight="1" android:layout_margin="4dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/body_sedan" android:textColor="@color/text_hint" android:textSize="11sp" />
+                </LinearLayout>
+
+                <LinearLayout android:id="@+id/btnSuv" android:layout_width="0dp" android:layout_height="wrap_content" android:gravity="center" android:padding="9dp" android:background="@drawable/bg_option_selected" android:clickable="true" android:focusable="true" app:layout_columnWeight="1" app:layout_rowWeight="1" android:layout_margin="4dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/body_suv" android:textColor="@color/mint" android:textSize="11sp" android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout android:id="@+id/btnHatchback" android:layout_width="0dp" android:layout_height="wrap_content" android:gravity="center" android:padding="9dp" android:background="@drawable/bg_option_unselected" android:clickable="true" android:focusable="true" app:layout_columnWeight="1" app:layout_rowWeight="1" android:layout_margin="4dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/body_hatchback" android:textColor="@color/text_hint" android:textSize="11sp" />
+                </LinearLayout>
+
+                <LinearLayout android:id="@+id/btnCoupe" android:layout_width="0dp" android:layout_height="wrap_content" android:gravity="center" android:padding="9dp" android:background="@drawable/bg_option_unselected" android:clickable="true" android:focusable="true" app:layout_columnWeight="1" app:layout_rowWeight="1" android:layout_margin="4dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/body_coupe" android:textColor="@color/text_hint" android:textSize="11sp" />
+                </LinearLayout>
+
+                <LinearLayout android:id="@+id/btnBakkie" android:layout_width="0dp" android:layout_height="wrap_content" android:gravity="center" android:padding="9dp" android:background="@drawable/bg_option_unselected" android:clickable="true" android:focusable="true" app:layout_columnWeight="1" app:layout_rowWeight="1" android:layout_margin="4dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/body_bakkie" android:textColor="@color/text_hint" android:textSize="11sp" />
+                </LinearLayout>
+
+                <LinearLayout android:id="@+id/btnVan" android:layout_width="0dp" android:layout_height="wrap_content" android:gravity="center" android:padding="9dp" android:background="@drawable/bg_option_unselected" android:clickable="true" android:focusable="true" app:layout_columnWeight="1" app:layout_rowWeight="1" android:layout_margin="4dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/body_van" android:textColor="@color/text_hint" android:textSize="11sp" />
+                </LinearLayout>
+            </androidx.gridlayout.widget.GridLayout>
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/divider" />
+
+            <!-- ==============================
+                 SECTION: SERVICE HISTORY
+                 ============================== -->
+            <TextView
+                android:id="@+id/labelServiceHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:text="@string/section_service_history"
+                style="@style/TextAppearance.AddVehicle.SectionLabel" />
+
+            <!-- None / Partial / Full -->
+            <LinearLayout
+                android:id="@+id/serviceHistoryGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
+
+                <LinearLayout android:id="@+id/btnServiceNone" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="4dp" android:orientation="vertical" android:gravity="center" android:padding="11dp" android:background="@drawable/bg_option_unselected" android:clickable="true" android:focusable="true">
+                    <View android:layout_width="16dp" android:layout_height="16dp" android:background="@drawable/bg_radio_unselected" android:layout_marginBottom="5dp" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/service_none" android:textColor="@color/text_hint" android:textSize="11sp" />
+                </LinearLayout>
+
+                <LinearLayout android:id="@+id/btnServicePartial" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="4dp" android:layout_marginEnd="4dp" android:orientation="vertical" android:gravity="center" android:padding="11dp" android:background="@drawable/bg_option_unselected" android:clickable="true" android:focusable="true">
+                    <View android:layout_width="16dp" android:layout_height="16dp" android:background="@drawable/bg_radio_unselected" android:layout_marginBottom="5dp" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/service_partial" android:textColor="@color/text_hint" android:textSize="11sp" />
+                </LinearLayout>
+
+                <LinearLayout android:id="@+id/btnServiceFull" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="4dp" android:orientation="vertical" android:gravity="center" android:padding="11dp" android:background="@drawable/bg_option_selected" android:clickable="true" android:focusable="true">
+                    <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@drawable/ic_check_mint" android:background="@drawable/bg_radio_selected" android:layout_marginBottom="5dp" android:padding="2dp" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/service_full" android:textColor="@color/mint" android:textSize="11sp" android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Service Book Toggle -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/bg_option_unselected"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_service_book"
+                        android:textColor="@color/text_primary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_service_book_sub"
+                        android:textColor="@color/text_hint"
+                        android:textSize="10sp"
+                        android:layout_marginTop="2dp" />
+                </LinearLayout>
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchServiceBook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    app:thumbTint="@color/white"
+                    app:trackTint="@color/mint" />
+            </LinearLayout>
+
+            <!-- Save Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSaveVehicle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_save_vehicle"
+                android:layout_marginBottom="16dp"
+                style="@style/Widget.AddVehicle.SaveButton" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

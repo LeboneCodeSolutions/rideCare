@@ -498,4 +498,15 @@ public static boolean errEmptyVal(MutableLiveData<String> saveStatus, String val
                 "Could not verify request limit. Please try again.",
                 Toast.LENGTH_SHORT).show();
     }
+
+
+
+    // Year limit
+
+    public static void yearLimit(MutableLiveData<String> saveStatus, int year){
+        if (year == 0) {
+            saveStatus.setValue("error: Year Entry 0");
+            return;
+        } else if (year < 1970 ) {saveStatus.setValue("error: Year Limit");return;}
+    }
 }

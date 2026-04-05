@@ -25,7 +25,6 @@
     <string name="addVehicleIcon"> Add icon</string>
 
 
-    <string name="app_name">Tow Dispatch</string>
 
     <!-- Section titles -->
     <string name="sec_location">LOCATION</string>
@@ -120,6 +119,67 @@
 
     <string name="btn_submit">SUBMIT DISPATCH REQUEST →</string>
     <string name="submit_note">A dispatcher will confirm via call or SMS within minutes</string>
+
+
+    <string name="app_name">Add Vehicle</string>
+
+    <!-- Toolbar -->
+    <string name="title_add_vehicle">Add Vehicle</string>
+    <string name="nav_back">Back</string>
+
+    <!-- Section Headers -->
+    <string name="section_vehicle_details">Vehicle Details</string>
+    <string name="section_specifications">Specifications</string>
+    <string name="section_service_history">Service History</string>
+
+    <!-- Field Labels -->
+    <string name="label_make">Car Make / Brand</string>
+    <string name="label_model">Vehicle Model</string>
+
+    <string name="label_mileage">Mileage (km)</string>
+    <string name="label_vin">VIN (17 characters)</string>
+    <string name="label_registration">Registration</string>
+
+    <string name="label_fuel_type">Fuel Type</string>
+    <string name="label_body_type">Body Type</string>
+    <string name="label_service_history">Service History</string>
+    <string name="label_service_book">Service book present?</string>
+    <string name="label_service_book_sub">Physical or digital record</string>
+
+    <!-- Hints -->
+    <string name="hint_make">e.g. Toyota, BMW, Ford</string>
+    <string name="hint_model">e.g. Corolla, 3 Series</string>
+
+    <string name="hint_mileage">e.g. 85 000</string>
+    <string name="hint_vin">e.g. 1HGBH41JXMN109186</string>
+    <string name="hint_registration">e.g. AB 12 CD GP</string>
+
+    <!-- Drive Type Options -->
+    <string name="drive_manual">Manual</string>
+    <string name="drive_manual_sub">Stick Shift</string>
+    <string name="drive_auto">Automatic</string>
+    <string name="drive_auto_sub">Auto</string>
+
+    <!-- Fuel Type Options -->
+    <string name="fuel_petrol">Petrol</string>
+    <string name="fuel_diesel">Diesel</string>
+    <string name="fuel_electric">Electric</string>
+
+    <!-- Body Type Options -->
+    <string name="body_sedan">Sedan</string>
+    <string name="body_suv">SUV</string>
+    <string name="body_hatchback">Hatchback</string>
+    <string name="body_coupe">Coupe</string>
+    <string name="body_bakkie">Bakkie</string>
+    <string name="body_van">Van</string>
+
+    <!-- Service History Options -->
+    <string name="service_none">None</string>
+    <string name="service_partial">Partial</string>
+    <string name="service_full">Full</string>
+
+    <!-- Button -->
+    <string name="btn_save_vehicle">Save Vehicle</string>
 </resources>
 
 

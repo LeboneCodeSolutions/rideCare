@@ -230,4 +230,22 @@
         <item name="rippleColor">@color/teal_200</item>
     </style>
 
+    <style name="TextAppearance.AddVehicle.ToolbarTitle" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0.01</item>
+    </style>
+    <!-- Base text appearance for AddVehicle screen -->
+    <style name="TextAppearance.AddVehicle" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <!-- Option card style (for your selector buttons) -->
+    <style name="Widget.AddVehicle.OptionCard" parent="Widget.MaterialComponents.CardView">
+        <item name="android:padding">8dp</item>
+        <item name="android:background">@drawable/bg_option_unselected</item>
+        <item name="android:gravity">center</item>
+    </style>
 </resources>

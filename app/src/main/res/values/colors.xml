@@ -36,7 +36,7 @@
     <!-- Base surfaces -->
     <color name="widget_bg">#F7F8FA</color>
     <color name="widget_border">#E2E5EC</color>
-    <color name="white">#FFFFFF</color>
+
 
     <!-- Brand -->
     <color name="brand_orange">#F57C1F</color>
@@ -66,11 +66,50 @@
     <color name="live_dot">#3DB85C</color>
 
     <!-- Typography -->
-    <color name="text_primary">#1A1D23</color>
-    <color name="text_secondary">#555B6A</color>
-    <color name="text_muted">#9296A1</color>
+
+
 
     <!-- Map placeholder bg (shown before MapView loads) -->
     <color name="map_bg">#E8EDF5</color>
 
+    
+    <!-- Icon Color-->
+    <color name="material_grey_hint"> #9E9E9E </color>
+    
+    
+    <!-- Main Color Theme Concept --> 
+    <color name="near_black_main"> #262626 </color>
+    <color name="orange_main">#FF7F11</color>
+    <color name ="sage_green_main"> #ACBFA4 </color>
+    <color name="white_off_main">#E2E8CE</color>
+
+
+    <!-- Brand Palette -->
+    <color name="mint">#B0E4CC</color>
+    <color name="charcoal">#262626</color>
+    <color name="white">#FFFFFF</color>
+    <color name="background">#FAFAFA</color>
+
+    <!-- Text -->
+    <color name="text_primary">#262626</color>
+    <color name="text_secondary">#6A6A6A</color>
+    <color name="text_hint">#C0C0C0</color>
+    <color name="text_muted">#7A7A7A</color>
+    <color name="text_on_dark">#B0E4CC</color>
+
+    <!-- Borders & Dividers -->
+    <color name="border_default">#E8E8E8</color>
+    <color name="border_active">#B0E4CC</color>
+    <color name="divider">#EBEBEB</color>
+
+    <!-- Section Labels -->
+    <color name="section_label">#5AAB88</color>
+
+    <!-- Selected card states -->
+    <color name="card_selected_bg">#262626</color>
+    <color name="card_unselected_bg">#FFFFFF</color>
+
+    <!-- Status bar / App bar -->
+    <color name="app_bar">#262626</color>
+    <color name="status_bar">#262626</color>
 </resources>

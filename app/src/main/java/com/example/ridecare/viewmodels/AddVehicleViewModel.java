@@ -16,6 +16,15 @@ public class AddVehicleViewModel extends ViewModel {
     // LiveData to communicate back to the Activity
     private MutableLiveData<String> saveStatus = new MutableLiveData<>();
     private final FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+
+
+    private MutableLiveData<String> transmissionType = new MutableLiveData<>("");
+    private MutableLiveData<String> fuelType = new MutableLiveData<>("");
+    private MutableLiveData<String> bodyType = new MutableLiveData<>("");
+    private MutableLiveData<String> serviceHistory = new MutableLiveData<>("");
+    private MutableLiveData<Boolean> serviceBook = new MutableLiveData<>(false);
+
+
     private final RegNumberValidation validator = new RegNumberValidation();
     private final VinDecoder decoder = new VinDecoder();
     private final VinDecoder wmi = new VinDecoder();
@@ -25,6 +34,47 @@ public class AddVehicleViewModel extends ViewModel {
 
 
     // Change to myUtils
+    public LiveData<String> getFuelType() {
+        return fuelType;
+    }
+    public void setFuelType(String value) {
+        fuelType.setValue(value);
+    }
+    public LiveData<String> getTransmissionType() {
+        return transmissionType;
+    }
+
+    public void setTransmissionType(String value) {
+        transmissionType.setValue(value);
+    }
+
+
+    public LiveData<String>getBodyType(){
+        return bodyType;
+    }
+    public void setBodyType(String value) {
+        bodyType.setValue(value);
+    }
+
+
+    public LiveData<String> getServiceHistoryType(){
+        return serviceHistory;
+    }
+    public void setServiceHistoryType(String value) {
+        serviceHistory.setValue(value);
+    }
+
+
+    public LiveData<Boolean> getIsServiceBookPresent(){
+        return serviceBook;
+    }
+
+    public void setIsServiceBookPresent(boolean isChecked) {
+        serviceBook.setValue(isChecked);
+    }
+
+
+
     public String validatePlate(String plateInput) {
         String province = validator.identifyProvince(plateInput);
         if (province != null) {
@@ -42,33 +92,36 @@ public class AddVehicleViewModel extends ViewModel {
         return wmiOutput;
     }
     // build all validation
-    public void saveVehicle(String make, String model, int year, String vin, String reg) {
+    public void saveVehicle(String make, String model, int year, String vin, String reg, String transmissionType, String fuelType,  String bodyType, String serviceHistory, Boolean isServiceBookPresent) {
         // Note revisit intefaces for your myutils implementation
         // validation lives here now, not in Activity
         if (!MyUtils.errEmptyVal(saveStatus, make))  return;
-        if (year == 0) {
-            saveStatus.setValue("error:year");
-            return;
-        }
+        if (!MyUtils.errEmptyVal(saveStatus, model))  return;
+       // if(!MyUtils.yearLimit(saveStatus, year)) return;
         if (!MyUtils.errEmptyVal(saveStatus, vin))  return;
         if (!MyUtils.errEmptyVal(saveStatus, reg))  return;
 
          String registrationRegion =  validatePlate(reg);
-
          // add to database system note
          String vinDecoded = validateVIN(vin, year);
 
          // vin approved vin
-         String wmiMake = wmi(vin);
-         // Compare make with wmiMake
+         String verifiedMake = wmi(vin);
 
-
+        
         // Refer To Firebase MyUtils
         String userId = FirebaseUtils.getUid();
-        Vehicle vehicle = new Vehicle(userId, wmiMake, model, year, vin, reg, registrationRegion);
+        // Update the vehicle class
+
+
+
+        Vehicle vehicle = new Vehicle(userId, verifiedMake, model, year, vin, reg, registrationRegion, transmissionType, fuelType, bodyType, serviceHistory, isServiceBookPresent, vinDecoded);
 
         DocumentReference docRef = FirebaseUtils.newEntityRef(firestore, "vehicles");
         vehicle.setVehicleId(docRef.getId());
         FirebaseUtils.saveAndClose(saveStatus, docRef, vehicle);
         }
+
+
+
 }
