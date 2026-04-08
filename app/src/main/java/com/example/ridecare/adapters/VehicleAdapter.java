@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -48,15 +49,35 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VH> {
         Vehicle vehicle = vehicleList.get(position);
 
         // Binds the data to the TextViews in the item layout
-        String title = vehicle.getMake() + " " + vehicle.getModel();
-        //String odometerReading = vehicle.getOdometerReading
+        String makeModel = vehicle.getMake() + " " + vehicle.getModel();
+
+
+// find my utils to cobvert int to string
+        int year = vehicle.getYear();
+        String strYear = String.valueOf(year);
+
+
+
+        String fuelType = vehicle.getFuelType();
         String vinNum = vehicle.getVin();
+        String bodyType = vehicle.getBodyType();
+        String mileage = vehicle.getMileage();
         // Developer note: this doesn't show
         String vehicleReg = vehicle.getRegistrationNumber();
+        String subTitle = vehicle.getTransmissionType() + " · " + vehicle.getVinDecoded();
 
-        holder.tvVehicleTitle.setText(title);
-        holder.tvVehicleReg.setText(vehicleReg);
-        holder.tvVinNum.setText(vinNum);
+
+
+
+        holder.tvModelMake.setText(makeModel.toUpperCase());
+        holder.tvRegistration.setText(vehicleReg);
+        holder.tvVin.setText(vinNum);
+        holder.tvFuel.setText(fuelType.toUpperCase());
+        holder.tvBodyType.setText(bodyType.toUpperCase());
+        holder.tvMileage.setText(mileage);
+        holder.tvYear.setText(strYear);
+        holder.subTitle.setText(subTitle);
+
         holder.cardService.setOnClickListener(v -> listener.onBook(vehicle));
 
     }
@@ -69,17 +90,22 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VH> {
 
     // ViewHolder class to hold the views for each item
     static class VH extends RecyclerView.ViewHolder {
-        TextView tvVehicleTitle, tvOdometerReading, tvVinNum, tvVehicleReg;
-        ConstraintLayout cardService;
+        TextView tvModelMake, tvYear, tvMileage, tvVin,  tvRegistration, tvFuel, tvBodyType, subTitle;
+        LinearLayout cardService;
         public VH(@NonNull View itemView) {
             super(itemView);
             
             // Finds the views from the inflated layout (item_vehicle.xml)
-            tvVehicleTitle = itemView.findViewById(R.id.titleText); // Make sure these IDs exist in item_vehicle.xml
+            tvModelMake = itemView.findViewById(R.id.tvModelMake);
+            tvMileage = itemView.findViewById(R.id.tvMileage);
+            tvVin = itemView.findViewById(R.id.tvVin);
+            tvRegistration = itemView.findViewById(R.id.tvRegistration);
+            tvYear = itemView.findViewById(R.id.tvYear);
+            tvFuel = itemView.findViewById(R.id.tvFuel);
+            tvBodyType = itemView.findViewById(R.id.tvBodyType);
+            subTitle = itemView.findViewById(R.id.subTitle);
 
-            tvOdometerReading = itemView.findViewById(R.id.tvOdometerReading);
-            tvVinNum = itemView.findViewById(R.id.tvVinNum);
-            tvVehicleReg = itemView.findViewById(R.id.tvVehicleReg);
+
             cardService = itemView.findViewById(R.id.cardService);
 
         }

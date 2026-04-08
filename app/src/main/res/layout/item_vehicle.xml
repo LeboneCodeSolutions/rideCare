@@ -1,191 +1,279 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingTop="8dp"
-    android:paddingBottom="8dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- VEHICLE CARD -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/vehicleCard"
-        android:layout_width="369dp"
-        android:layout_height="210dp"
-        android:background="@drawable/bg_color_card_gradient_2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <data>
+        <variable
+            name="vehicle"
+            type="com.example.ridecare.models.Vehicle" />
+    </data>
 
-        <!-- ODOMETER -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@color/background"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp">
 
-        <!-- VIN -->
-
-        <!-- BOOK SERVICE -->
-
-        <!-- VEHICLE IMAGE -->
-
-        <!-- TITLE + REG -->
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cardVin"
-            android:layout_width="160dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:background="@drawable/bg_color_card_7"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cardOdometer">
-
-            <ImageView
-                android:id="@+id/ivVinIcon"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_marginStart="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/id_card_24px"
-                app:tint="@color/white" />
-
-            <TextView
-                android:id="@+id/tvVinNum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:text="WVWZZZ..."
-                android:textColor="@color/white"
-                android:textSize="8sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/ivVinIcon"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:id="@+id/cardService"
-            android:layout_width="85dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/bg_color_card_7"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cardVin">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="18dp">
 
-            <ImageView
-                android:id="@+id/ivBookingIcon"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_marginStart="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/build_24px"
-                app:tint="@color/white" />
-
-            <TextView
-                android:id="@+id/tvBookingLabel"
-                android:layout_width="wrap_content"
+            <!-- Header: Icon + Title + Subtitle -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:text="Book Service"
-                android:textColor="@color/white"
-                android:textSize="8sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/ivBookingIcon"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="20dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cardOdometer"
-            android:layout_width="140dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="56dp"
-            android:background="@drawable/bg_color_card_7"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+                <!-- Vehicle Icon Box -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    app:cardBackgroundColor="#2E2010"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    android:layout_marginEnd="14dp">
 
-            <ImageView
-                android:id="@+id/ivOdometerIcon"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_marginStart="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/speed_24px"
-                app:tint="@color/white" />
 
-            <TextView
-                android:id="@+id/tvOdometerReading"
-                android:layout_width="wrap_content"
+
+                </androidx.cardview.widget.CardView>
+
+                <!-- Title + Subtitle -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvModelMake"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{vehicle.makeModel}"
+                        tools:text="Toyota Camry"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/subTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{vehicle.transmissionType}"
+                        tools:text="Automatic"
+                        android:textColor="@color/black"
+                        android:textSize="13sp"
+                        android:layout_marginTop="2dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#2A2A35"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Row 1: Registration | VIN -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:text="120 000 km"
-                android:textColor="@color/white"
-                android:textSize="8sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/ivOdometerIcon"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:orientation="horizontal"
+                android:layout_marginBottom="14dp">
 
-            <ImageView
-                android:id="@+id/ivEditOdometer"
-                android:layout_width="12dp"
-                android:layout_height="12dp"
-                android:layout_marginStart="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/tvOdometerReading"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.444"
-                app:srcCompat="@drawable/edit_24px"
-                app:tint="@color/white" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/ivVehicle"
-            android:layout_width="277dp"
-            android:layout_height="211dp"
-            android:layout_marginEnd="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/vw_golf_8" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="REGISTRATION"
+                        android:textColor="#72728A"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.05"
+                        android:layout_marginBottom="3dp" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="134dp"
-            android:layout_height="27dp"
-            android:layout_marginEnd="76dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/bg_color_card_7"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+                    <TextView
+                        android:id="@+id/tvRegistration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{vehicle.registrationNumber}"
+                        tools:text="CA 123-456"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/titleText"
-                android:layout_width="wrap_content"
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="VIN"
+                        android:textColor="#72728A"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.05"
+                        android:layout_marginBottom="3dp" />
+
+                    <TextView
+                        android:id="@+id/tvVin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{vehicle.vin}"
+                        tools:text="1HGCM82633A004352"
+                        android:textColor="@color/black"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Row 2: Year | Mileage -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="4dp"
-                android:text="VW Golf 8"
-                android:textColor="@color/white"
-                android:textSize="10sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:orientation="horizontal"
+                android:layout_marginBottom="14dp">
 
-            <TextView
-                android:id="@+id/tvVehicleReg"
-                android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="YEAR"
+                        android:textColor="#72728A"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.05"
+                        android:layout_marginBottom="3dp" />
+
+                    <TextView
+                        android:id="@+id/tvYear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{String.valueOf(vehicle.year)}"
+                        tools:text="2021"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MILEAGE"
+                        android:textColor="#72728A"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.05"
+                        android:layout_marginBottom="3dp" />
+
+                    <TextView
+                        android:id="@+id/tvMileage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{String.valueOf(vehicle.mileage)}"
+                        tools:text="45 200 km"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Row 3: Body | Fuel -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:text="REG89GP"
-                android:textColor="#7CFF9E"
-                android:textSize="6sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/titleText" />
+                android:orientation="horizontal">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="BODY"
+                        android:textColor="#72728A"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.05"
+                        android:layout_marginBottom="3dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/tvBodyType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{vehicle.bodyType}"
+                        tools:text="Sedan"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="FUEL"
+                        android:textColor="#72728A"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.05"
+                        android:layout_marginBottom="3dp" />
+
+                    <TextView
+                        android:id="@+id/tvFuel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{vehicle.fuelType}"
+                        tools:text="Petrol"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

@@ -31,6 +31,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -498,11 +499,6 @@ public static boolean errEmptyVal(MutableLiveData<String> saveStatus, String val
                 "Could not verify request limit. Please try again.",
                 Toast.LENGTH_SHORT).show();
     }
-
-
-
-    // Year limit
-
     public static void yearLimit(MutableLiveData<String> saveStatus, int year){
         if (year == 0) {
             saveStatus.setValue("error: Year Entry 0");

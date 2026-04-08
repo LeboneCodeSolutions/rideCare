@@ -1,6 +1,7 @@
 package com.example.ridecare.activities.client; // Use your actual package name
-
 import static com.example.ridecare.utils.MyUtils.checkVehicleRequestLimit;
+
+
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,7 +38,7 @@ public class VehicleListActivity extends AppCompatActivity {
     private RecyclerView rvVehicles;
     private VehicleAdapter adapter;
     private List<Vehicle> vehicleList;
-private ImageView ivAddVehicle, backArrow;
+    private ImageView ivAddVehicle, backArrow;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
 
@@ -71,6 +73,7 @@ private ImageView ivAddVehicle, backArrow;
                         intent.putExtra("vehicleId", vehicle.getVehicleId());
                         intent.putExtra("vehicleMake", vehicle.getMake());
                         intent.putExtra("vehicleModel", vehicle.getModel());
+
                         startActivity(intent);
                     }
 

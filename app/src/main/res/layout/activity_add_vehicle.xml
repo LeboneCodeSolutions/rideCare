@@ -351,7 +351,7 @@
                     android:clickable="true"
                     android:focusable="true">
 
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⛽" android:textSize="16sp" android:layout_marginBottom="3dp" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="16sp" android:layout_marginBottom="3dp" />
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/fuel_petrol" android:textColor="@color/text_hint" android:textSize="11sp" />
                 </LinearLayout>
 
@@ -369,7 +369,7 @@
                     android:clickable="true"
                     android:focusable="true">
 
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🛢️" android:textSize="16sp" android:layout_marginBottom="3dp" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="16sp" android:layout_marginBottom="3dp" />
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/fuel_diesel" android:textColor="@color/mint" android:textSize="11sp" android:textStyle="bold" />
                 </LinearLayout>
 
@@ -386,7 +386,7 @@
                     android:clickable="true"
                     android:focusable="true">
 
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⚡" android:textSize="16sp" android:layout_marginBottom="3dp" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="16sp" android:layout_marginBottom="3dp" />
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/fuel_electric" android:textColor="@color/text_hint" android:textSize="11sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -472,48 +472,6 @@
                     <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@drawable/ic_check_mint" android:background="@drawable/bg_radio_selected" android:layout_marginBottom="5dp" android:padding="2dp" />
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/service_full" android:textColor="@color/mint" android:textSize="11sp" android:textStyle="bold" />
                 </LinearLayout>
-            </LinearLayout>
-
-            <!-- Service Book Toggle -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:background="@drawable/bg_option_unselected"
-                android:orientation="horizontal"
-                android:padding="12dp"
-                android:gravity="center_vertical">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/label_service_book"
-                        android:textColor="@color/text_primary"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/label_service_book_sub"
-                        android:textColor="@color/text_hint"
-                        android:textSize="10sp"
-                        android:layout_marginTop="2dp" />
-                </LinearLayout>
-
-                <com.google.android.material.switchmaterial.SwitchMaterial
-                    android:id="@+id/switchServiceBook"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    app:thumbTint="@color/white"
-                    app:trackTint="@color/mint" />
             </LinearLayout>
 
             <!-- Save Button -->

@@ -30,7 +30,6 @@ public class AddVehicleActivity extends AppCompatActivity {
     //Drive Type
     LinearLayout driveTypeGroup, btnManual, btnAutomatic;
 
-
     // Fuel Type
     LinearLayout fuelTypeGroup, btnPetrol, btnDiesel, btnElectric;
 
@@ -54,7 +53,7 @@ public class AddVehicleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_vehicle);
 
         viewBinder(); // -> bind the views
-        setupViewModel(); // -> send the values collected from the user to the processer == viewmodel
+        setupViewModel(); // -> send the values collected from the user to the viewmodel
         setupListeners();
     }
 
@@ -94,13 +93,10 @@ public class AddVehicleActivity extends AppCompatActivity {
         btnServicePartial = findViewById(R.id.btnServicePartial);
         btnServiceFull = findViewById(R.id.btnServiceFull);
 
-
-        switchServiceBook = findViewById(R.id.switchServiceBook);
-
         // Save Button
         btnSaveVehicle = findViewById(R.id.btnSaveVehicle);
 
-        // Add New Values into map if i create a new field
+        // Add all manually inputed values into fieldmap
         fieldMap.put("make",  tfMake);
         fieldMap.put("model", tfModel);
         fieldMap.put("mileage", tfMileage);
@@ -109,6 +105,8 @@ public class AddVehicleActivity extends AppCompatActivity {
         fieldMap.put("reg",   tfRegistration);
 
     }
+
+
     private void setupViewModel() {
         viewModel = new ViewModelProvider(this).get(AddVehicleViewModel.class);
 
@@ -121,7 +119,6 @@ public class AddVehicleActivity extends AppCompatActivity {
             }
         });
 
-// chnage to my utilss
         viewModel.getServiceHistoryType().observe(this, type ->{
             btnServiceNone.setBackgroundResource(R.drawable.bg_option_unselected);
             btnServicePartial.setBackgroundResource(R.drawable.bg_option_unselected);
@@ -132,6 +129,7 @@ public class AddVehicleActivity extends AppCompatActivity {
                 case "Partial": btnServicePartial.setBackgroundResource(R.drawable.bg_option_selected); break;
                 case "Full": btnServiceFull.setBackgroundResource(R.drawable.bg_option_selected); break;
             }
+
         });
         viewModel.getBodyType().observe(this, type -> {
             // Reset all first
@@ -173,9 +171,6 @@ public class AddVehicleActivity extends AppCompatActivity {
 
             }
         });
-        viewModel.getIsServiceBookPresent().observe(this, type ->{
-            switchServiceBook.setChecked(type);
-        });
     }
     private void setupListeners() {
         // Drive Type
@@ -200,10 +195,6 @@ public class AddVehicleActivity extends AppCompatActivity {
         btnServicePartial.setOnClickListener(v -> viewModel.setServiceHistoryType("Partial"));
         btnServiceFull.setOnClickListener(v -> viewModel.setServiceHistoryType("Full"));
 
-        // Service Book Switch
-        switchServiceBook.setOnCheckedChangeListener((buttonView, isChecked) ->
-           viewModel.setIsServiceBookPresent(isChecked));
-
         btnSaveVehicle.setOnClickListener(v -> {
             // Activity just collects and passes - no logic
             String make    = MyUtils.newStr(tfMake);
@@ -211,15 +202,15 @@ public class AddVehicleActivity extends AppCompatActivity {
             String yearStr = MyUtils.newStr(tfYear);
             String vin     = MyUtils.newStr(tfVin);
             String reg     = MyUtils.newStr(tfRegistration);
+            String mileage = MyUtils.newStr(tfMileage);
             int year       = MyUtils.intParser(yearStr, tfYear);
 
             String transmissionType = viewModel.getTransmissionType().getValue();
             String fuelType = viewModel.getFuelType().getValue();
             String bodyType = viewModel.getBodyType().getValue();
             String serviceHistory = viewModel.getServiceHistoryType().getValue();
-            Boolean isServiceBookPresent = viewModel.getIsServiceBookPresent().getValue();
 
-            viewModel.saveVehicle(make, model, year, vin, reg, transmissionType, fuelType, bodyType, serviceHistory, isServiceBookPresent);
+            viewModel.saveVehicle(make, model, year, vin, reg, transmissionType, fuelType, bodyType, serviceHistory, mileage);
         });
     }
 

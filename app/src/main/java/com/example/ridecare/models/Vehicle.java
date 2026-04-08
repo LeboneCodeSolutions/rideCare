@@ -8,13 +8,14 @@ public class Vehicle {
     private String make;
     private String model;
     private int year;
+
+    private String mileage;
     private String vin;
     private String regNumber, registrationRegion;
     private String transmissionType;
     private String fuelType;
     private String bodyType;
     private String serviceHistory;
-    private Boolean isServiceBookPresent;
     private String vinDecoded;
 
     @ServerTimestamp
@@ -25,7 +26,7 @@ public class Vehicle {
 
     public Vehicle(String userId, String make, String model, int year, String vin, String regNumber,
                    String registrationRegion, String transmissionType, String fuelType,
-                   String bodyType, String serviceHistory, Boolean isServiceBookPresent, String vinDecoded) {
+                   String bodyType, String serviceHistory, String vinDecoded, String mileage) {
         this.userId = userId;
         this.make = make;
         this.model = model;
@@ -37,8 +38,8 @@ public class Vehicle {
         this.fuelType = fuelType;
         this.bodyType = bodyType;
         this.serviceHistory = serviceHistory;
-        this.isServiceBookPresent = isServiceBookPresent;
         this.vinDecoded = vinDecoded;
+        this.mileage = mileage;
     }
 
     // --- Existing Getters & Setters ---
@@ -55,6 +56,10 @@ public class Vehicle {
     public String getModel() { return model; }
     public void setModel(String model) { this.model = model; }
 
+    public String getMakeModel(){
+        String makeMod = make + " " + model;
+        return makeMod.toUpperCase();
+    }
     public int getYear() { return year; }
     public void setYear(int year) { this.year = year; }
 
@@ -70,8 +75,6 @@ public class Vehicle {
     public Date getAddedAt() { return addedAt; }
     public void setAddedAt(Date addedAt) { this.addedAt = addedAt; }
 
-    // --- New Getters & Setters ---
-
     public String getTransmissionType() { return transmissionType; }
     public void setTransmissionType(String transmissionType) { this.transmissionType = transmissionType; }
 
@@ -84,9 +87,10 @@ public class Vehicle {
     public String getServiceHistory() { return serviceHistory; }
     public void setServiceHistory(String serviceHistory) { this.serviceHistory = serviceHistory; }
 
-    public Boolean getIsServiceBookPresent() { return isServiceBookPresent; }
-    public void setIsServiceBookPresent(Boolean isServiceBookPresent) { this.isServiceBookPresent = isServiceBookPresent; }
-
     public String getVinDecoded() { return vinDecoded; }
     public void setVinDecoded(String vinDecoded) { this.vinDecoded = vinDecoded; }
+
+
+    public String getMileage() { return mileage; }
+    public void setMileage(String mileage) { this.mileage = mileage; }
 }
