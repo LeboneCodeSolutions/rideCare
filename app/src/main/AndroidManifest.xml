@@ -68,7 +68,7 @@
             android:exported="false" />
         <activity android:name=".activities.client.DashboardActivity"
             android:exported="true" />
-        <activity android:name=".activities.client.BookServiceActivity"
+        <activity android:name=".activities.client.ViewVehicleDetailsActivity"
             android:exported="false" />
         <activity android:name=".activities.client.InvoiceListActivity"
             android:exported="true"

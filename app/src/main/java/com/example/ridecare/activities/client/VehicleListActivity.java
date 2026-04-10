@@ -69,7 +69,7 @@ public class VehicleListActivity extends AppCompatActivity {
                     checkVehicleRequestLimit(vehicleIdVar, new MyUtils.OnLimitCheckListener(){
                     @Override
                     public void onCanProceed(int currentCount) {
-                        Intent intent = new Intent(VehicleListActivity.this, BookServiceActivity.class);
+                        Intent intent = new Intent(VehicleListActivity.this, ViewVehicleDetailsActivity.class);
                         intent.putExtra("vehicleId", vehicle.getVehicleId());
                         intent.putExtra("vehicleMake", vehicle.getMake());
                         intent.putExtra("vehicleModel", vehicle.getModel());

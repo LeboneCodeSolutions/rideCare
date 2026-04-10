@@ -106,7 +106,6 @@ public class AddVehicleActivity extends AppCompatActivity {
 
     }
 
-
     private void setupViewModel() {
         viewModel = new ViewModelProvider(this).get(AddVehicleViewModel.class);
 
@@ -220,7 +219,6 @@ public class AddVehicleActivity extends AppCompatActivity {
         if (formInputs != null) {
             MyUtils.requireString(formInputs.getText().toString(), formInputs, "Required");
         } else {
-            // Changed to myUtil Function Refer to MyUtils
             MyUtils.eDisplay(this, field);
         }
     }
